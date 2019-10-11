@@ -7,6 +7,7 @@ require("./services/passport");
 
 // App Routes!
 require("./routes/googleAuthRoutes")(app);
+require("./routes/authRouter")(app);
 
 app.get("/", (req, res) => res.send("Hello World!"));
 

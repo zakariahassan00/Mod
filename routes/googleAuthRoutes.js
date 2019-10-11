@@ -1,5 +1,4 @@
 const passport = require("passport");
-
 module.exports = app => {
   // Google OAuth routes!
 
