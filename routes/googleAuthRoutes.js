@@ -11,10 +11,15 @@ module.exports = app => {
   );
 
   // now we have the code now authenticatete
-  app.get("/auth/google/callback", passport.authenticate("google"));
+  app.get(
+    "/auth/google/callback",
+    passport.authenticate("google"),
+    (req, res) => {
+      res.redirect("/");
+    }
+  );
 
   app.get("/google/logout", (req, res) => {
-    console.log(req.logout);
     req.logout();
     res.redirect("/");
   });
