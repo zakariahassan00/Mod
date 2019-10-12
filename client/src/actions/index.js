@@ -1,4 +1,4 @@
-import { FETCH_MOVIES } from "./types";
+import axios from "axios";
 
 export const getAllMovies = () => {
   const movies = [
@@ -12,5 +12,11 @@ export const getAllMovies = () => {
     }
   ];
 
-  return { type: FETCH_MOVIES, payload: movies };
+  return { type: "fetch_movies", payload: movies };
+};
+
+export const getUser = () => async dispatch => {
+  const user = await axios.get("/api/cu");
+
+  dispatch({ type: "fetch_user", payload: user.data });
 };

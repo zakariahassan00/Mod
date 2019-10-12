@@ -19,8 +19,12 @@ module.exports = app => {
     }
   );
 
-  app.get("/google/logout", (req, res) => {
+  app.get("/api/logout", (req, res) => {
     req.logout();
     res.redirect("/");
+  });
+
+  app.get("/api/cu", (req, res) => {
+    res.send(req.user);
   });
 };

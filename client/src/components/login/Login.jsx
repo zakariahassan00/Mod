@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import MuiTextFields from "../common/input/MuiTextField";
 import { loginStyles } from "./loginStyles";
-// import { validate } from "./validate"
 import { Field, reduxForm } from "redux-form";
 
 class Login extends Component {
