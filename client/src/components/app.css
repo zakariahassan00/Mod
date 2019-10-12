@@ -2,5 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Fira Sans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-family: Fira Sans;
+}
+
+.app {
+  background-color: #222831;
 }
