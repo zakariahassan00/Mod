@@ -1,12 +1,8 @@
 export const heroDisplayStyles = theme => ({
   hero: {
-    width: "100vw",
-    height: "100vh",
     margin: "auto",
     position: "relative",
-    // borderRadius: 10,
     overflow: "hidden"
-    // position: "relative",
   },
   heroImage: {
     height: "100%",
@@ -16,19 +12,36 @@ export const heroDisplayStyles = theme => ({
   heroContent: {
     position: "absolute",
     zIndex: "222",
-    height: "100%",
-    width: "50%",
+    height: "auto",
+    width: "65%",
     color: "#fff",
-    textAlign: "center",
-    top: 0,
+    textAlign: "right",
+    top: "50%",
+    marginTop: -250,
     right: 0,
     fontFamily: "HelveticaNeue",
-    paddingRight: "5%"
-    // backgroundColor: "#000"
+    paddingRight: "5%",
+    // backgroundColor: "#000",
+    [theme.breakpoints.up("md")]: {
+      width: "80%",
+      top: "65%",
+      right: 155
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "95%",
+      top: "25%",
+      marginTop: 0,
+      right: 0
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: "65%",
+      top: "20%",
+      marginTop: 0,
+      right: 0
+    }
   },
   image: {
-    width: "100%",
-    height: "100%"
+    width: "100%"
   },
   heroOverlay: {
     position: "absolute",
@@ -36,19 +49,37 @@ export const heroDisplayStyles = theme => ({
     height: "100%",
     zIndex: "22",
     backgroundImage:
-      "linear-gradient(to right, rgba(255, 255, 255, 0), rgba(88, 88, 88, 0.6) 56%, rgba(9, 9, 9, .7) 83%, #000000)",
-
+      "linear-gradient(to top, rgba(255, 255, 255, 0), rgba(88, 88, 88, 0.6) 56%, rgba(9, 9, 9, .7) 83%, #000000)",
+    // backgroundColor: "rgb(0,0,0, .2)",
     top: 0
   },
   heroTitle: {
     selfAlign: "center",
-    marginTop: "30%",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "2.75rem"
+    [theme.breakpoints.up("xs")]: {
+      fontSize: "1rem",
+      marginTop: "15%",
+      marginBottom: 20
     },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "3rem",
+      marginTop: "1.7%",
+      marginBottom: 20
+    },
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "1.7rem",
+      marginTop: "0%"
+    }
+  },
+  heroOverview: {
     [theme.breakpoints.down("xs")]: {
-      fontSize: "2rem",
-      marginTop: "15%"
+      display: "none"
+    },
+    marginTop: 25,
+    marginBottom: 25,
+    [theme.breakpoints.down("md")]: {
+      fontSize: ".7rem",
+      marginTop: 5,
+      marginBottom: 10
     }
   },
   button: {
@@ -56,22 +87,48 @@ export const heroDisplayStyles = theme => ({
     backgroundColor: "rgba(0, 0, 0, 0.32)",
     color: "#fff",
     margin: 20,
-    [theme.breakpoints.down("sm")]: {
-      width: 120,
-      margin: 10
-    },
-    [theme.breakpoints.down("xs")]: {
+    [theme.breakpoints.up("xs")]: {
+      height: 20,
       width: 80,
       margin: 5,
-      fontSize: ".6rem",
-      paddingLeft: 5,
-      paddingRight: 5
+      fontSize: ".6rem"
+    },
+    [theme.breakpoints.up("md")]: {
+      height: 30,
+      width: 120,
+      margin: 10,
+      fontSize: "1rem"
     }
   },
-  heroOverview: {
+  rating: {
+    fontSize: 15,
+    [theme.breakpoints.up("md")]: {
+      fontSize: 25
+    }
+  },
+  chip: {
+    fontSize: ".6rem",
+    height: "12px",
+    position: "relative",
+    bottom: 3,
+    [theme.breakpoints.up("md")]: {
+      fontSize: 20,
+      bottom: 7,
+      height: "18px"
+    }
+  },
+  card: {
+    margin: "auto",
+    overflow: "hidden",
+    width: 200,
     [theme.breakpoints.down("sm")]: {
-      display: "none"
-    },
-    margin: 25
+      width: 140
+    }
+  },
+  media: {
+    height: 300,
+    [theme.breakpoints.down("sm")]: {
+      height: 210
+    }
   }
 });

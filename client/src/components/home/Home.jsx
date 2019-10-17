@@ -43,7 +43,14 @@ class Home extends Component {
         <Grid item xs={11}>
           <div className={classes.moviesList}>
             <div className={classes.moviesListHeader}>In Theatre Now </div>
-            <MoviesCarousel movies={newMovies} />
+            {/* <MoviesCarousel movies={newMovies} /> */}
+          </div>
+        </Grid>
+
+        <Grid item xs={11}>
+          <div className={classes.moviesList}>
+            <div className={classes.moviesListHeader}>Top TV Series </div>
+            {/* <MoviesCarousel movies={newMovies} /> */}
           </div>
         </Grid>
       </Grid>

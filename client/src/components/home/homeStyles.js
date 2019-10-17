@@ -6,7 +6,7 @@ export const homeStyles = theme => ({
   },
   moviesList: {
     minWidth: "100%",
-    minHeight: 550,
+    maxheight: 400,
     marginTop: 20
   },
   moviesListHeader: {

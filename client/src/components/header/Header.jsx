@@ -7,12 +7,20 @@ import { getUser, toggleSideMenu } from "./../../actions/index";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Avatar from "@material-ui/core/Avatar";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import SideMenu from "../sideMenu";
+import withWidth from "@material-ui/core/withWidth";
+import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 
-import CssBaseline from "@material-ui/core/CssBaseline";
+import InputBase from "@material-ui/core/InputBase";
+import SearchIcon from "@material-ui/icons/Search";
+
+import SideMenu from "../sideMenu";
 
 class Header extends Component {
   state = {};
@@ -24,7 +32,6 @@ class Header extends Component {
 
   renderLoginButton() {
     const { auth, location, classes, toggleSideMenu } = this.props;
-    const { open } = this.state;
 
     switch (auth) {
       case null:
@@ -53,18 +60,55 @@ class Header extends Component {
   }
 
   render() {
-    const { classes, auth } = this.props;
-    const { open } = this.state;
+    const { classes, auth, toggleSideMenu } = this.props;
     return (
       <div>
-        <CssBaseline />
         <AppBar position="fixed" className={classes.navbar}>
           <Toolbar>
             <Typography variant="h4" className={classes.title}>
               <Link to="/">Mod</Link>
             </Typography>
 
-            {this.renderLoginButton()}
+            <Hidden smDown>
+              <ul className={classes.appBarMenuList}>
+                {["Movies", "TV Series", "Top Rated"].map(text => {
+                  return (
+                    <li key={text} className={classes.appBarMenuitem}>
+                      <Link to="/">{text}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Hidden>
+
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+                inputProps={{ "aria-label": "search" }}
+              />
+            </div>
+            <Hidden smDown>
+              <NotificationsNoneIcon className={classes.notification} />
+              {this.renderLoginButton()}
+            </Hidden>
+            <Hidden mdUp>
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+                onClick={() => toggleSideMenu(true)}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
           </Toolbar>
         </AppBar>
         <SideMenu user={auth} />
@@ -78,6 +122,7 @@ function mapStateToProps({ auth }) {
 }
 
 export default compose(
+  withWidth(),
   withStyles(headerStyles),
   withRouter,
   connect(

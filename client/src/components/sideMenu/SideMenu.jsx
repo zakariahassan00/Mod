@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { toggleSideMenu } from "../../actions";
@@ -44,15 +44,23 @@ class SideMenu extends Component {
           <IconButton onClick={this.handleSideMenuClose}>
             <ChevronRightIcon className={classes.whiteIcon} />
           </IconButton>
-          <Avatar
-            alt={user ? user.name : ""}
-            src={user ? user.picture : ""}
-            className={classes.avatar}
-          />
-          <h4>{user ? user.name : ""}</h4>
-          <Button href="/api/logout" variant="contained" color="primary">
-            logout
-          </Button>
+          {user ? (
+            <Fragment>
+              <Avatar
+                alt={user ? user.name : ""}
+                src={user ? user.picture : ""}
+                className={classes.avatar}
+              />
+              <h4>{user ? user.name : ""}</h4>
+              <Button href="/api/logout" variant="contained" color="primary">
+                logout
+              </Button>
+            </Fragment>
+          ) : (
+            <Button href="/login" variant="contained" color="primary">
+              Login
+            </Button>
+          )}
         </div>
         <Divider />
         <List>
