@@ -1,10 +1,18 @@
-export const headerStyles = {
+const gray = "#1e242c";
+const darkGray = "#141414";
+const black = "#000";
+
+export const headerStyles = theme => ({
   navbar: {
     flexGrow: 1,
-    boxShadow: "0 8px 16px 0 rgba(0, 0, 0, 0.55)",
-    backgroundColor: "#1e242c"
+    boxShadow: "none",
+    backgroundColor: "rgba(0, 0, 0, 0)"
   },
   title: {
     flexGrow: 1
+  },
+  avatar: {
+    margin: 10,
+    cursor: "pointer"
   }
-};
+});

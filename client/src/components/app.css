@@ -1,4 +1,5 @@
-* {
+*,
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,6 +12,15 @@ a {
   font-family: Fira Sans;
 }
 
+ul {
+  list-style: none;
+}
 .app {
-  background-color: #222831;
+  background-color: #141414;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #141414;
+  overflow-x: hidden;
 }

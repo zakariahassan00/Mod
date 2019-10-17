@@ -1,22 +1,29 @@
 import axios from "axios";
+import {
+  FETCH_USER,
+  FETCH_MOVIES,
+  FETCH_NEW_MOVIES,
+  TOGGLE_SIDE_BAR
+} from "./types";
 
-export const getAllMovies = () => {
-  const movies = [
-    {
-      title: "Avatar",
-      genre: "Drama"
-    },
-    {
-      title: "Inception",
-      genre: "Sci-Fi"
-    }
-  ];
+export const getAllMovies = () => async dispatch => {
+  const movies = await axios.get("/movies/all");
 
-  return { type: "fetch_movies", payload: movies };
+  dispatch({ type: FETCH_MOVIES, payload: movies.data });
+};
+
+export const getNewMovies = () => async dispatch => {
+  const movies = await axios.get("/movies/latest");
+
+  dispatch({ type: FETCH_NEW_MOVIES, payload: movies.data });
 };
 
 export const getUser = () => async dispatch => {
   const user = await axios.get("/api/cu");
 
-  dispatch({ type: "fetch_user", payload: user.data });
+  dispatch({ type: FETCH_USER, payload: user.data });
+};
+
+export const toggleSideMenu = value => {
+  return { type: TOGGLE_SIDE_BAR, payload: value };
 };

@@ -1,43 +1,65 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { getAllMovies } from "../../actions";
+import { getAllMovies, getNewMovies } from "../../actions";
 import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import MovieCard from "../common/card/MovieCard";
+import HeroDisplay from "./../common/heroDisplay";
 import { homeStyles } from "./homeStyles";
+import MoviesList from "../common/moviesList";
+import MoviesCarousel from "../common/carousel";
+
+// CARD !
+import withWidth from "@material-ui/core/withWidth";
+
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 class Home extends Component {
-  state = {};
+  state = {
+    translate: 0,
+    dimensions: {}
+  };
 
   componentDidMount() {
-    this.props.getAllMovies();
-  }
+    this.props.getNewMovies();
 
-  renderMovies() {
-    const { movies } = this.props;
-
-    return movies.map(({ title }) => {
-      return (
-        <div key={title}>
-          <h3>{title}</h3>
-        </div>
-      );
-    });
+    // this.props.getAllMovies();
   }
 
   render() {
-    const { classes } = this.props;
-    return <div className={classes.root}>{this.renderMovies()}</div>;
+    const { newMovies, classes } = this.props;
+    const randomMovie = newMovies[1] || {};
+
+    return (
+      <Grid container justify="center">
+        <Grid item xs={12}>
+          <div className={classes.landing}>
+            <HeroDisplay movie={randomMovie} />
+          </div>
+        </Grid>
+
+        <Grid item xs={11}>
+          <div className={classes.moviesList}>
+            <div className={classes.moviesListHeader}>In Theatre Now </div>
+            <MoviesCarousel movies={newMovies} />
+          </div>
+        </Grid>
+      </Grid>
+    );
   }
 }
 
-function mapStateToProps({ movies }) {
-  return { movies };
+function mapStateToProps({ movies, newMovies }) {
+  return { movies, newMovies };
 }
 
 export default compose(
+  withWidth(),
   withStyles(homeStyles),
   connect(
     mapStateToProps,
-    { getAllMovies }
+    { getAllMovies, getNewMovies }
   )
 )(Home);
