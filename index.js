@@ -37,7 +37,7 @@ app.use(passport.session());
 
 // App Routes!
 require("./routes/googleAuthRoutes")(app);
-require("./routes/authRouter")(app);
+// require("./routes/authRouter")(app);
 require("./routes/moviesRoutes")(app);
 
 app.get("/", (req, res) => res.send("Hello World!"));

@@ -15,7 +15,7 @@ export const heroDisplayStyles = theme => ({
     height: "auto",
     width: "65%",
     color: "#fff",
-    textAlign: "right",
+    textAlign: "left",
     top: "50%",
     marginTop: -250,
     right: 0,
@@ -27,7 +27,7 @@ export const heroDisplayStyles = theme => ({
       top: "65%",
       right: 155
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.only("sm")]: {
       width: "95%",
       top: "25%",
       marginTop: 0,
@@ -37,7 +37,8 @@ export const heroDisplayStyles = theme => ({
       width: "65%",
       top: "20%",
       marginTop: 0,
-      right: 0
+      right: 0,
+      textAlign: "right"
     }
   },
   image: {
@@ -50,12 +51,12 @@ export const heroDisplayStyles = theme => ({
     zIndex: "22",
     backgroundImage:
       "linear-gradient(to top, rgba(255, 255, 255, 0), rgba(88, 88, 88, 0.6) 56%, rgba(9, 9, 9, .7) 83%, #000000)",
-    // backgroundColor: "rgb(0,0,0, .2)",
+    // backgroundColor: "rgb(0,0,0, .6)",
     top: 0
   },
   heroTitle: {
     selfAlign: "center",
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.only("xs")]: {
       fontSize: "1rem",
       marginTop: "15%",
       marginBottom: 20
@@ -65,7 +66,7 @@ export const heroDisplayStyles = theme => ({
       marginTop: "1.7%",
       marginBottom: 20
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.only("sm")]: {
       fontSize: "1.7rem",
       marginTop: "0%"
     }
@@ -87,14 +88,15 @@ export const heroDisplayStyles = theme => ({
     backgroundColor: "rgba(0, 0, 0, 0.32)",
     color: "#fff",
     margin: 20,
-    [theme.breakpoints.up("xs")]: {
+    textTransform: "capitalize",
+    [theme.breakpoints.only("xs")]: {
       height: 20,
       width: 80,
       margin: 5,
       fontSize: ".6rem"
     },
     [theme.breakpoints.up("md")]: {
-      height: 30,
+      height: 35,
       width: 120,
       margin: 10,
       fontSize: "1rem"

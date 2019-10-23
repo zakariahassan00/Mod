@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Login from "./login";
 import Home from "./home";
 import Header from "./header";
+import Movie from "./movie";
 import "./app.css";
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/show/:id" component={Movie} />
         </div>
       </BrowserRouter>
     );

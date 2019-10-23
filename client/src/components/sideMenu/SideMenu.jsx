@@ -28,7 +28,6 @@ class SideMenu extends Component {
 
   render() {
     const { user, classes, showSideMenu } = this.props;
-    console.log(showSideMenu);
 
     return (
       <Drawer

@@ -21,11 +21,11 @@ class Carousel extends Component {
     let swipe = 0;
     console.log("next");
 
-    if (width == "md" || "lg" || "sm") {
+    if (width === "md" || "lg" || "sm") {
       totalLength = totalLength * 220;
       swipe = 440;
     }
-    if (width == "xs") {
+    if (width === "xs") {
       totalLength = totalLength * 180;
       swipe = 220;
     }
@@ -48,11 +48,11 @@ class Carousel extends Component {
     let swipe = 0;
     console.log("back");
 
-    if (width == "md" || "lg" || "sm") {
+    if (width === "md" || "lg" || "sm") {
       totalLength = totalLength * 220;
       swipe = 440;
     }
-    if (width == "xs") {
+    if (width === "xs") {
       totalLength = totalLength * 180;
       swipe = 220;
     }

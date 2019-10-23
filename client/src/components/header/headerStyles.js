@@ -1,7 +1,7 @@
-import { fade } from "@material-ui/core/styles";
-const gray = "#1e242c";
-const darkGray = "#141414";
-const black = "#000";
+// import { fade } from "@material-ui/core/styles";
+// const gray = "#1e242c";
+// const darkGray = "#141414";
+// const black = "#000";
 
 export const headerStyles = theme => ({
   navbar: {

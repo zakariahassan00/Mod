@@ -24,6 +24,13 @@ export const getUser = () => async dispatch => {
   dispatch({ type: FETCH_USER, payload: user.data });
 };
 
+export const signIn = values => async dispatch => {
+  const user = await axios.post("/api/login", values);
+
+  console.log(user);
+  dispatch({ type: FETCH_USER, payload: user.data });
+};
+
 export const toggleSideMenu = value => {
   return { type: TOGGLE_SIDE_BAR, payload: value };
 };

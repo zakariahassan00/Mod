@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signIn } from "../../actions";
+
+import { compose } from "recompose";
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -9,7 +13,7 @@ import { Field, reduxForm } from "redux-form";
 
 class Login extends Component {
   onSubmit = values => {
-    console.log(values);
+    this.props.signIn(values);
   };
 
   render() {
@@ -59,8 +63,13 @@ class Login extends Component {
   }
 }
 
-export default withStyles(loginStyles)(
+export default compose(
+  withStyles(loginStyles),
   reduxForm({
     form: "login"
-  })(Login)
-);
+  }),
+  connect(
+    null,
+    { signIn }
+  )
+)(Login);
