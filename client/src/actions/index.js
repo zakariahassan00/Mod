@@ -7,13 +7,13 @@ import {
 } from "./types";
 
 export const getAllMovies = () => async dispatch => {
-  const movies = await axios.get("/movies/all");
+  const movies = await axios.get("/api/movies/all");
 
   dispatch({ type: FETCH_MOVIES, payload: movies.data });
 };
 
 export const getNewMovies = () => async dispatch => {
-  const movies = await axios.get("/movies/latest");
+  const movies = await axios.get("/api/movies/latest");
 
   dispatch({ type: FETCH_NEW_MOVIES, payload: movies.data });
 };
@@ -33,4 +33,12 @@ export const signIn = values => async dispatch => {
 
 export const toggleSideMenu = value => {
   return { type: TOGGLE_SIDE_BAR, payload: value };
+};
+
+export const addToWatchList = movie => async dispatch => {
+  // EXAMPLE: movieId : { id: 2992930, action: "remove" }
+  console.log(movie);
+  const updatedUser = await axios.post("/api/movies/watchlist", movie);
+
+  dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };

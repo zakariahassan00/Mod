@@ -12,7 +12,7 @@ module.exports = function(app) {
       })
     ),
     app.use(
-      proxy("/movies/*", {
+      proxy("/api/*/*", {
         target: "http://localhost:5000"
       })
     );

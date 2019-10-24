@@ -33,7 +33,8 @@ passport.use(
       const newUser = await new User({
         googleId: id,
         name: _json.name,
-        picture: _json.picture
+        picture: _json.picture,
+        watchList: []
       }).save();
       return done(null, newUser);
     }

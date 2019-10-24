@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const Movie = mongoose.model("movies");
+const User = mongoose.model("users");
 
 module.exports = app => {
   // app.post("/movies/add", (req, res) => {
@@ -24,13 +25,13 @@ module.exports = app => {
   // });
 
   // return all Movies in the DB
-  app.get("/movies/all", async (req, res) => {
+  app.get("/api/movies/all", async (req, res) => {
     const allMovies = await Movie.find();
 
     res.send(allMovies);
   });
 
-  app.get("/movies/latest", async (req, res) => {
+  app.get("/api/movies/latest", async (req, res) => {
     const latestMovies = await Movie.find().$where(function() {
       // this will convert minmum release date we want into number
       const minReleaseDate = Date.parse("2019-10-01");
@@ -41,5 +42,24 @@ module.exports = app => {
     });
 
     res.send(latestMovies);
+  });
+
+  app.post("/api/movies/watchlist", async (req, res) => {
+    // add or remove a movie from user`s watchList
+    const user = await User.findOne({ _id: req.user._id });
+    const movieId = req.body.movieId;
+
+    if (req.body.action === "add") {
+      user.watchList.push(movieId);
+    } else {
+      const newWatchList = user.watchList.filter(id => {
+        id !== movieId;
+      });
+
+      user.watchList = newWatchList;
+    }
+
+    await user.save();
+    res.send(user);
   });
 };

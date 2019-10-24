@@ -12,21 +12,22 @@ const userSchema = new Schema({
   password: String,
   googleId: String,
   name: String,
-  picture: String
+  picture: String,
+  watchList: [String]
 });
 
 mongoose.model("users", userSchema);
 
-function validateUser(user) {
-  const schema = {
-    email: joi
-      .string()
-      .required()
-      .email(),
-    password: joi.string().required()
-  };
-  return joi.validate(user, schema);
-}
+// function validateUser(user) {
+//   const schema = {
+//     email: joi
+//       .string()
+//       .required()
+//       .email(),
+//     password: joi.string().required()
+//   };
+//   return joi.validate(user, schema);
+// }
 
-module.exports.validateUser = validateUser;
-module.exports.generateAuthToken = this.generateAuthToken;
+// module.exports.validateUser = validateUser;
+// module.exports.generateAuthToken = this.generateAuthToken;

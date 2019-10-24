@@ -13,6 +13,7 @@ import Cast from "../common/cast";
 import MoviesCarousel from "../common/carousel";
 import Video from "../common/video";
 import UserActions from "../common/userAction/UserActions";
+import WatchList from "../common/userAction/WatchList";
 
 class Movie extends Component {
   render() {
@@ -87,7 +88,8 @@ class Movie extends Component {
                   </p>
                 </div>
                 <div>
-                  <UserActions />
+                  {/* <UserActions /> */}
+                  <WatchList movieId={movie.id} />
                 </div>
               </div>
               <div className={classes.movieCast}>
