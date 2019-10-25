@@ -41,7 +41,7 @@ const MovieCard = ({ classes, item, sm }) => {
       <CardActionArea>
         <CardMedia
           className={sm ? classes.smMedia : classes.media}
-          image={item.poster_path || item.profile_path || " "}
+          image={item.poster_path || item.profile_path}
           title={item.title || item.name}
         />
       </CardActionArea>

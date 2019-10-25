@@ -14,7 +14,6 @@ import Hidden from "@material-ui/core/Hidden";
 import { heroDisplayStyles } from "./heroDisplayStyles";
 
 const HeroDisplay = ({ classes, movie, history }) => {
-  console.log(movie.genres);
   return (
     <div className={classes.hero}>
       <img className={classes.image} src={movie.backdrop_path} alt="" />

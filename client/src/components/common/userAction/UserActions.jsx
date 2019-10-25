@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-import StarIcon from "@material-ui/icons/Star";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";

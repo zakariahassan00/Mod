@@ -34,7 +34,8 @@ passport.use(
         googleId: id,
         name: _json.name,
         picture: _json.picture,
-        watchList: []
+        watchList: [],
+        rateList: []
       }).save();
       return done(null, newUser);
     }

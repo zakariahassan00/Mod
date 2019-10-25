@@ -36,9 +36,13 @@ export const toggleSideMenu = value => {
 };
 
 export const addToWatchList = movie => async dispatch => {
-  // EXAMPLE: movieId : { id: 2992930, action: "remove" }
-  console.log(movie);
   const updatedUser = await axios.post("/api/movies/watchlist", movie);
+
+  dispatch({ type: FETCH_USER, payload: updatedUser.data });
+};
+
+export const rateContent = content => async dispatch => {
+  const updatedUser = await axios.post("/api/movies/rate", content);
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };

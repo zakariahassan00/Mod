@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { addToWatchList } from "../../../actions";
 import { withStyles } from "@material-ui/core/styles";
-import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import DoneIcon from "@material-ui/icons/Done";
 import AddIcon from "@material-ui/icons/Add";
 import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
   watchlist: {
-    textAlign: "center"
+    textAlign: "center",
+    margin: "10px auto"
   },
   button: {
     textTransform: "capitalize",
@@ -20,14 +20,12 @@ const styles = theme => ({
 
 class WatchList extends Component {
   addToWatchList = () => {
-    console.log("add");
     const { movieId } = this.props;
     const movie = { movieId, action: "add" };
     this.props.addToWatchList(movie);
   };
 
   removeFromWatchList = () => {
-    console.log("remove");
     const { movieId } = this.props;
     const movie = { movieId, action: "remove" };
     this.props.addToWatchList(movie);
@@ -35,12 +33,15 @@ class WatchList extends Component {
 
   render() {
     const { user, movieId, classes } = this.props;
-    console.log(user);
-    let userWatchList = user && user.watchList.includes("672");
+
+    // first check if the user added this content to his/her Watchlist or not!
+    const added =
+      (user && user.watchList.filter(item => item == movieId).length > 0) ||
+      false;
 
     return (
       <div className={classes.watchlist}>
-        {userWatchList ? (
+        {added ? (
           <Button
             variant="contained"
             color="primary"

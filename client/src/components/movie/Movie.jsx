@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import Chip from "@material-ui/core/Chip";
+import { Grid, Typography, Chip } from "@material-ui/core";
 import Rate from "../common/rate";
 import { movie } from "./testMovie";
 import { movieStyles } from "./movieStyles";
@@ -12,8 +8,8 @@ import MovieCard from "../common/card/MovieCard";
 import Cast from "../common/cast";
 import MoviesCarousel from "../common/carousel";
 import Video from "../common/video";
-import UserActions from "../common/userAction/UserActions";
 import WatchList from "../common/userAction/WatchList";
+import UserRate from "../common/userAction/UserRate";
 
 class Movie extends Component {
   render() {
@@ -90,6 +86,9 @@ class Movie extends Component {
                 <div>
                   {/* <UserActions /> */}
                   <WatchList movieId={movie.id} />
+                </div>
+                <div>
+                  <UserRate movieId={movie.id} />
                 </div>
               </div>
               <div className={classes.movieCast}>

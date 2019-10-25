@@ -13,7 +13,8 @@ const userSchema = new Schema({
   googleId: String,
   name: String,
   picture: String,
-  watchList: [String]
+  watchList: [String],
+  rateList: [Object]
 });
 
 mongoose.model("users", userSchema);
