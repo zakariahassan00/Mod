@@ -27,7 +27,7 @@ class UserRate extends Component {
 
   changeRate = newRate => {
     const content = {
-      id: this.props.movieId,
+      id: this.props.contentId,
       rate: newRate
     };
 
@@ -35,7 +35,7 @@ class UserRate extends Component {
   };
 
   renderUserRate = () => {
-    const { classes, user, movieId } = this.props;
+    const { classes, user, contentId } = this.props;
     switch (user) {
       case null:
         return;
@@ -44,7 +44,7 @@ class UserRate extends Component {
         return (
           <div>
             <StarBorderIcon
-              className={classes.notRated}
+              className={classes.rateStar}
               onClick={this.handleClick}
             />
             Rate This
@@ -52,19 +52,19 @@ class UserRate extends Component {
         );
       default:
         const rated = user.rateList.map(content => {
-          if (content.id == movieId) {
+          if (content.id == contentId) {
             return content;
           }
         });
         return rated.length > 0 ? (
           <div>
-            <StarIcon className={classes.rated} onClick={this.handleClick} />
+            <StarIcon className={classes.rateStar} onClick={this.handleClick} />
             You Rated {rated[0].rate} !
           </div>
         ) : (
           <div>
             <StarBorderIcon
-              className={classes.notRated}
+              className={classes.rateStar}
               onClick={this.handleClick}
             />
             Rate This

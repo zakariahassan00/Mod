@@ -105,4 +105,23 @@ module.exports = app => {
 
     res.send(user);
   });
+
+  // add or remove a movie from user`s favorites
+  app.post("/api/movies/favorites", requireLogin, async (req, res) => {
+    const user = await User.findOne({ _id: req.user._id });
+    const contentId = req.body.id;
+
+    if (req.body.action === "add") {
+      user.favorites.push(contentId);
+    } else {
+      const newFavoritesList = user.favorites.filter(id => {
+        id != contentId;
+      });
+
+      user.favorites = newFavoritesList;
+    }
+
+    await user.save();
+    res.send(user);
+  });
 };

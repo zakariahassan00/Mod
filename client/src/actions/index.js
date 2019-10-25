@@ -46,3 +46,9 @@ export const rateContent = content => async dispatch => {
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };
+
+export const toggleFavorites = content => async dispatch => {
+  const updatedUser = await axios.post("/api/movies/favorites", content);
+
+  dispatch({ type: FETCH_USER, payload: updatedUser.data });
+};

@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
   rate: {
-    width: 250,
+    width: "35%",
     textAlign: "center",
     alignSelf: "center"
   },

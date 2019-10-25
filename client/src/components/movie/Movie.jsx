@@ -10,6 +10,7 @@ import MoviesCarousel from "../common/carousel";
 import Video from "../common/video";
 import WatchList from "../common/userAction/WatchList";
 import UserRate from "../common/userAction/UserRate";
+import AddToFavorites from "../common/userAction/AddToFavorites";
 
 class Movie extends Component {
   render() {
@@ -56,6 +57,7 @@ class Movie extends Component {
               <div className={classes.movieInfoHeader}>
                 <Rate value={movie.vote_average} />
                 <Rate value={movie.user_rate} red />
+                <UserRate contentId={movie.id} />
               </div>
               <div className={classes.movieDescription}>
                 <div className={classes.poster}>
@@ -86,9 +88,7 @@ class Movie extends Component {
                 <div>
                   {/* <UserActions /> */}
                   <WatchList movieId={movie.id} />
-                </div>
-                <div>
-                  <UserRate movieId={movie.id} />
+                  <AddToFavorites contentId={movie.id} />
                 </div>
               </div>
               <div className={classes.movieCast}>
