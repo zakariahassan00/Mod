@@ -9,7 +9,9 @@ export const headerStyles = theme => ({
     boxShadow: "none",
     backgroundColor: "rgba(0,0,0, 0)",
     height: 50,
-    [theme.breakpoints.down("sm")]: {},
+    // [theme.breakpoints.down("xs")]: {
+    //   position: "relative"
+    // },
     [theme.breakpoints.up("sm")]: {
       height: 60
     }
@@ -19,7 +21,9 @@ export const headerStyles = theme => ({
     boxShadow: "none",
     backgroundColor: "rgba(0,0,0, 1)",
     height: 50,
-    [theme.breakpoints.down("sm")]: {},
+    // [theme.breakpoints.down("xs")]: {
+    //   position: "relative"
+    // },
     [theme.breakpoints.up("sm")]: {
       height: 60
     }

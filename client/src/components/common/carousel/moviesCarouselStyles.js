@@ -7,14 +7,12 @@ const carouselArrow = {
   zIndex: "3123",
   borderRadius: "50%",
   color: "#fff",
-  backgroundColor: "rgba(255,255,255, .8)",
+  backgroundColor: "rgba(255, 255, 255, 1)",
   outline: "none",
   padding: 10,
   textAlign: "center",
   cursor: "pointer",
-  "&:hover": {
-    backgroundColor: "rgba(255,255,255, 1)"
-  }
+  boxShadow: "0 4px 4px rgba(0, 0, 0, 0.3), 0 0 4px rgba(0, 0, 0, 0.2)"
 };
 
 export const moviesCarouselStyles = theme => ({
@@ -36,13 +34,10 @@ export const moviesCarouselStyles = theme => ({
   carouselBack: {
     ...carouselArrow,
     left: 0,
-    marginLeft: -20,
-    [theme.breakpoints.down("xs")]: {
-      display: "none"
-    }
+    marginLeft: -20
   },
   leftArrow: {
-    border: "solid gray",
+    border: "solid #000",
     borderWidth: "0 3px 3px 0",
     display: "inline-block",
     padding: "3px",
@@ -51,13 +46,10 @@ export const moviesCarouselStyles = theme => ({
   carouselNext: {
     ...carouselArrow,
     right: 0,
-    marginRight: -20,
-    [theme.breakpoints.down("xs")]: {
-      display: "none"
-    }
+    marginRight: -20
   },
   rightArrow: {
-    border: "solid gray",
+    border: "solid #000",
     borderWidth: "0 3px 3px 0",
     display: "inline-block",
     padding: "3px",

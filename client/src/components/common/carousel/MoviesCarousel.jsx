@@ -4,9 +4,6 @@ import { compose } from "recompose";
 import Measure from "react-measure";
 import withWidth from "@material-ui/core/withWidth";
 import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
 import { moviesCarouselStyles } from "./moviesCarouselStyles";
 import MovieCard from "../card/MovieCard";
 
@@ -14,55 +11,42 @@ class Carousel extends Component {
   state = {
     translate: 0
   };
+
   next() {
+    // when user clicks next the list is shifted by specific amout of pixles(Swipe)
     const { width, movies } = this.props;
-    let totalLength = movies.length;
     const carouselWidth = this.state.dimensions.width;
     let shifted = this.state.translate;
-    let swipe = 0;
+    let totalLength = movies.length * 210;
+    let swipe = 440;
 
-    if (width === "md" || "lg" || "sm") {
-      totalLength = totalLength * 220;
-      swipe = 440;
-    }
-    if (width === "xs") {
-      totalLength = totalLength * 180;
-      swipe = 220;
+    // small devices has smaller length (every card 150px width)
+    if (width === "xs" || width === "sm") {
+      totalLength = movies.length * 150;
+      swipe = 300;
     }
 
     let overFlow = totalLength - (carouselWidth + shifted);
-    if (overFlow < swipe) {
-      shifted += overFlow;
-      overFlow = 0;
-    } else if (overFlow > swipe) {
-      shifted += swipe;
-    }
+
+    // this line make sure that translation stop at the END of the items exactly!
+    shifted = overFlow > swipe ? shifted + swipe : shifted + overFlow;
 
     this.setState({ translate: shifted });
   }
 
   back() {
+    // when user clicks back the list is unshifted by specific amout of pixles(Swipe)
     const { width } = this.props;
-    // let totalLength = movies.length;
     let shifted = this.state.translate;
-    let swipe = 0;
+    let swipe = 440;
 
-    if (width === "md" || "lg" || "sm") {
-      // totalLength = totalLength * 220;
-      swipe = 440;
-    }
-    if (width === "xs") {
-      // totalLength = totalLength * 180;
-      swipe = 220;
+    if (width === "xs" || width === "sm") {
+      swipe = 300;
     }
 
-    if (shifted <= swipe) {
-      shifted = 0;
-    } else if (shifted > swipe) {
-      shifted -= swipe;
-    }
-
-    this.setState({ translate: shifted });
+    // this line make sure that translation stop at the START of the items exactly!
+    let unshift = shifted > swipe ? (shifted -= swipe) : 0;
+    this.setState({ translate: unshift });
   }
 
   render() {
@@ -77,7 +61,7 @@ class Carousel extends Component {
         <Measure
           bounds
           onResize={contentRect => {
-            this.setState({ dimensions: contentRect.bounds });
+            this.setState({ dimensions: contentRect.bounds, translate: 0 });
           }}
         >
           {({ measureRef }) => (
@@ -91,7 +75,7 @@ class Carousel extends Component {
                 }}
               >
                 {movies.map(movie => {
-                  return <MovieCard content={movie} />;
+                  return <MovieCard key={movie.id} content={movie} />;
                 })}
               </Swipeable>
             </div>
@@ -106,4 +90,7 @@ class Carousel extends Component {
   }
 }
 
-export default compose(withStyles(moviesCarouselStyles, withWidth()))(Carousel);
+export default compose(
+  withStyles(moviesCarouselStyles),
+  withWidth()
+)(Carousel);

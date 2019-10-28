@@ -61,7 +61,7 @@ module.exports = app => {
     const movieId = req.params.id;
 
     const movie = await Movie.findOne({ id: movieId });
-    if (movie) res.send(movie);
+    if (movie) return res.send(movie);
 
     res.status(404).send("Sorry This Movie isn`t Available !");
   });

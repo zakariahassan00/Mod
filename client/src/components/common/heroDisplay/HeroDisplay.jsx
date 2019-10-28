@@ -31,9 +31,7 @@ class HeroDisplay extends Component {
           <Grid container>
             <Hidden xsDown>
               <Grid item sm={4} lg={3} xl={2}>
-                <Link to={`/show/${movie.id}`}>
-                  <MovieCard content={movie} />
-                </Link>
+                <MovieCard content={movie} />
               </Grid>
             </Hidden>
             <Grid item sm={8} md={7} xl={5}>

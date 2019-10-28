@@ -55,7 +55,10 @@ export const movieStyles = theme => ({
     top: 7
   },
   title: {
-    margin: "20px 0"
+    margin: "20px 0",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1.7rem"
+    }
   },
   duration: {
     marginRight: 20
@@ -75,6 +78,9 @@ export const movieStyles = theme => ({
     textTransform: "capitalize",
     "&:hover": {
       backgroundColor: "#E50914"
+    },
+    [theme.breakpoints.only("xs")]: {
+      marginTop: 25
     }
   },
   movieData: {
@@ -82,7 +88,10 @@ export const movieStyles = theme => ({
     backgroundColor: "#FAFAFA",
     position: "relative",
     top: -160,
-    zIndex: "12"
+    zIndex: "12",
+    [theme.breakpoints.only("xs")]: {
+      top: 0
+    }
   },
   movieInfoHeader: {
     backgroundColor: darkGray,

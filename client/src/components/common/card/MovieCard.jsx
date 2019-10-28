@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 
 const styles = theme => ({
   card: {
-    margin: "auto",
+    margin: 5,
     overflow: "hidden",
     width: 200,
     [theme.breakpoints.down("sm")]: {

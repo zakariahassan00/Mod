@@ -27,7 +27,6 @@ class Movie extends Component {
   render() {
     const { classes } = this.props;
     const { movie } = this.state;
-    console.log(movie);
 
     return (
       <div className={classes.movie}>
@@ -98,7 +97,10 @@ class Movie extends Component {
                       {movie.crew.map(
                         member =>
                           member.department === "Writing" && (
-                            <span className={classes.credits} key={member.id}>
+                            <span
+                              className={classes.credits}
+                              key={member.credit_id}
+                            >
                               {member.name}
                             </span>
                           )
