@@ -20,7 +20,7 @@ class Home extends Component {
 
   render() {
     const { newMovies, classes } = this.props;
-    const randomMovie = newMovies[0] || {};
+    const randomMovie = newMovies[1] || {};
 
     return (
       <Grid container justify="center">

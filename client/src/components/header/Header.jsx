@@ -4,29 +4,44 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { headerStyles } from "./headerStyles";
 import { getUser, toggleSideMenu } from "./../../actions/index";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Avatar from "@material-ui/core/Avatar";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Avatar,
+  Button,
+  withWidth,
+  Hidden,
+  IconButton,
+  InputBase
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import withWidth from "@material-ui/core/withWidth";
-import Hidden from "@material-ui/core/Hidden";
-import IconButton from "@material-ui/core/IconButton";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MenuIcon from "@material-ui/icons/Menu";
-
-import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
-
 import SideMenu from "../sideMenu";
 
 class Header extends Component {
-  state = {};
+  state = {
+    scrolled: false
+  };
 
   componentDidMount() {
+    window.addEventListener("scroll", () => {
+      let scrolled = window.scrollY > 80;
+      if (scrolled) {
+        this.setState({ scrolled: true });
+      } else {
+        this.setState({ scrolled: false });
+      }
+    });
+
     // fire action that make request to the server to check if the user is logged in or not
     this.props.getUser();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll");
   }
 
   renderLoginButton() {
@@ -60,9 +75,13 @@ class Header extends Component {
 
   render() {
     const { classes, auth, toggleSideMenu } = this.props;
+    const { scrolled } = this.state;
     return (
       <div>
-        <AppBar position="fixed" className={classes.navbar}>
+        <AppBar
+          position="fixed"
+          className={scrolled ? classes.solidNavbar : classes.clearNavbar}
+        >
           <Toolbar>
             <Typography variant="h4" className={classes.title}>
               <Link to="/">Mod</Link>

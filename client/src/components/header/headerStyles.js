@@ -4,14 +4,22 @@
 // const black = "#000";
 
 export const headerStyles = theme => ({
-  navbar: {
+  clearNavbar: {
     flexGrow: 1,
     boxShadow: "none",
     backgroundColor: "rgba(0,0,0, 0)",
     height: 50,
-    [theme.breakpoints.down("sm")]: {
-      position: "relative"
-    },
+    [theme.breakpoints.down("sm")]: {},
+    [theme.breakpoints.up("sm")]: {
+      height: 60
+    }
+  },
+  solidNavbar: {
+    flexGrow: 1,
+    boxShadow: "none",
+    backgroundColor: "rgba(0,0,0, 1)",
+    height: 50,
+    [theme.breakpoints.down("sm")]: {},
     [theme.breakpoints.up("sm")]: {
       height: 60
     }
