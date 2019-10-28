@@ -5,24 +5,34 @@ const Movie = mongoose.model("movies");
 const User = mongoose.model("users");
 
 module.exports = app => {
-  // app.post("/movies/add", (req, res) => {
-  //   req.body.map(movie => {
-  //     new Movie({
-  //       id: movie.id,
-  //       title: movie.title,
-  //       original_title: movie.original_title,
-  //       genres: movie.genres,
-  //       vote_average: movie.vote_average,
-  //       poster_path: movie.poster_path,
-  //       backdrop_path: movie.backdrop_path,
-  //       release_date: movie.release_date,
-  //       popularity: movie.popularity,
-  //       vote_count: movie.vote_count,
-  //       adult: movie.adult,
-  //       original_language: movie.original_language,
-  //       overview: movie.overview
-  //     }).save();
-  //   });
+  // app.post("/api/movies/add", (req, res) => {
+  // const movie = req.body;
+  // new Movie({
+  //   id: movie.id,
+  //   title: movie.title,
+  //   original_title: movie.original_title,
+  //   genres: movie.genres,
+  //   vote_average: movie.vote_average,
+  //   poster_path: movie.poster_path,
+  //   backdrop_path: movie.backdrop_path,
+  //   release_date: movie.release_date,
+  //   popularity: movie.popularity,
+  //   vote_count: movie.vote_count,
+  //   adult: movie.adult,
+  //   original_language: movie.original_language,
+  //   overview: movie.overview,
+  //   cast: movie.cast,
+  //   crew: movie.crew,
+  //   video: movie.results,
+  //   runtime: movie.runtime,
+  //   status: movie.status,
+  //   tagline: movie.tagline,
+  //   homepage: movie.homepage,
+  //   budget: movie.budget,
+  //   revenue: movie.revenue
+  // }).save();
+
+  // res.send({});
   // });
 
   // return all Movies in the DB
@@ -36,13 +46,24 @@ module.exports = app => {
     const latestMovies = await Movie.find().$where(function() {
       // this will convert minmum release date we want into number
       const minReleaseDate = Date.parse("2019-10-01");
+      const minRate = 6.5;
 
       // we want the movies which have release date "number" higher than minRealeaseDate!
       const movieReleaseDate = Date.parse(this.release_date);
-      return movieReleaseDate > minReleaseDate;
+      const movieRate = this.vote_average;
+      return movieReleaseDate > minReleaseDate && movieRate >= minRate;
     });
 
     res.send(latestMovies);
+  });
+
+  app.get("/api/movies/:id", async (req, res) => {
+    const movieId = req.params.id;
+
+    const movie = await Movie.findOne({ id: movieId });
+    if (movie) res.send(movie);
+
+    res.status(404).send("Sorry This Movie isn`t Available !");
   });
 
   // Adding / Removing Movies or Tv shows from user`s WatchList

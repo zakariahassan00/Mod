@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { rateContent } from "../../../actions";
@@ -51,12 +51,11 @@ class UserRate extends Component {
           </div>
         );
       default:
-        const rated = user.rateList.map(content => {
-          if (content.id == contentId) {
-            return content;
-          }
+        const rated = user.rateList.filter(content => {
+          return content.id === contentId;
         });
-        return rated.length > 0 ? (
+
+        return rated[0] ? (
           <div>
             <StarIcon className={classes.rateStar} onClick={this.handleClick} />
             You Rated {rated[0].rate} !

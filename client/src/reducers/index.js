@@ -4,11 +4,13 @@ import authReducer from "./authReducer";
 import moviesReducer from "./moviesReducer";
 import newMoviesReducer from "./newMoviesReducer";
 import sideMenuReducer from "./sideMenuReducer";
+import selectedContentReducer from "./selectedContentReducer";
 
 export default combineReducers({
   form: reduxForm,
   auth: authReducer,
   movies: moviesReducer,
   newMovies: newMoviesReducer,
-  showSideMenu: sideMenuReducer
+  showSideMenu: sideMenuReducer,
+  selectedContent: selectedContentReducer
 });

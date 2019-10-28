@@ -20,7 +20,7 @@ class Home extends Component {
 
   render() {
     const { newMovies, classes } = this.props;
-    const randomMovie = newMovies[9] || {};
+    const randomMovie = newMovies[0] || {};
 
     return (
       <Grid container justify="center">
@@ -33,7 +33,7 @@ class Home extends Component {
         <Grid item xs={11}>
           <div className={classes.moviesList}>
             <div className={classes.moviesListHeader}>In Theatre Now </div>
-            {/* <MoviesCarousel movies={newMovies} /> */}
+            <MoviesCarousel movies={newMovies} />
           </div>
         </Grid>
       </Grid>

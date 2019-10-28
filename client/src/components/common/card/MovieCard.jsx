@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -35,17 +36,20 @@ const styles = theme => ({
   }
 });
 
-const MovieCard = ({ classes, item, sm }) => {
+const MovieCard = ({ classes, content, sm }) => {
+  const baseUrl = "https://image.tmdb.org/t/p/original";
   return (
-    <Card className={sm ? classes.smCard : classes.card} key={item.id}>
-      <CardActionArea>
-        <CardMedia
-          className={sm ? classes.smMedia : classes.media}
-          image={item.poster_path || item.profile_path}
-          title={item.title || item.name}
-        />
-      </CardActionArea>
-    </Card>
+    <Link to={`/show/${content.id}`}>
+      <Card className={sm ? classes.smCard : classes.card} key={content.id}>
+        <CardActionArea>
+          <CardMedia
+            className={sm ? classes.smMedia : classes.media}
+            image={content.poster_path || baseUrl + content.profile_path}
+            title={content.title || content.name}
+          />
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
 

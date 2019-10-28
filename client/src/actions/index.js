@@ -3,7 +3,8 @@ import {
   FETCH_USER,
   FETCH_MOVIES,
   FETCH_NEW_MOVIES,
-  TOGGLE_SIDE_BAR
+  TOGGLE_SIDE_BAR,
+  SET_CONTENT
 } from "./types";
 
 export const getAllMovies = () => async dispatch => {
@@ -38,6 +39,7 @@ export const toggleSideMenu = value => {
 export const addToWatchList = movie => async dispatch => {
   const updatedUser = await axios.post("/api/movies/watchlist", movie);
 
+  console.log("Action");
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };
 
@@ -51,4 +53,10 @@ export const toggleFavorites = content => async dispatch => {
   const updatedUser = await axios.post("/api/movies/favorites", content);
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
+};
+
+export const setCurrentContent = content => {
+  // save the current Movie/Tv Show on redux to be accessable to all app!
+
+  return { type: SET_CONTENT, payload: content };
 };

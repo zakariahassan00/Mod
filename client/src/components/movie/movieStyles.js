@@ -1,5 +1,5 @@
 const darkGray = "#1b1b1b";
-const lightGray = "#141414";
+// const lightGray = "#141414";
 
 export const movieStyles = theme => ({
   movie: {

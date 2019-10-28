@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-import DialogContent from "@material-ui/core/DialogContent";
 import Button from "@material-ui/core/Button";
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import Typography from "@material-ui/core/Typography";
@@ -118,7 +117,7 @@ class Video extends Component {
           <div className={classes.video}>
             <iframe
               className={classes.iframe}
-              src={`https://www.youtube.com/embed/${movie.trailer[0].key}?autoplay=1`}
+              src={`https://www.youtube.com/embed/${movie.video[0].key}?autoplay=1`}
               frameBorder="0"
               allowFullScreen
             ></iframe>

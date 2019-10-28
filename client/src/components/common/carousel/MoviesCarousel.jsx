@@ -8,6 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import { moviesCarouselStyles } from "./moviesCarouselStyles";
+import MovieCard from "../card/MovieCard";
 
 class Carousel extends Component {
   state = {
@@ -19,7 +20,6 @@ class Carousel extends Component {
     const carouselWidth = this.state.dimensions.width;
     let shifted = this.state.translate;
     let swipe = 0;
-    console.log("next");
 
     if (width === "md" || "lg" || "sm") {
       totalLength = totalLength * 220;
@@ -42,18 +42,17 @@ class Carousel extends Component {
   }
 
   back() {
-    const { width, movies } = this.props;
-    let totalLength = movies.length;
+    const { width } = this.props;
+    // let totalLength = movies.length;
     let shifted = this.state.translate;
     let swipe = 0;
-    console.log("back");
 
     if (width === "md" || "lg" || "sm") {
-      totalLength = totalLength * 220;
+      // totalLength = totalLength * 220;
       swipe = 440;
     }
     if (width === "xs") {
-      totalLength = totalLength * 180;
+      // totalLength = totalLength * 180;
       swipe = 220;
     }
 
@@ -92,17 +91,7 @@ class Carousel extends Component {
                 }}
               >
                 {movies.map(movie => {
-                  return (
-                    <Card className={classes.card} key={movie.id}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image={movie.poster_path}
-                          title={movie.title}
-                        />
-                      </CardActionArea>
-                    </Card>
-                  );
+                  return <MovieCard content={movie} />;
                 })}
               </Swipeable>
             </div>

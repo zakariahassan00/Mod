@@ -5,7 +5,7 @@ const movieSchema = new Schema({
   id: Number,
   title: String,
   original_title: String,
-  genres: [String],
+  genres: [Object],
   vote_average: Number,
   poster_path: String,
   backdrop_path: String,
@@ -14,7 +14,16 @@ const movieSchema = new Schema({
   vote_count: Number,
   adult: Boolean,
   original_language: String,
-  overview: String
+  overview: String,
+  cast: [Object],
+  crew: [Object],
+  video: [Object],
+  runtime: Number,
+  status: String,
+  tagline: String,
+  homepage: String,
+  budget: Number,
+  revenue: Number
 });
 
 mongoose.model("movies", movieSchema);

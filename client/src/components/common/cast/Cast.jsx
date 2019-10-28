@@ -34,9 +34,9 @@ class Cast extends Component {
         <div className={classes.actors}>
           {cast.map(
             person =>
-              person.order < 10 && (
+              person.order < 6 && (
                 <div key={person.id} className={classes.actor}>
-                  <MovieCard key={person.id} item={person} sm />
+                  <MovieCard key={person.id} content={person} sm />
                   {person.name}
                   <div style={{ color: "#808080" }}>({person.character})</div>
                 </div>
@@ -68,7 +68,7 @@ class Cast extends Component {
             <div className={classes.actors}>
               {cast.map(person => (
                 <div key={person.id} className={classes.actor}>
-                  <MovieCard key={person.id} item={person} sm />
+                  <MovieCard key={person.id} content={person} sm />
                   {person.name}
                   <div style={{ color: "#808080" }}>({person.character})</div>
                 </div>
