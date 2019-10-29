@@ -2,7 +2,10 @@ export const heroDisplayStyles = theme => ({
   hero: {
     margin: "auto",
     position: "relative",
-    overflow: "hidden"
+    overflow: "hidden",
+    width: "100%",
+    height: "100vh"
+    // TODO: ===>>>>>THIS IS NOT FULL RESPONSIVE!!!
   },
   heroImage: {
     height: "100%",

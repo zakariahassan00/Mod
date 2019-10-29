@@ -5,6 +5,7 @@ import Home from "./home";
 import Header from "./header";
 import Movie from "./movie";
 import "./app.css";
+import Footer from "./footer";
 
 class App extends Component {
   state = {};
@@ -16,6 +17,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/show/:id" component={Movie} />
+          <Footer />
         </div>
       </BrowserRouter>
     );
