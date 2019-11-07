@@ -50,6 +50,6 @@ export default compose(
   withStyles(homeStyles),
   connect(
     mapStateToProps,
-    { getAllMovies, getNewMovies }
+    { getNewMovies }
   )
 )(Home);

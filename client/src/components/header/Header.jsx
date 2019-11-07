@@ -92,7 +92,7 @@ class Header extends Component {
                 {["Movies", "TV Series", "Top Rated"].map(text => {
                   return (
                     <li key={text} className={classes.appBarMenuitem}>
-                      <Link to="/">{text}</Link>
+                      <Link to="/all">{text}</Link>
                     </li>
                   );
                 })}

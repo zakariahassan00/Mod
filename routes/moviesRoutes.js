@@ -37,22 +37,32 @@ module.exports = app => {
 
   // return all Movies in the DB
   app.get("/api/movies/all", async (req, res) => {
-    const allMovies = await Movie.find();
+    let page = req.param("page");
+    let perPage = 20;
+
+    // const count = await Movie.count();
+
+    const allMovies = await Movie.find()
+      .select("id poster_path title")
+      .limit(perPage)
+      .skip((page - 1) * perPage);
 
     res.send(allMovies);
   });
 
   app.get("/api/movies/latest", async (req, res) => {
-    const latestMovies = await Movie.find().$where(function() {
-      // this will convert minmum release date we want into number
-      const minReleaseDate = Date.parse("2019-10-01");
-      const minRate = 6.5;
+    const latestMovies = await Movie.find()
+      .select("-cast -crew -video")
+      .$where(function() {
+        // this will convert minmum release date we want into number
+        const minReleaseDate = Date.parse("2019-10-01");
+        const minRate = 6.5;
 
-      // we want the movies which have release date "number" higher than minRealeaseDate!
-      const movieReleaseDate = Date.parse(this.release_date);
-      const movieRate = this.vote_average;
-      return movieReleaseDate > minReleaseDate && movieRate >= minRate;
-    });
+        // we want the movies which have release date "number" higher than minRealeaseDate!
+        const movieReleaseDate = Date.parse(this.release_date);
+        const movieRate = this.vote_average;
+        return movieReleaseDate > minReleaseDate && movieRate >= minRate;
+      });
 
     res.send(latestMovies);
   });

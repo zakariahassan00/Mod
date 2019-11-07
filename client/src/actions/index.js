@@ -7,8 +7,8 @@ import {
   SET_CONTENT
 } from "./types";
 
-export const getAllMovies = () => async dispatch => {
-  const movies = await axios.get("/api/movies/all");
+export const getAllMovies = (page = 1) => async dispatch => {
+  const movies = await axios.get(`/api/movies/all?&page=${page}`);
 
   dispatch({ type: FETCH_MOVIES, payload: movies.data });
 };
