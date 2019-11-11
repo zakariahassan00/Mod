@@ -16,6 +16,7 @@ import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MovieIcon from "@material-ui/icons/Movie";
 import { withStyles } from "@material-ui/core/styles";
 import { sideMenuStyles } from "./sideMenuStyles";
+import { Link } from "react-router-dom";
 
 class SideMenu extends Component {
   state = {
@@ -45,11 +46,13 @@ class SideMenu extends Component {
           </IconButton>
           {user ? (
             <Fragment>
-              <Avatar
-                alt={user ? user.name : ""}
-                src={user ? user.picture : ""}
-                className={classes.avatar}
-              />
+              <Link to="/profile">
+                <Avatar
+                  alt={user ? user.name : ""}
+                  src={user ? user.picture : ""}
+                  className={classes.avatar}
+                />
+              </Link>
               <h4>{user ? user.name : ""}</h4>
               <Button href="/api/logout" variant="contained" color="primary">
                 logout

@@ -89,7 +89,7 @@ class Header extends Component {
 
             <Hidden smDown>
               <ul className={classes.appBarMenuList}>
-                {["Movies", "TV Series", "Top Rated"].map(text => {
+                {["Movies", "In Theatre", "Top Rated"].map(text => {
                   return (
                     <li key={text} className={classes.appBarMenuitem}>
                       <Link to="/all">{text}</Link>

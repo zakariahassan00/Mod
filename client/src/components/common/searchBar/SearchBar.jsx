@@ -7,7 +7,11 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   searchbar: {
     width: "50%",
-    margin: "25px auto 50px"
+    margin: "25px auto 50px",
+    [theme.breakpoints.down("xs")]: {
+      width: "75%",
+      margin: "5px auto 30px"
+    }
   },
   search: {
     position: "relative",
@@ -50,7 +54,7 @@ const styles = theme => ({
 class SearchBar extends Component {
   state = {};
   render() {
-    const { classes } = this.props;
+    const { classes, onQueryChange } = this.props;
     return (
       <div className={classes.searchbar}>
         <div className={classes.search}>
@@ -64,6 +68,7 @@ class SearchBar extends Component {
               input: classes.inputInput
             }}
             inputProps={{ "aria-label": "search" }}
+            onChange={event => onQueryChange(event.target.value)}
           />
         </div>
       </div>

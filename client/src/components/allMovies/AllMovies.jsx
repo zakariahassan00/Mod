@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
-import { getAllMovies, getNewMovies } from "./../../actions";
 import { compose } from "recompose";
+import { getAllMovies } from "./../../actions";
 import MovieCard from "../common/card/MovieCard";
 import { allMoviesStyles } from "./allMovesStyles";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./../common/searchBar/SearchBar";
 import Pagination from "./../common/pagination/pagination";
+import Slide from "@material-ui/core/Slide";
+import MoviesGrid from "./MoviesGrid";
 
 class AllMovies extends Component {
   state = {
-    page: 1
+    page: 1,
+    query: ""
   };
 
   componentDidMount() {
@@ -19,34 +22,30 @@ class AllMovies extends Component {
   }
 
   handlePageChange = page => {
-    this.props.getAllMovies(page);
+    const { query } = this.state;
+    this.props.getAllMovies(page, query);
     this.setState({ page });
+  };
+
+  handleQueryChange = query => {
+    this.setState({ query, page: 1 });
+    this.props.getAllMovies(1, query);
   };
 
   render() {
     const { classes, movies } = this.props;
     return (
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        alignContent="center"
-        className={classes.allMovies}
-      >
+      <Grid container justify="center" className={classes.allMovies}>
         <Grid item xs={12}>
-          <SearchBar />
+          <SearchBar onQueryChange={this.handleQueryChange} />
         </Grid>
+
         <section className={classes.list}>
-          {movies.map(movie => {
-            return (
-              <Grid item xs={3}>
-                <MovieCard content={movie} key={movie.id} />
-              </Grid>
-            );
-          })}
+          <MoviesGrid movies={movies.items} />
         </section>
+
         <Pagination
-          itemsCount={480}
+          itemsCount={movies.count}
           itemsPerpage={20}
           onPageChange={this.handlePageChange}
           currentPage={this.state.page}
@@ -64,6 +63,6 @@ export default compose(
   withStyles(allMoviesStyles),
   connect(
     mapStateToProps,
-    { getAllMovies, getNewMovies }
+    { getAllMovies }
   )
 )(AllMovies);

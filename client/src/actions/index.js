@@ -3,12 +3,15 @@ import {
   FETCH_USER,
   FETCH_MOVIES,
   FETCH_NEW_MOVIES,
+  FETCH_TOP_MOVIES,
   TOGGLE_SIDE_BAR,
   SET_CONTENT
 } from "./types";
 
-export const getAllMovies = (page = 1) => async dispatch => {
-  const movies = await axios.get(`/api/movies/all?&page=${page}`);
+export const getAllMovies = (page = 1, query = "") => async dispatch => {
+  const movies = await axios.get(
+    `/api/movies/all?page=${page}&searchQuery=${query}`
+  );
 
   dispatch({ type: FETCH_MOVIES, payload: movies.data });
 };
@@ -17,6 +20,12 @@ export const getNewMovies = () => async dispatch => {
   const movies = await axios.get("/api/movies/latest");
 
   dispatch({ type: FETCH_NEW_MOVIES, payload: movies.data });
+};
+
+export const getTopMovies = (page = 1) => async dispatch => {
+  const movies = await axios.get(`/api/movies/top?page=${page}`);
+
+  dispatch({ type: FETCH_TOP_MOVIES, payload: movies.data });
 };
 
 export const getUser = () => async dispatch => {

@@ -9,6 +9,8 @@ import Movie from "./movie";
 import "./app.css";
 import Footer from "./footer";
 import AllMovies from "./allMovies";
+import Profile from "./profile";
+import TopMovies from "./topMovies/TopMovies";
 
 class App extends Component {
   state = {};
@@ -20,8 +22,10 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/show/:id" component={Movie} />
+          <Route path="/profile" component={Profile} />
           <Route path="/all" component={AllMovies} />
+          <Route path="/top" component={TopMovies} />
+          <Route path="/show/:id" component={Movie} />
           <Footer />
         </div>
       </BrowserRouter>

@@ -5,49 +5,25 @@ const Movie = mongoose.model("movies");
 const User = mongoose.model("users");
 
 module.exports = app => {
-  // app.post("/api/movies/add", (req, res) => {
-  // const movie = req.body;
-  // new Movie({
-  //   id: movie.id,
-  //   title: movie.title,
-  //   original_title: movie.original_title,
-  //   genres: movie.genres,
-  //   vote_average: movie.vote_average,
-  //   poster_path: movie.poster_path,
-  //   backdrop_path: movie.backdrop_path,
-  //   release_date: movie.release_date,
-  //   popularity: movie.popularity,
-  //   vote_count: movie.vote_count,
-  //   adult: movie.adult,
-  //   original_language: movie.original_language,
-  //   overview: movie.overview,
-  //   cast: movie.cast,
-  //   crew: movie.crew,
-  //   video: movie.results,
-  //   runtime: movie.runtime,
-  //   status: movie.status,
-  //   tagline: movie.tagline,
-  //   homepage: movie.homepage,
-  //   budget: movie.budget,
-  //   revenue: movie.revenue
-  // }).save();
-
-  // res.send({});
-  // });
-
   // return all Movies in the DB
   app.get("/api/movies/all", async (req, res) => {
-    let page = req.param("page");
-    let perPage = 20;
+    const page = req.param("page");
+    const perPage = 20;
+    const query = req.query.searchQuery;
 
-    // const count = await Movie.count();
+    const count = await Movie.find({
+      title: { $regex: query, $options: "i" }
+    }).count();
 
-    const allMovies = await Movie.find()
+    const allMovies = await Movie.find({
+      title: { $regex: query, $options: "i" }
+    })
       .select("id poster_path title")
       .limit(perPage)
       .skip((page - 1) * perPage);
 
-    res.send(allMovies);
+    // res.send(allMovies);
+    res.send({ items: allMovies, count });
   });
 
   app.get("/api/movies/latest", async (req, res) => {
@@ -65,6 +41,32 @@ module.exports = app => {
       });
 
     res.send(latestMovies);
+  });
+
+  app.get("/api/movies/top", async (req, res) => {
+    const page = req.param("page");
+    const perPage = 20;
+    const count = await Movie.find()
+      .$where(function() {
+        const minRate = 7.5;
+
+        const movieRate = this.vote_average;
+        return movieRate >= minRate;
+      })
+      .count();
+
+    const topRatedMovies = await Movie.find()
+      .$where(function() {
+        const minRate = 7.5;
+
+        const movieRate = this.vote_average;
+        return movieRate >= minRate;
+      })
+      .select("-cast -crew -video")
+      .limit(perPage)
+      .skip(perPage * (page - 1));
+
+    res.send({ items: topRatedMovies, count });
   });
 
   app.get("/api/movies/:id", async (req, res) => {

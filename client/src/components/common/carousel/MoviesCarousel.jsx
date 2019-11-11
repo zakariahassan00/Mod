@@ -79,8 +79,8 @@ class Carousel extends Component {
               >
                 {movies.map(movie => {
                   return (
-                    <Suspense fallback={<CardLoader />}>
-                      <MovieCard key={movie.id} content={movie} />
+                    <Suspense key={movie.id} fallback={<CardLoader />}>
+                      <MovieCard content={movie} />
                     </Suspense>
                   );
                 })}

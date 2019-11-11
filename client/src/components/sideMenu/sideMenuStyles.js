@@ -20,7 +20,7 @@ export const sideMenuStyles = theme => ({
   },
   sideMenuPaper: {
     width: drawerWidth,
-    backgroundColor: darkGray,
+    backgroundColor: "#000",
     color: "#fff"
   },
   sideMenuHeader: {

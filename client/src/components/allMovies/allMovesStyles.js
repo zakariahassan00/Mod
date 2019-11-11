@@ -21,7 +21,11 @@ export const allMoviesStyles = theme => ({
     minHeight: "calc(100vh - 210px)",
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    color: "#fff"
+  },
+  item: {
+    margin: "auto"
   },
   row: {
     display: "flex",
