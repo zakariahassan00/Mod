@@ -21,6 +21,12 @@ import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import SideMenu from "../sideMenu";
 
+const NavList = [
+  { text: "Movies", link: "all" },
+  { text: "In Theatre", link: "new" },
+  { text: "Top Rated", link: "top" }
+];
+
 class Header extends Component {
   state = {
     scrolled: false
@@ -89,10 +95,10 @@ class Header extends Component {
 
             <Hidden smDown>
               <ul className={classes.appBarMenuList}>
-                {["Movies", "In Theatre", "Top Rated"].map(text => {
+                {NavList.map(item => {
                   return (
-                    <li key={text} className={classes.appBarMenuitem}>
-                      <Link to="/all">{text}</Link>
+                    <li key={item.text} className={classes.appBarMenuitem}>
+                      <Link to={item.link}>{item.text}</Link>
                     </li>
                   );
                 })}
@@ -121,7 +127,6 @@ class Header extends Component {
                 edge="start"
                 className={classes.menuButton}
                 color="inherit"
-                aria-label="menu"
                 onClick={() => toggleSideMenu(true)}
               >
                 <MenuIcon />
