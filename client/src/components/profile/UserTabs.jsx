@@ -56,7 +56,7 @@ class UserTabs extends PureComponent {
           {user && <MoviesGrid movies={user.watchList} />}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          Item Two
+          {user && <MoviesGrid movies={user.favorites} />}
         </TabPanel>
         <TabPanel value={value} index={2}>
           Item Three

@@ -110,7 +110,7 @@ class Movie extends Component {
                   <div>
                     {/* <UserActions /> */}
                     <WatchList movieId={movie.id} />
-                    <AddToFavorites contentId={movie.id} />
+                    <AddToFavorites movieId={movie.id} />
                   </div>
                 </div>
                 <div className={classes.movieCast}>

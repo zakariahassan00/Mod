@@ -23,9 +23,9 @@ class AddToFavorites extends Component {
   state = {};
 
   toggle = action => {
-    const { toggleFavorites, contentId } = this.props;
+    const { toggleFavorites, movieId } = this.props;
     const content = {
-      id: contentId,
+      id: movieId,
       action
     };
 
@@ -33,26 +33,22 @@ class AddToFavorites extends Component {
   };
 
   renderFavoritesIcon = () => {
-    const { classes, user, contentId } = this.props;
-    switch (user) {
-      case null:
-        return;
-      case false:
-        return <FavoriteBorderIcon className={classes.favorite} />;
-      default:
-        const added = user.favorites.includes(contentId.toString());
-        return added ? (
-          <FavoriteIcon
-            onClick={() => this.toggle("remove")}
-            className={classes.favorite}
-          />
-        ) : (
-          <FavoriteBorderIcon
-            onClick={() => this.toggle("add")}
-            className={classes.favorite}
-          />
-        );
-    }
+    const { classes, user, movieId } = this.props;
+    const added =
+      (user && user.favorites.filter(item => item.id == movieId).length > 0) ||
+      false;
+
+    return added ? (
+      <FavoriteIcon
+        onClick={() => this.toggle("remove")}
+        className={classes.favorite}
+      />
+    ) : (
+      <FavoriteBorderIcon
+        onClick={() => this.toggle("add")}
+        className={classes.favorite}
+      />
+    );
   };
 
   render() {

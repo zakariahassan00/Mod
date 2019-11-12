@@ -18,7 +18,7 @@ module.exports = app => {
       user.watchList.push(movie);
     } else {
       const newWatchList = user.watchList.filter(movie => {
-        movie.id != movieId;
+        return movie.id != movieId;
       });
 
       user.watchList = newWatchList;
@@ -71,14 +71,17 @@ module.exports = app => {
 
   // add or remove a movie from user`s favorites
   app.post("/api/movies/favorites", requireLogin, async (req, res) => {
+    const movieId = req.body.id;
     const user = await User.findOne({ _id: req.user._id });
-    const contentId = req.body.id;
+    const movie = await Movie.findOne({ id: movieId }).select(
+      "id title poster_path"
+    );
 
     if (req.body.action === "add") {
-      user.favorites.push(contentId);
+      user.favorites.push(movie);
     } else {
-      const newFavoritesList = user.favorites.filter(id => {
-        id != contentId;
+      const newFavoritesList = user.favorites.filter(movie => {
+        return movie.id != movieId;
       });
 
       user.favorites = newFavoritesList;

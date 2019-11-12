@@ -14,7 +14,7 @@ const userSchema = new Schema({
   name: String,
   picture: String,
   watchList: [Object],
-  favorites: [String],
+  favorites: [Object],
   rateList: [Object]
 });
 
