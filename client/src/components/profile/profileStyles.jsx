@@ -14,5 +14,8 @@ export const profileStyles = {
     margin: "20px auto",
     width: 160,
     height: 160
+  },
+  tabs: {
+    justifyContent: "center"
   }
 };

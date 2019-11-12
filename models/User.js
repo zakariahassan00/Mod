@@ -13,7 +13,7 @@ const userSchema = new Schema({
   googleId: String,
   name: String,
   picture: String,
-  watchList: [String],
+  watchList: [Object],
   favorites: [String],
   rateList: [Object]
 });

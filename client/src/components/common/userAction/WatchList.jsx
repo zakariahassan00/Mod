@@ -36,7 +36,7 @@ class WatchList extends Component {
 
     // first check if the user added this content to his/her Watchlist or not!
     const added =
-      (user && user.watchList.filter(item => item == movieId).length > 0) ||
+      (user && user.watchList.filter(item => item.id == movieId).length > 0) ||
       false;
 
     return (

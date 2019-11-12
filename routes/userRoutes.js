@@ -2,19 +2,23 @@ const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 
 const User = mongoose.model("users");
+const Movie = mongoose.model("movies");
 
 module.exports = app => {
   // Adding / Removing Movies or Tv shows from user`s WatchList
   app.post("/api/movies/watchlist", requireLogin, async (req, res) => {
     // add or remove a movie from user`s watchList
-    const user = await User.findOne({ _id: req.user._id });
     const movieId = req.body.movieId;
+    const user = await User.findOne({ _id: req.user._id });
+    const movie = await Movie.findOne({ id: movieId }).select(
+      "id title poster_path"
+    );
 
     if (req.body.action === "add") {
-      user.watchList.push(movieId);
+      user.watchList.push(movie);
     } else {
-      const newWatchList = user.watchList.filter(id => {
-        id != movieId;
+      const newWatchList = user.watchList.filter(movie => {
+        movie.id != movieId;
       });
 
       user.watchList = newWatchList;
