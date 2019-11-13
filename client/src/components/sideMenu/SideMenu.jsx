@@ -2,16 +2,19 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { toggleSideMenu } from "../../actions";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  ClickAwayListener,
+  Drawer,
+  List,
+  ListItem,
+  Divider,
+  Avatar,
+  IconButton,
+  Button,
+  ListItemIcon,
+  ListItemText
+} from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MovieIcon from "@material-ui/icons/Movie";
 import { withStyles } from "@material-ui/core/styles";

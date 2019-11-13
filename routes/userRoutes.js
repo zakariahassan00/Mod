@@ -28,16 +28,19 @@ module.exports = app => {
     res.send(user);
   });
 
-  // Rating Movies And Tv Shows System
+  // Movies Rating System
   app.post("/api/movies/rate", requireLogin, async (req, res) => {
+    let rated = false;
     // add or edit users rate
     const user = await User.findOne({ _id: req.user._id });
-    let rated = false;
+    const movie = await Movie.findOne({ id: req.body.id }).select(
+      "id title poster_path"
+    );
 
     // if user rated 0 that means delete the rate
     if (req.body.rate == 0) {
       const newRateList = user.rateList.filter(content => {
-        content.id != req.body.id;
+        return content.item.id != req.body.id;
       });
 
       user.rateList = newRateList;
@@ -47,7 +50,7 @@ module.exports = app => {
 
     // search for the content(Movie or Tv Show) and edit the rate
     const newRateList = user.rateList.map(content => {
-      if (content.id == req.body.id) {
+      if (content.item.id == req.body.id) {
         rated = true;
         content.rate = req.body.rate;
         return content;
@@ -61,7 +64,8 @@ module.exports = app => {
 
     // if the content not rated before, then add the rate
     if (!rated) {
-      user.rateList.push(req.body);
+      let newMovieRate = { item: movie, rate: req.body.rate };
+      user.rateList.push(newMovieRate);
     }
 
     await user.save();

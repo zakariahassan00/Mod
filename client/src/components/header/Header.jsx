@@ -98,7 +98,7 @@ class Header extends Component {
                 {NavList.map(item => {
                   return (
                     <li key={item.text} className={classes.appBarMenuitem}>
-                      <Link to={item.link}>{item.text}</Link>
+                      <Link to={`/${item.link}`}>{item.text}</Link>
                     </li>
                   );
                 })}

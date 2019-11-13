@@ -52,7 +52,7 @@ class UserRate extends Component {
         );
       default:
         const rated = user.rateList.filter(content => {
-          return content.id === contentId;
+          return content.item.id === contentId;
         });
 
         return rated[0] ? (

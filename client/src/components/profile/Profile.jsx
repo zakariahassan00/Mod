@@ -19,8 +19,9 @@ const Profile = ({ classes, user }) => {
               src={user && user.picture}
               className={classes.bigAvatar}
             />
-            <Typography variant="h5" gutterBottom>
-              {user && user.name}
+            <Typography variant="h5">{user && user.name}</Typography>
+            <Typography variant="caption" style={{ color: "#808080" }}>
+              {user && user.email}
             </Typography>
           </div>
         </Grid>
