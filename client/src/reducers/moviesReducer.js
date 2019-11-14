@@ -1,9 +1,16 @@
-import { FETCH_MOVIES } from "../actions/types";
+import { FETCH_MOVIES, FETCHING_MOVIES } from "../actions/types";
 
-export default (state = [], action) => {
+const STATE = {
+  data: [],
+  loaded: false
+};
+
+export default (state = STATE, action) => {
   switch (action.type) {
     case FETCH_MOVIES:
-      return action.payload;
+      return { data: action.payload, loaded: true };
+    case FETCHING_MOVIES:
+      return (state = { ...state, loaded: false });
     default:
       return state;
   }

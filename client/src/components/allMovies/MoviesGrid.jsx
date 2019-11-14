@@ -28,7 +28,7 @@ const MoviesGrid = ({ classes, movies }) => {
   return (
     <div>
       <section className={classes.moviesGrid}>
-        {movies ? (
+        {movies.length > 0 ? (
           movies.map(movie => {
             return (
               <Grid item xs={6} sm={3} key={movie.id}>
@@ -41,7 +41,7 @@ const MoviesGrid = ({ classes, movies }) => {
             );
           })
         ) : (
-          <h1>Loading...</h1>
+          <h1>Sorry, No Movies Found!</h1>
         )}
       </section>
     </div>

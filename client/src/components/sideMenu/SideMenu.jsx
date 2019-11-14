@@ -17,9 +17,41 @@ import {
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MovieIcon from "@material-ui/icons/Movie";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import StarRateIcon from "@material-ui/icons/StarRate";
+import TheatersIcon from "@material-ui/icons/Theaters";
+import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import { withStyles } from "@material-ui/core/styles";
 import { sideMenuStyles } from "./sideMenuStyles";
 import { Link } from "react-router-dom";
+
+const list = [
+  {
+    text: "Notifcations",
+    link: "/notification",
+    icon: <NotificationsNoneIcon />
+  },
+  {
+    text: "All Movies",
+    link: "/all",
+    icon: <MovieIcon />
+  },
+  {
+    text: "Top Rated",
+    link: "/top",
+    icon: <StarRateIcon />
+  },
+  {
+    text: "In Theatre",
+    link: "/new",
+    icon: <TheatersIcon />
+  },
+  {
+    text: "My Lists",
+    link: "/profile",
+    icon: <PlayArrowIcon />
+  }
+];
 
 class SideMenu extends Component {
   state = {
@@ -57,9 +89,6 @@ class SideMenu extends Component {
                 />
               </Link>
               <h4>{user ? user.name : ""}</h4>
-              <Button href="/api/logout" variant="contained" color="primary">
-                logout
-              </Button>
             </Fragment>
           ) : (
             <Button href="/login" variant="contained" color="primary">
@@ -69,18 +98,25 @@ class SideMenu extends Component {
         </div>
         <Divider />
         <List>
-          {["Notifications", "My List"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <NotificationsNoneIcon className={classes.whiteIcon} />
-                ) : (
-                  <MovieIcon className={classes.whiteIcon} />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {list.map(item => (
+            <Link to={`${item.link}`}>
+              <ListItem className={classes.listItem} button key={item.text}>
+                <ListItemIcon className={classes.whiteIcon}>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            </Link>
           ))}
+          {/* Logout button */}
+          <a href="/api/logout">
+            <ListItem className={classes.listItem} button>
+              <ListItemIcon className={classes.whiteIcon}>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Log Out" />
+            </ListItem>
+          </a>
         </List>
       </Drawer>
     );

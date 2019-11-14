@@ -22,7 +22,7 @@ module.exports = app => {
       .limit(perPage)
       .skip((page - 1) * perPage);
 
-    res.send({ items: allMovies, count });
+    res.send({ movies: allMovies, count });
   });
 
   app.get("/api/movies/latest", async (req, res) => {
@@ -65,7 +65,7 @@ module.exports = app => {
       .limit(perPage)
       .skip(perPage * (page - 1));
 
-    res.send({ items: topRatedMovies, count });
+    res.send({ movies: topRatedMovies, count });
   });
 
   app.get("/api/movies/:id", async (req, res) => {

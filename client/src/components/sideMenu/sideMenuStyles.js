@@ -16,7 +16,8 @@ export const sideMenuStyles = theme => ({
   },
   sideMenu: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    color: "#fff"
   },
   sideMenuPaper: {
     width: drawerWidth,
@@ -31,7 +32,20 @@ export const sideMenuStyles = theme => ({
     justifyContent: "flex-start",
     color: "#fff"
   },
+  listItem: {
+    "&:hover": {
+      backgroundColor: "#610408"
+    }
+  },
   whiteIcon: {
     color: "#fff"
+  },
+  logOutbutton: {
+    color: "#fff",
+    backgroundColor: "#610408",
+    textTransform: "capitalize",
+    "&:hover": {
+      backgroundColor: "#E50914"
+    }
   }
 });

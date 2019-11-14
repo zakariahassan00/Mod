@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { compose } from "recompose";
-import { getAllMovies } from "./../../actions";
-import MovieCard from "../common/card/MovieCard";
+import { getAllMovies, fetchingData } from "./../../actions";
+// import MovieCard from "../common/card/MovieCard";
 import { allMoviesStyles } from "./allMovesStyles";
 import Grid from "@material-ui/core/Grid";
 import SearchBar from "./../common/searchBar/SearchBar";
 import Pagination from "./../common/pagination/pagination";
-import Slide from "@material-ui/core/Slide";
+import Loader from "react-loader-spinner";
 import MoviesGrid from "./MoviesGrid";
 
 class AllMovies extends Component {
@@ -23,17 +23,21 @@ class AllMovies extends Component {
 
   handlePageChange = page => {
     const { query } = this.state;
+    this.props.fetchingData();
     this.props.getAllMovies(page, query);
     this.setState({ page });
   };
 
   handleQueryChange = query => {
     this.setState({ query, page: 1 });
+    this.props.fetchingData();
     this.props.getAllMovies(1, query);
   };
 
   render() {
     const { classes, movies } = this.props;
+    const moviesLoaded = movies.loaded;
+    console.log(moviesLoaded);
     return (
       <Grid container justify="center" className={classes.allMovies}>
         <Grid item xs={12}>
@@ -41,11 +45,15 @@ class AllMovies extends Component {
         </Grid>
 
         <section className={classes.list}>
-          <MoviesGrid movies={movies.items} />
+          {moviesLoaded ? (
+            <MoviesGrid movies={movies.data.movies} />
+          ) : (
+            <Loader type="Oval" color="#3f51b5" height={60} width={60} />
+          )}
         </section>
 
         <Pagination
-          itemsCount={movies.count}
+          itemsCount={movies.data.count}
           itemsPerpage={20}
           onPageChange={this.handlePageChange}
           currentPage={this.state.page}
@@ -63,6 +71,6 @@ export default compose(
   withStyles(allMoviesStyles),
   connect(
     mapStateToProps,
-    { getAllMovies }
+    { getAllMovies, fetchingData }
   )
 )(AllMovies);
