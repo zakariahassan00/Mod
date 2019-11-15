@@ -37,7 +37,6 @@ class AllMovies extends Component {
   render() {
     const { classes, movies } = this.props;
     const moviesLoaded = movies.loaded;
-    console.log(moviesLoaded);
     return (
       <Grid container justify="center" className={classes.allMovies}>
         <Grid item xs={12}>

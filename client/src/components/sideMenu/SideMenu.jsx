@@ -1,9 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { compose } from "recompose";
-import { toggleSideMenu } from "../../actions";
+import React, { Fragment, PureComponent } from "react";
 import {
-  ClickAwayListener,
   Drawer,
   List,
   ListItem,
@@ -53,7 +49,7 @@ const list = [
   }
 ];
 
-class SideMenu extends Component {
+class SideMenu extends PureComponent {
   state = {
     open: true
   };
@@ -68,9 +64,9 @@ class SideMenu extends Component {
     return (
       <Drawer
         className={classes.sideMenu}
-        variant="persistent"
         anchor="right"
         open={showSideMenu}
+        onClose={this.handleSideMenuClose}
         classes={{
           paper: classes.sideMenuPaper
         }}
@@ -99,8 +95,8 @@ class SideMenu extends Component {
         <Divider />
         <List>
           {list.map(item => (
-            <Link to={`${item.link}`}>
-              <ListItem className={classes.listItem} button key={item.text}>
+            <Link to={`${item.link}`} key={item.text}>
+              <ListItem className={classes.listItem} button>
                 <ListItemIcon className={classes.whiteIcon}>
                   {item.icon}
                 </ListItemIcon>
@@ -123,14 +119,4 @@ class SideMenu extends Component {
   }
 }
 
-function mapStateToProps({ showSideMenu }) {
-  return { showSideMenu };
-}
-
-export default compose(
-  withStyles(sideMenuStyles),
-  connect(
-    mapStateToProps,
-    { toggleSideMenu }
-  )
-)(SideMenu);
+export default withStyles(sideMenuStyles)(SideMenu);

@@ -4,8 +4,8 @@ import {
   FETCH_MOVIES,
   FETCH_NEW_MOVIES,
   FETCH_TOP_MOVIES,
-  TOGGLE_SIDE_BAR,
   FETCHING_MOVIES,
+  FETCH_MOVIE,
   SET_CONTENT
 } from "./types";
 
@@ -29,6 +29,12 @@ export const getTopMovies = (page = 1) => async dispatch => {
   dispatch({ type: FETCH_TOP_MOVIES, payload: movies.data });
 };
 
+export const getMovie = id => async dispatch => {
+  const movie = await axios.get(`/api/movies/${id}`);
+
+  dispatch({ type: FETCH_MOVIE, payload: movie.data });
+};
+
 export const fetchingData = () => {
   console.log("Fetching...");
   return { type: FETCHING_MOVIES, payload: false };
@@ -45,10 +51,6 @@ export const signIn = values => async dispatch => {
 
   console.log(user);
   dispatch({ type: FETCH_USER, payload: user.data });
-};
-
-export const toggleSideMenu = value => {
-  return { type: TOGGLE_SIDE_BAR, payload: value };
 };
 
 export const addToWatchList = movie => async dispatch => {

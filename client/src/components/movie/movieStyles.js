@@ -4,14 +4,15 @@ const darkGray = "#1b1b1b";
 export const movieStyles = theme => ({
   movie: {
     width: "100%",
-    heigth: "100%",
+    minHeight: "100vh",
     backgroundColor: "#000",
     [theme.breakpoints.up("md")]: {
       // marginTop: 65
     },
     position: "relative"
   },
-  video: {
+  // ====> Movie Info
+  movieInfo: {
     position: "relative",
     width: "100%",
     height: "85%",
@@ -31,7 +32,7 @@ export const movieStyles = theme => ({
   img: {
     width: "100%"
   },
-  movieOverview: {
+  movieDetails: {
     position: "absolute",
     width: "80%",
     height: "auto",
@@ -45,7 +46,6 @@ export const movieStyles = theme => ({
     marginRight: 15
   },
   chip: {
-    // color: "#9FA6A2",
     width: 50,
     height: 20,
     fontSize: 20
@@ -72,17 +72,7 @@ export const movieStyles = theme => ({
   genre: {
     marginRight: 5
   },
-  palyButton: {
-    marginTop: 60,
-    backgroundColor: "#610408",
-    textTransform: "capitalize",
-    "&:hover": {
-      backgroundColor: "#E50914"
-    },
-    [theme.breakpoints.only("xs")]: {
-      marginTop: 25
-    }
-  },
+  // ====> Movie Rates Section
   movieData: {
     width: "100%",
     backgroundColor: "#FAFAFA",
@@ -93,7 +83,7 @@ export const movieStyles = theme => ({
       top: 0
     }
   },
-  movieInfoHeader: {
+  movieRates: {
     backgroundColor: darkGray,
     height: 100,
     width: "100%",
@@ -101,8 +91,8 @@ export const movieStyles = theme => ({
     justifyContent: "center",
     color: "#fff"
   },
-
-  movieDescription: {
+  // ====> Movie Overview
+  movieOverview: {
     minHeight: 350,
     width: "90%",
     margin: "20px auto",
@@ -127,10 +117,35 @@ export const movieStyles = theme => ({
     display: "inline-block",
     paddingRight: "1rem"
   },
+  // ====> Movie Cast
   movieCast: {
     padding: 25,
     borderBottom: "1px solid #9FA6A2"
   },
+  actors: {
+    wdith: "100%",
+    margin: "20px auto",
+    display: "flex",
+    flexWrap: "wrap",
+    textAlign: "center",
+    justifyContent: "center"
+  },
+  actor: {
+    margin: 20,
+    width: "20%"
+  },
+  fullCast: {
+    margin: "auto",
+    width: "100%"
+  },
+  movieMoreDetails: {
+    width: "100%",
+    padding: 25
+  },
+  dialogContent: {
+    width: 800
+  },
+  // ====> Similar
   similarMovies: {
     padding: 25,
     marginBottom: 20,

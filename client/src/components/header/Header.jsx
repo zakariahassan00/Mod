@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { headerStyles } from "./headerStyles";
-import { getUser, toggleSideMenu } from "./../../actions/index";
+import { getUser } from "./../../actions/index";
 import {
   AppBar,
   Toolbar,
@@ -29,6 +29,7 @@ const NavList = [
 
 class Header extends Component {
   state = {
+    showSideMenu: false,
     scrolled: false
   };
 
@@ -51,7 +52,7 @@ class Header extends Component {
   }
 
   renderLoginButton() {
-    const { auth, location, classes, toggleSideMenu } = this.props;
+    const { auth, location, classes } = this.props;
 
     switch (auth) {
       case null:
@@ -72,15 +73,19 @@ class Header extends Component {
               alt={auth.name}
               src={auth.picture}
               className={classes.avatar}
-              onClick={() => toggleSideMenu(true)}
+              onClick={() => this.toggleSideMenu(true)}
             />
           </div>
         );
     }
   }
 
+  toggleSideMenu = value => {
+    this.setState({ showSideMenu: value });
+  };
+
   render() {
-    const { classes, auth, toggleSideMenu } = this.props;
+    const { classes, auth } = this.props;
     const { scrolled } = this.state;
     return (
       <div>
@@ -127,14 +132,18 @@ class Header extends Component {
                 edge="start"
                 className={classes.menuButton}
                 color="inherit"
-                onClick={() => toggleSideMenu(true)}
+                onClick={() => this.toggleSideMenu(true)}
               >
                 <MenuIcon />
               </IconButton>
             </Hidden>
           </Toolbar>
         </AppBar>
-        <SideMenu user={auth} />
+        <SideMenu
+          user={auth}
+          toggleSideMenu={this.toggleSideMenu}
+          showSideMenu={this.state.showSideMenu}
+        />
       </div>
     );
   }
@@ -150,6 +159,6 @@ export default compose(
   withRouter,
   connect(
     mapStateToProps,
-    { getUser, toggleSideMenu }
+    { getUser }
   )
 )(Header);

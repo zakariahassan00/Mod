@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import MoviesCarousel from "../common/carousel";
 import axios from "axios";
-import MoviesCarousel from "../carousel";
 
-class RelativeToContent extends Component {
+class SimilarMovies extends Component {
   state = {};
 
   async componentDidMount() {
@@ -36,4 +36,4 @@ class RelativeToContent extends Component {
   }
 }
 
-export default RelativeToContent;
+export default SimilarMovies;

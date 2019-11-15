@@ -36,6 +36,20 @@ class Home extends Component {
             <MoviesCarousel movies={newMovies} />
           </div>
         </Grid>
+
+        <Grid item xs={11}>
+          <div className={classes.moviesList}>
+            <div className={classes.moviesListHeader}>Drama </div>
+            <MoviesCarousel movies={newMovies} />
+          </div>
+        </Grid>
+
+        <Grid item xs={11}>
+          <div className={classes.moviesList}>
+            <div className={classes.moviesListHeader}>Action </div>
+            <MoviesCarousel movies={newMovies} />
+          </div>
+        </Grid>
       </Grid>
     );
   }
