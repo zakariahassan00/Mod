@@ -3,21 +3,21 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import { compose } from "recompose";
 import { getAllMovies, fetchingData } from "./../../actions";
-import { allMoviesStyles } from "./allMovesStyles";
+import { allMoviesStyles } from "../allMovies/allMovesStyles";
 import Grid from "@material-ui/core/Grid";
-import SearchBar from "./../common/searchBar/SearchBar";
 import Pagination from "./../common/pagination/pagination";
 import Loader from "react-loader-spinner";
-import MoviesGrid from "./MoviesGrid";
+import MoviesGrid from "../allMovies/MoviesGrid";
 
-class AllMovies extends Component {
+class SearchMovies extends Component {
   state = {
-    page: 1,
-    query: ""
+    page: 1
   };
 
   componentDidMount() {
-    this.props.getAllMovies();
+    const q = this.props.location.search.slice(3, -1);
+
+    this.props.getAllMovies(1, q);
   }
 
   handlePageChange = page => {
@@ -27,21 +27,11 @@ class AllMovies extends Component {
     this.setState({ page });
   };
 
-  handleQueryChange = query => {
-    this.setState({ query, page: 1 });
-    this.props.fetchingData();
-    this.props.getAllMovies(1, query);
-  };
-
   render() {
     const { classes, movies } = this.props;
     const moviesLoaded = movies.loaded;
     return (
       <Grid container justify="center" className={classes.allMovies}>
-        <Grid item xs={12}>
-          <SearchBar onQueryChange={this.handleQueryChange} />
-        </Grid>
-
         <section className={classes.list}>
           {moviesLoaded ? (
             <MoviesGrid movies={movies.data.movies} />
@@ -71,4 +61,4 @@ export default compose(
     mapStateToProps,
     { getAllMovies, fetchingData }
   )
-)(AllMovies);
+)(SearchMovies);

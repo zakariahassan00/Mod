@@ -7,6 +7,7 @@ import AllMovies from "./allMovies";
 import Profile from "./profile";
 import TopMovies from "./topMovies/TopMovies";
 import NewMovies from "./newMovies/NewMovies";
+import SearchResults from "./searchResults/SearchResults";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
       <Route path="/all" component={AllMovies} />
       <Route path="/top" component={TopMovies} />
       <Route path="/new" component={NewMovies} />
+      <Route path="/search" component={SearchResults} />
       <Route path="/show/:id" component={Movie} />
     </div>
   );

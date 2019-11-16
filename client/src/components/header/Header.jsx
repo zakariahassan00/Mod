@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { headerStyles } from "./headerStyles";
-import { getUser } from "./../../actions/index";
+import { getUser, getAllMovies, fetchingData } from "./../../actions/index";
 import {
   AppBar,
   Toolbar,
@@ -84,9 +84,23 @@ class Header extends Component {
     this.setState({ showSideMenu: value });
   };
 
+  onQueryChange = q => {
+    let query = q.trim();
+
+    // if user typed spaces there is no need to make request!
+    if (query.length > 0) {
+      this.props.fetchingData();
+      this.props.getAllMovies(1, query);
+      this.props.history.push(`/search?q=${q}`);
+    } else {
+      this.props.history.push(`/`);
+    }
+  };
+
   render() {
     const { classes, auth } = this.props;
     const { scrolled } = this.state;
+
     return (
       <div>
         <AppBar
@@ -121,8 +135,10 @@ class Header extends Component {
                   input: classes.inputInput
                 }}
                 inputProps={{ "aria-label": "search" }}
+                onChange={event => this.onQueryChange(event.target.value)}
               />
             </div>
+
             <Hidden smDown>
               <NotificationsNoneIcon className={classes.notification} />
               {this.renderLoginButton()}
@@ -159,6 +175,6 @@ export default compose(
   withRouter,
   connect(
     mapStateToProps,
-    { getUser }
+    { getUser, getAllMovies, fetchingData }
   )
 )(Header);
