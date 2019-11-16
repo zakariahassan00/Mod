@@ -18,7 +18,10 @@ export const movieStyles = theme => ({
     height: "85%",
     textAlign: "center",
     backgroundColor: "#000",
-    overflow: "hidden"
+    overflow: "hidden",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 12
+    }
   },
   overlay: {
     width: "100%",
@@ -40,7 +43,13 @@ export const movieStyles = theme => ({
     top: "35%",
     left: "10%",
     color: "#fff",
-    textAlign: "left"
+    textAlign: "left",
+    [theme.breakpoints.down("xs")]: {
+      top: "20%"
+    },
+    [theme.breakpoints.up("xl")]: {
+      fontSize: "2rem"
+    }
   },
   releaseDate: {
     marginRight: 15
@@ -48,7 +57,12 @@ export const movieStyles = theme => ({
   chip: {
     width: 50,
     height: 20,
-    fontSize: 20
+    fontSize: 20,
+    [theme.breakpoints.down("sm")]: {
+      width: 30,
+      height: 14,
+      fontSize: 12
+    }
   },
   star: {
     position: "relative",
@@ -56,8 +70,14 @@ export const movieStyles = theme => ({
   },
   title: {
     margin: "20px 0",
+    fontSize: "3rem",
     [theme.breakpoints.down("sm")]: {
-      fontSize: "1.7rem"
+      fontSize: "1.7rem",
+      margin: "10px 0 5px"
+    },
+    [theme.breakpoints.up("xl")]: {
+      fontSize: "4rem",
+      margin: "40px 0 "
     }
   },
   duration: {
@@ -77,10 +97,13 @@ export const movieStyles = theme => ({
     width: "100%",
     backgroundColor: "#FAFAFA",
     position: "relative",
-    top: -160,
+    top: "-10vw",
     zIndex: "12",
     [theme.breakpoints.only("xs")]: {
       top: 0
+    },
+    [theme.breakpoints.only("sm")]: {
+      top: -60
     }
   },
   movieRates: {
@@ -89,33 +112,59 @@ export const movieStyles = theme => ({
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    color: "#fff"
+    color: "#fff",
+    [theme.breakpoints.down("sm")]: {
+      height: 70
+    }
   },
   // ====> Movie Overview
   movieOverview: {
-    minHeight: 350,
     width: "90%",
+    minHeight: 350,
     margin: "20px auto",
-    display: "grid",
-    gridTemplateColumns: " 200px auto ",
-    borderBottom: "1px solid #9FA6A2"
+    display: "flex",
+    flexWrap: "wrap",
+    borderBottom: "1px solid #9FA6A2",
+    [theme.breakpoints.only("xl")]: {
+      fontSize: "1.3rem"
+    }
   },
-  poster: {
+  section1: {
+    width: "25%",
+    display: "flex",
+    flexWrap: "wrap",
+    position: "relative",
+    marginBottom: 25,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    }
+  },
+  subSection1: {
+    margin: "auto"
+  },
+  subSection2: {
     width: "100%",
-    height: 300,
-    position: "relative"
+    margin: "auto",
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      width: 200
+    }
   },
   movieStoryLine: {
-    width: "100%",
-    minHeight: 300,
+    width: "75%",
+    minHeight: 200,
     padding: 25,
-    textAlign: "justify"
+    textAlign: "justify",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%"
+    }
   },
   credits: {
     color: "#808080",
-    marginTop: 15,
-    display: "inline-block",
-    paddingRight: "1rem"
+    paddingRight: "1rem",
+    [theme.breakpoints.only("xl")]: {
+      fontSize: "1.3rem"
+    }
   },
   // ====> Movie Cast
   movieCast: {
@@ -132,7 +181,10 @@ export const movieStyles = theme => ({
   },
   actor: {
     margin: 20,
-    width: "20%"
+    width: "20%",
+    [theme.breakpoints.only("xl")]: {
+      width: "10%"
+    }
   },
   fullCast: {
     margin: "auto",

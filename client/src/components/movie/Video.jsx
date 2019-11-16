@@ -53,6 +53,12 @@ const styles = theme => ({
     textTransform: "capitalize",
     "&:hover": {
       backgroundColor: "#E50914"
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: 25,
+      height: 25,
+      fontSize: 10,
+      padding: "0px 20px"
     }
   }
 });
@@ -84,7 +90,7 @@ class Video extends Component {
           variant="contained"
           color="primary"
           size="large"
-          className={classes.palyButton}
+          classes={{ sizeLarge: classes.palyButton }}
           endIcon={<PlayArrowIcon />}
           onClick={this.handleOpen}
         >

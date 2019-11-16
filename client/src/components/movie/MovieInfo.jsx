@@ -16,8 +16,8 @@ const MovieInfo = ({ classes, movie }) => {
             <Chip label={movie.vote_average} className={classes.chip} />
           </span>
         </div>
-        <div className={classes.title}>
-          <Typography variant="h3" gutterBottom>
+        <div>
+          <Typography className={classes.title} variant="h3" gutterBottom>
             {movie.title}
           </Typography>
         </div>

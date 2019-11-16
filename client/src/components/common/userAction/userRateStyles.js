@@ -5,13 +5,20 @@ export const userRateStyles = theme => ({
     color: "#ffb400",
     cursor: "pointer",
     display: "block",
-    margin: "auto"
+    margin: "auto",
+    [theme.breakpoints.down("sm")]: {
+      width: 35,
+      height: 35
+    }
   },
   userRate: {
     position: "relative",
     margin: "auto",
     width: 120,
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14
+    }
   },
   removeRate: {
     marginRight: 15
