@@ -1,10 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
 import { compose } from "recompose";
-import Slide from "@material-ui/core/Slide";
+import { withStyles, Grid, Slide, Typography } from "@material-ui/core";
 import MovieCard from "../common/card/MovieCard";
-import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   moviesGrid: {
@@ -41,11 +38,13 @@ const MoviesGrid = ({ classes, movies }) => {
             );
           })
         ) : (
-          <h1>Sorry, No Movies Found!</h1>
+          <Typography variant="h5" align="center">
+            No Movies Found!
+          </Typography>
         )}
       </section>
     </div>
   );
 };
 
-export default compose(withStyles(styles))(MoviesGrid);
+export default withStyles(styles)(MoviesGrid);

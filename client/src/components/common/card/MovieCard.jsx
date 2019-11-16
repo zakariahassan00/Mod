@@ -10,6 +10,8 @@ const styles = theme => ({
     margin: 5,
     overflow: "hidden",
     width: 200,
+    borderRadius: 0,
+    backgroundColor: "rgba(0,0,0 , 0)",
     [theme.breakpoints.down("sm")]: {
       width: 140
     }

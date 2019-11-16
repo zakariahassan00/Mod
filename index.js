@@ -10,7 +10,10 @@ require("./models/User");
 require("./models/Movie");
 
 // ===> connect to the db
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+});
 
 const app = express();
 

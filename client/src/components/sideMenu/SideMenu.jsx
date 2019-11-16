@@ -96,7 +96,11 @@ class SideMenu extends PureComponent {
         <List>
           {list.map(item => (
             <Link to={`${item.link}`} key={item.text}>
-              <ListItem className={classes.listItem} button>
+              <ListItem
+                className={classes.listItem}
+                button
+                onClick={this.handleSideMenuClose}
+              >
                 <ListItemIcon className={classes.whiteIcon}>
                   {item.icon}
                 </ListItemIcon>

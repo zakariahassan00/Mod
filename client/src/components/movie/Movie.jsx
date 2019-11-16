@@ -36,7 +36,7 @@ class Movie extends Component {
                 <div className={classes.movieRates}>
                   <Rate value={movie.data.vote_average} />
                   <Rate value={movie.data.user_rate} red />
-                  <UserRate contentId={movie.id} />
+                  <UserRate contentId={movie.data.id} />
                 </div>
 
                 <div className={classes.movieOverview}>

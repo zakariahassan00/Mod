@@ -36,7 +36,9 @@ module.exports = app => {
     const movie = await Movie.findOne({ id: req.body.id }).select(
       "id title poster_path"
     );
+    console.log(req.body);
 
+    console.log(movie);
     // if user rated 0 that means delete the rate
     if (req.body.rate == 0) {
       const newRateList = user.rateList.filter(content => {
@@ -63,7 +65,7 @@ module.exports = app => {
     user.rateList.push(...newRateList);
 
     // if the content not rated before, then add the rate
-    if (!rated) {
+    if (!rated && movie) {
       let newMovieRate = { item: movie, rate: req.body.rate };
       user.rateList.push(newMovieRate);
     }
