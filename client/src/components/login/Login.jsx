@@ -17,7 +17,7 @@ class Login extends Component {
   };
 
   renderLogin = () => {
-    const { classes, handleSubmit, user } = this.props;
+    const { classes, handleSubmit } = this.props;
 
     return (
       <div className={classes.modLogin}>
@@ -65,9 +65,10 @@ class Login extends Component {
 
   render() {
     const { classes, user } = this.props;
+    console.log(user);
     return (
       <div>
-        {user ? (
+        {!user ? (
           this.renderLogin()
         ) : (
           <div className={classes.logedin}>
@@ -81,8 +82,8 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ user }) {
-  return { user };
+function mapStateToProps({ auth }) {
+  return { user: auth };
 }
 
 export default compose(
