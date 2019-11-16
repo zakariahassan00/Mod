@@ -1,23 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signIn } from "../../actions";
-
 import { compose } from "recompose";
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import { Field, reduxForm } from "redux-form";
+import { signIn, getUser } from "../../actions";
+import { withStyles, Paper, Button, Typography } from "@material-ui/core";
 import MuiTextFields from "../common/input/MuiTextField";
 import { loginStyles } from "./loginStyles";
-import { Field, reduxForm } from "redux-form";
 
 class Login extends Component {
+  componentDidMount() {
+    this.props.getUser();
+  }
+
   onSubmit = values => {
     this.props.signIn(values);
   };
 
-  render() {
-    const { classes, handleSubmit } = this.props;
+  renderLogin = () => {
+    const { classes, handleSubmit, user } = this.props;
+
     return (
       <div className={classes.modLogin}>
         <Paper className={classes.paper}>
@@ -60,7 +61,28 @@ class Login extends Component {
         </Paper>
       </div>
     );
+  };
+
+  render() {
+    const { classes, user } = this.props;
+    return (
+      <div>
+        {user ? (
+          this.renderLogin()
+        ) : (
+          <div className={classes.logedin}>
+            <Typography align="center" variant="h5">
+              You Are Logged in!!
+            </Typography>
+          </div>
+        )}
+      </div>
+    );
   }
+}
+
+function mapStateToProps({ user }) {
+  return { user };
 }
 
 export default compose(
@@ -69,7 +91,7 @@ export default compose(
     form: "login"
   }),
   connect(
-    null,
-    { signIn }
+    mapStateToProps,
+    { signIn, getUser }
   )
 )(Login);

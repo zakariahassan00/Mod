@@ -38,5 +38,11 @@ export const loginStyles = {
     width: "100vw",
     backgroundColor: "#222831",
     color: "#fff"
+  },
+  logedin: {
+    width: "100vw",
+    height: "100vh",
+    marginTop: 200,
+    color: "#fff"
   }
 };

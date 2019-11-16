@@ -10,7 +10,8 @@ export const headerStyles = theme => ({
     backgroundColor: "rgba(0,0,0, 0)",
     height: 40,
     [theme.breakpoints.down("xs")]: {
-      position: "relative"
+      position: "relative",
+      backgroundColor: "rgba(0,0,0, 1)"
     },
     [theme.breakpoints.up("sm")]: {
       height: 60
