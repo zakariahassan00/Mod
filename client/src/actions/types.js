@@ -4,4 +4,6 @@ export const FETCH_NEW_MOVIES = "fetch_new_movies";
 export const FETCH_TOP_MOVIES = "fetch_top_movies";
 export const FETCH_MOVIE = "fetch_movie";
 export const FETCHING_MOVIES = "fetching_movies";
-export const SET_CONTENT = "set_content";
+export const FETCH_WATCH_LIST = "fetch_watchlist";
+export const FETCH_RATE_LIST = "fetch_ratelist";
+export const FETCH_FAVORITES_LIST = "fetch_favoriteslist";

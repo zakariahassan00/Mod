@@ -8,6 +8,7 @@ import MoviesGrid from "../allMovies/MoviesGrid";
 import MovieCard from "../common/card/MovieCard";
 import { Grid } from "@material-ui/core";
 import UserRate from "../common/userAction/UserRate";
+
 const styles = theme => ({
   tabs: {
     width: 500,
@@ -80,7 +81,7 @@ class UserTabs extends PureComponent {
               <Grid container spacing={6}>
                 {user.rateList.map(movie => {
                   return (
-                    <Grid item xs={4}>
+                    <Grid item xs={4} key={movie.item.id}>
                       <div className={classes.moviesListItem}>
                         <Typography
                           align="center"

@@ -10,7 +10,6 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import { heroDisplayStyles } from "./heroDisplayStyles";
 import MovieCard from "../card/MovieCard";
-import { setCurrentContent } from "./../../../actions/index";
 import { compose } from "recompose";
 import Chip from "@material-ui/core/Chip";
 
@@ -83,10 +82,4 @@ class HeroDisplay extends Component {
   }
 }
 
-export default compose(
-  withStyles(heroDisplayStyles),
-  connect(
-    null,
-    { setCurrentContent }
-  )
-)(HeroDisplay);
+export default withStyles(heroDisplayStyles)(HeroDisplay);

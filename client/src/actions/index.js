@@ -6,9 +6,12 @@ import {
   FETCH_TOP_MOVIES,
   FETCHING_MOVIES,
   FETCH_MOVIE,
-  SET_CONTENT
+  FETCH_WATCH_LIST,
+  FETCH_FAVORITES_LIST,
+  FETCH_RATE_LIST
 } from "./types";
 
+// Movies Actions
 export const getAllMovies = (page = 1, query = "") => async dispatch => {
   const movies = await axios.get(
     `/api/movies/all?page=${page}&searchQuery=${query}`
@@ -40,12 +43,7 @@ export const fetchingData = () => {
   return { type: FETCHING_MOVIES, payload: false };
 };
 
-export const getUser = () => async dispatch => {
-  const user = await axios.get("/api/cu");
-
-  dispatch({ type: FETCH_USER, payload: user.data });
-};
-
+// User Actions
 export const signIn = values => async dispatch => {
   const user = await axios.post("/api/login", values);
 
@@ -53,26 +51,44 @@ export const signIn = values => async dispatch => {
   dispatch({ type: FETCH_USER, payload: user.data });
 };
 
+export const getUser = () => async dispatch => {
+  const user = await axios.get("/api/cu");
+
+  dispatch({ type: FETCH_USER, payload: user.data });
+};
+
 export const addToWatchList = movie => async dispatch => {
-  const updatedUser = await axios.post("/api/movies/watchlist", movie);
+  const updatedUser = await axios.post("/api/user/watchlist", movie);
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };
 
 export const rateContent = content => async dispatch => {
-  const updatedUser = await axios.post("/api/movies/rate", content);
+  const updatedUser = await axios.post("/api/user/rate", content);
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };
 
 export const toggleFavorites = content => async dispatch => {
-  const updatedUser = await axios.post("/api/movies/favorites", content);
+  const updatedUser = await axios.post("/api/user/favorites", content);
 
   dispatch({ type: FETCH_USER, payload: updatedUser.data });
 };
 
-export const setCurrentContent = content => {
-  // save the current Movie/Tv Show on redux to be accessable to all app!
+export const getWatchList = (page = 1) => async dispatch => {
+  const userWatchList = await axios.get(`/api/user/watchlist?page=${page}`);
 
-  return { type: SET_CONTENT, payload: content };
+  dispatch({ type: FETCH_WATCH_LIST, payload: userWatchList.data });
+};
+
+export const getFavoritesList = (page = 1) => async dispatch => {
+  const userFavoritesList = await axios.get(`/api/user/favorites?page=${page}`);
+
+  dispatch({ type: FETCH_FAVORITES_LIST, payload: userFavoritesList.data });
+};
+
+export const getRateList = (page = 1) => async dispatch => {
+  const userRateList = await axios.get(`/api/user/ratelist?page=${page}`);
+
+  dispatch({ type: FETCH_RATE_LIST, payload: userRateList.data });
 };
