@@ -1,88 +1,42 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { getWatchList, getFavoritesList, getRateList } from "../../actions";
+import { Grid, Avatar, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { profileStyles } from "./profileStyles";
-import { Grid } from "@material-ui/core";
-import Avatar from "@material-ui/core/Avatar";
-import Typography from "@material-ui/core/Typography";
 import UserTabs from "./UserTabs";
+import { profileStyles } from "./profileStyles";
 
-class Profile extends Component {
-  state = {};
-
-  componentDidMount() {
-    this.props.getWatchList();
-    this.props.getRateList();
-    this.props.getFavoritesList();
-  }
-
-  render() {
-    const { classes, user, userLists } = this.props;
-    console.log(userLists);
-    return (
-      <div className={classes.profile}>
-        <Grid container justify="center">
-          <Grid item xs={12}>
-            <div className={classes.profileInfo}>
-              <Avatar
-                alt="Remy Sharp"
-                src={user && user.picture}
-                className={classes.bigAvatar}
-              />
-              <Typography variant="h5">{user && user.name}</Typography>
-              <Typography variant="caption" style={{ color: "#808080" }}>
-                {user && user.email}
-              </Typography>
-            </div>
-          </Grid>
-
-          <Grid item xs className={classes.tabs}>
-            <UserTabs user={user} />
-          </Grid>
+const Profile = ({ classes, user }) => {
+  return (
+    <div className={classes.profile}>
+      <Grid container justify="center">
+        <Grid item xs={12}>
+          <div className={classes.profileInfo}>
+            <Avatar
+              alt="Remy Sharp"
+              src={user && user.picture}
+              className={classes.avatar}
+            />
+            <Typography variant="h5">{user && user.name}</Typography>
+            <Typography variant="caption" style={{ color: "#808080" }}>
+              {user && user.email}
+            </Typography>
+          </div>
         </Grid>
-      </div>
-    );
-  }
-}
 
-// export default Profile;
+        <Grid item xs={12} className={classes.tabs}>
+          <UserTabs user={user} />
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
 
-// const Profile = () => {
-//   return (
-//     <div className={classes.profile}>
-//       <Grid container justify="center">
-//         <Grid item xs={12}>
-//           <div className={classes.profileInfo}>
-//             <Avatar
-//               alt="Remy Sharp"
-//               src={user && user.picture}
-//               className={classes.bigAvatar}
-//             />
-//             <Typography variant="h5">{user && user.name}</Typography>
-//             <Typography variant="caption" style={{ color: "#808080" }}>
-//               {user && user.email}
-//             </Typography>
-//           </div>
-//         </Grid>
-
-//         <Grid item xs className={classes.tabs}>
-//           <UserTabs user={user} />
-//         </Grid>
-//       </Grid>
-//     </div>
-//   );
-// };
-
-function mapStateToProps({ auth, userLists }) {
-  return { user: auth, userLists };
+function mapStateToProps({ auth }) {
+  return { user: auth };
 }
 
 export default compose(
-  connect(
-    mapStateToProps,
-    { getWatchList, getFavoritesList, getRateList }
-  ),
+  connect(mapStateToProps),
   withStyles(profileStyles)
 )(Profile);

@@ -20,7 +20,7 @@ class Home extends Component {
 
   render() {
     const { newMovies, classes } = this.props;
-    const randomMovie = newMovies[1] || {};
+    const randomMovie = newMovies.data[1] || {};
 
     return (
       <Grid container justify="center">
@@ -33,21 +33,21 @@ class Home extends Component {
         <Grid item xs={11}>
           <div className={classes.moviesList}>
             <div className={classes.moviesListHeader}>In Theatre Now </div>
-            <MoviesCarousel movies={newMovies} />
+            <MoviesCarousel movies={newMovies.data} />
           </div>
         </Grid>
 
         <Grid item xs={11}>
           <div className={classes.moviesList}>
             <div className={classes.moviesListHeader}>Drama </div>
-            <MoviesCarousel movies={newMovies} />
+            <MoviesCarousel movies={newMovies.data} />
           </div>
         </Grid>
 
         <Grid item xs={11}>
           <div className={classes.moviesList}>
             <div className={classes.moviesListHeader}>Action </div>
-            <MoviesCarousel movies={newMovies} />
+            <MoviesCarousel movies={newMovies.data} />
           </div>
         </Grid>
       </Grid>
@@ -55,8 +55,8 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps({ movies, newMovies }) {
-  return { movies, newMovies };
+function mapStateToProps({ newMovies }) {
+  return { newMovies };
 }
 
 export default compose(

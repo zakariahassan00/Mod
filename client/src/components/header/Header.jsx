@@ -35,7 +35,7 @@ class Header extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", () => {
-      let scrolled = window.scrollY > 80;
+      let scrolled = window.scrollY > 60;
       if (scrolled) {
         this.setState({ scrolled: true });
       } else {

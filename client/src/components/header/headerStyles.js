@@ -8,7 +8,7 @@ export const headerStyles = theme => ({
     flexGrow: 1,
     boxShadow: "none",
     backgroundColor: "rgba(0,0,0, 0)",
-    height: 40,
+    height: 50,
     [theme.breakpoints.down("xs")]: {
       position: "relative",
       backgroundColor: "rgba(0,0,0, 1)"

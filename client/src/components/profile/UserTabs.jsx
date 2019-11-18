@@ -1,29 +1,17 @@
-import React, { Component, PureComponent } from "react";
-import Typography from "@material-ui/core/Typography";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
+import React, { PureComponent } from "react";
+import { Typography, Tabs, Tab, Box } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import MoviesGrid from "../allMovies/MoviesGrid";
-import MovieCard from "../common/card/MovieCard";
-import { Grid } from "@material-ui/core";
-import UserRate from "../common/userAction/UserRate";
+import FavoritesListTab from "./tabs/FavoritesListTab";
+import WatchListTab from "./tabs/WatchListTab";
+import RateListTab from "./tabs/RateListTab";
 
 const styles = theme => ({
   tabs: {
     width: 500,
-    margin: "auto"
-  },
-  moviesListItem: {
-    width: "100%",
-    padding: "10px 30px",
-    display: "flex",
-    backgroundColor: "#000",
-    borderRadius: 8,
-    flexWrap: "wrap"
-  },
-  title: {
-    width: "100%"
+    margin: "auto",
+    [theme.breakpoints.only("xs")]: {
+      width: 265
+    }
   }
 });
 
@@ -37,7 +25,7 @@ function TabPanel(props) {
       hidden={value !== index}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      <Box pt={3}>{children}</Box>
     </Typography>
   );
 }
@@ -72,31 +60,13 @@ class UserTabs extends PureComponent {
               <Tab label="Rated" />
             </Tabs>
             <TabPanel value={value} index={0}>
-              <MoviesGrid movies={user.watchList} />
+              <WatchListTab />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <MoviesGrid movies={user.favorites} />
+              <FavoritesListTab />
             </TabPanel>
             <TabPanel value={value} index={2}>
-              <Grid container spacing={6}>
-                {user.rateList.map(movie => {
-                  return (
-                    <Grid item xs={4} key={movie.item.id}>
-                      <div className={classes.moviesListItem}>
-                        <Typography
-                          align="center"
-                          variant="h5"
-                          className={classes.title}
-                        >
-                          {movie.item.title}
-                        </Typography>
-                        <MovieCard sm content={movie.item} />
-                        <UserRate contentId={movie.item.id} />
-                      </div>
-                    </Grid>
-                  );
-                })}
-              </Grid>
+              <RateListTab />
             </TabPanel>
           </div>
         );

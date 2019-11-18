@@ -11,7 +11,7 @@ const styles = theme => ({
     overflow: "hidden",
     width: 200,
     borderRadius: 0,
-    backgroundColor: "rgba(0,0,0 , 0)",
+    backgroundColor: "rgba(0 , 0, 0 , 0)",
     [theme.breakpoints.down("sm")]: {
       width: 140
     }
@@ -25,6 +25,8 @@ const styles = theme => ({
   smCard: {
     margin: "10px auto",
     overflow: "hidden",
+    borderRadius: 0,
+    backgroundColor: "rgba(0 , 0, 0 , 0)",
     width: 100,
     [theme.breakpoints.down("sm")]: {
       width: 80

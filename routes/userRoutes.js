@@ -1,12 +1,29 @@
 const mongoose = require("mongoose");
 const requireLogin = require("../middlewares/requireLogin");
 const bcrypt = require("bcrypt");
+const { validateUser } = require("../models/User");
+const _ = require("lodash");
 
 const User = mongoose.model("users");
 const Movie = mongoose.model("movies");
 
 module.exports = app => {
-  // ======> Get Requests <======
+  app.post("/api/user/register", async (req, res) => {
+    const { error } = validateUser(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+
+    let user = await User.findOne({ email: req.body.email });
+    if (user) return res.status(400).send("Email already registered");
+    user = new User(_.pick(req.body, ["email", "password", "name"]));
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(user.password, salt);
+
+    await user.save();
+
+    res.send(_.pick(user, ["email", "name"]));
+  });
+
   // Adding / Removing Movies or Tv shows from user`s WatchList
   app.post("/api/user/watchlist", requireLogin, async (req, res) => {
     // add or remove a movie from user`s watchList
@@ -132,8 +149,9 @@ module.exports = app => {
 
     if (page > maxPages) return res.send({ items: [], count });
 
-    for (let i = startIndex; i < endIndex && i < maxIndex; i++)
-      favorites.push(user.watchList[i]);
+    for (let i = startIndex; i < endIndex && i < maxIndex; i++) {
+      favorites.push(user.favorites[i]);
+    }
 
     res.send({ items: favorites, count });
   });
@@ -143,7 +161,7 @@ module.exports = app => {
     const page = req.param("page");
     const perPage = 20;
     const user = await User.findOne({ _id: req.user._id });
-    const count = user.watchList.length;
+    const count = user.rateList.length;
     const ratelist = [];
     let startIndex = perPage * (page - 1);
     let endIndex = perPage * page;
@@ -153,7 +171,7 @@ module.exports = app => {
     if (page > maxPages) return res.send({ items: [], count });
 
     for (let i = startIndex; i < endIndex && i < maxIndex; i++)
-      ratelist.push(user.ratelist[i]);
+      ratelist.push(user.rateList[i]);
 
     res.send({ items: ratelist, count });
   });

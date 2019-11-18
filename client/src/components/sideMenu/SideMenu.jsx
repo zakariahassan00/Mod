@@ -22,11 +22,11 @@ import { sideMenuStyles } from "./sideMenuStyles";
 import { Link } from "react-router-dom";
 
 const list = [
-  {
-    text: "Notifcations",
-    link: "/notification",
-    icon: <NotificationsNoneIcon />
-  },
+  // {
+  //   text: "Notifcations",
+  //   link: "/notification",
+  //   icon: <NotificationsNoneIcon />
+  // },
   {
     text: "All Movies",
     link: "/all",

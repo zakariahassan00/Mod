@@ -4,7 +4,10 @@ export const allMoviesStyles = theme => ({
   allMovies: {
     width: "100%",
     height: "100%",
-    marginTop: 120
+    marginTop: 120,
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 35
+    }
   },
   movie: {
     margin: "auto",
