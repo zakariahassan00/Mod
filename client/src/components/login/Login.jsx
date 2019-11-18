@@ -79,7 +79,6 @@ class Login extends Component {
 
   render() {
     const { classes, user } = this.props;
-    console.log(this.props);
     return (
       <div>
         {!user ? (
