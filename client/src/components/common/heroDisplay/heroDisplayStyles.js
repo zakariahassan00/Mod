@@ -4,8 +4,8 @@ export const heroDisplayStyles = theme => ({
     position: "relative",
     overflow: "hidden",
     width: "100%",
-    height: "100vh"
-    // TODO: ===>>>>>THIS IS NOT FULL RESPONSIVE!!!
+    height: "50vw",
+    backgroundColor: "#000"
   },
   heroImage: {
     height: "100%",
@@ -13,36 +13,16 @@ export const heroDisplayStyles = theme => ({
     // backgroundImage: "linear-gradient(to left ,#000, #000)"
   },
   heroContent: {
-    position: "absolute",
-    zIndex: "222",
+    width: "70%",
     height: "auto",
-    width: "65%",
-    color: "#fff",
-    textAlign: "left",
+    position: "absolute",
     top: "50%",
-    marginTop: -250,
-    right: 0,
-    fontFamily: "HelveticaNeue",
-    paddingRight: "5%",
-    // backgroundColor: "#000",
-    [theme.breakpoints.up("md")]: {
-      width: "80%",
-      top: "65%",
-      right: 155
-    },
-    [theme.breakpoints.only("sm")]: {
-      width: "95%",
-      top: "25%",
-      marginTop: 0,
-      right: 0
-    },
-    [theme.breakpoints.down("xs")]: {
-      width: "65%",
-      top: "20%",
-      marginTop: 0,
-      right: 0,
-      textAlign: "right"
-    }
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    zIndex: "222",
+    textAlign: "left",
+    color: "#fff",
+    fontFamily: "HelveticaNeue"
   },
   image: {
     width: "100%"
@@ -54,15 +34,14 @@ export const heroDisplayStyles = theme => ({
     zIndex: "22",
     backgroundImage:
       "linear-gradient(to top, rgba(255, 255, 255, 0), rgba(88, 88, 88, 0.6) 56%, rgba(9, 9, 9, .7) 83%, #000000)",
-    // backgroundColor: "rgb(0,0,0, .6)",
+    backgroundColor: "rgb(0,0,0, .6)",
     top: 0
   },
   heroTitle: {
     selfAlign: "center",
     [theme.breakpoints.only("xs")]: {
       fontSize: "1rem",
-      marginTop: "15%",
-      marginBottom: 20
+      margin: "10px auto"
     },
     [theme.breakpoints.up("md")]: {
       fontSize: "3rem",
@@ -75,15 +54,16 @@ export const heroDisplayStyles = theme => ({
     }
   },
   heroOverview: {
-    [theme.breakpoints.down("xs")]: {
-      display: "none"
-    },
     marginTop: 25,
     marginBottom: 25,
     [theme.breakpoints.down("md")]: {
       fontSize: ".7rem",
       marginTop: 5,
       marginBottom: 10
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: ".5rem",
+      margin: 0
     }
   },
   button: {

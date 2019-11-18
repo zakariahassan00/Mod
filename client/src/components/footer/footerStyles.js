@@ -2,7 +2,6 @@ export const footerStyles = theme => ({
   footer: {
     width: "100%",
     minHeight: 300,
-    marginTop: 80,
     padding: "40px",
     backgroundColor: "#000",
     color: "#fff",

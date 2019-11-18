@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { headerStyles } from "./headerStyles";
@@ -60,21 +60,33 @@ class Header extends Component {
       case false:
         return (
           !(location.pathname === "/login") && (
-            <Button href="/login" variant="contained" color="primary">
-              Login
-            </Button>
+            <Link to="/login">
+              <Button variant="contained" color="primary">
+                Login
+              </Button>
+            </Link>
           )
         );
 
       default:
         return (
           <div className={this.props.classes.profile}>
-            <Avatar
-              alt={auth.name}
-              src={auth.picture}
-              className={classes.avatar}
-              onClick={() => this.toggleSideMenu(true)}
-            />
+            {auth.picture ? (
+              <Avatar
+                alt={auth.name}
+                src={auth.picture}
+                className={classes.avatar}
+                onClick={() => this.toggleSideMenu(true)}
+              />
+            ) : (
+              <Avatar
+                alt={auth.name}
+                className={classes.avatar}
+                onClick={() => this.toggleSideMenu(true)}
+              >
+                {auth.name.charAt(0)}
+              </Avatar>
+            )}
           </div>
         );
     }
@@ -108,7 +120,7 @@ class Header extends Component {
           className={scrolled ? classes.solidNavbar : classes.clearNavbar}
         >
           <Toolbar>
-            <Typography variant="h4" className={classes.title}>
+            <Typography variant="h4" className={classes.brand}>
               <Link to="/">Mod</Link>
             </Typography>
 

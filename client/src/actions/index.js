@@ -45,9 +45,14 @@ export const fetchingData = () => {
 
 // User Actions
 export const signIn = values => async dispatch => {
-  const user = await axios.post("/api/login", values);
+  const user = await axios.post("/api/user/login", values);
 
-  console.log(user);
+  dispatch({ type: FETCH_USER, payload: user.data });
+};
+
+export const signUp = values => async dispatch => {
+  const user = await axios.post("/api/user/register", values);
+
   dispatch({ type: FETCH_USER, payload: user.data });
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, Slide } from "@material-ui/core";
 import { compose } from "recompose";
 import { getAllMovies, fetchingData } from "./../../actions";
 import { allMoviesStyles } from "./allMovesStyles";
@@ -39,7 +39,9 @@ class AllMovies extends Component {
     return (
       <Grid container justify="center" className={classes.allMovies}>
         <Grid item xs={12}>
-          <SearchBar onQueryChange={this.handleQueryChange} />
+          <Slide direction="right" in={true} mountOnEnter unmountOnExit>
+            <SearchBar onQueryChange={this.handleQueryChange} />
+          </Slide>
         </Grid>
 
         <section className={classes.list}>

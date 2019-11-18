@@ -3,7 +3,7 @@ export const loginStyles = {
     backgroundColor: "#1e242c",
     borderRadius: 15,
     width: 400,
-    height: 400,
+    minHeight: 400,
     padding: 20,
     position: "absolute",
     left: "50%",
@@ -26,6 +26,7 @@ export const loginStyles = {
   googleButton: {
     width: 300,
     color: "#fff",
+    marginBottom: 15,
     backgroundColor: "#d34836",
     textTransform: "capitalize",
     "&:hover": {
@@ -34,15 +35,20 @@ export const loginStyles = {
   },
   modLogin: {
     display: "flex",
-    height: "100vh",
-    width: "100vw",
+    height: "110vh",
+    width: "110vw",
     backgroundColor: "#222831",
     color: "#fff"
   },
   logedin: {
-    width: "100vw",
-    height: "100vh",
+    width: "110vw",
+    height: "110vh",
     marginTop: 200,
     color: "#fff"
+  },
+  divider: {
+    width: 100,
+    margin: "20px auto",
+    border: "1px solid #141414"
   }
 };

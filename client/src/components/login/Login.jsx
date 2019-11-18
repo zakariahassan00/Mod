@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { compose } from "recompose";
 import { Field, reduxForm } from "redux-form";
+import { compose } from "recompose";
+import { Link } from "react-router-dom";
 import { signIn, getUser } from "../../actions";
-import { withStyles, Paper, Button, Typography } from "@material-ui/core";
+import { Paper, Button, Typography, Slide } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import MuiTextFields from "../common/input/MuiTextField";
 import { loginStyles } from "./loginStyles";
 
@@ -21,50 +23,63 @@ class Login extends Component {
 
     return (
       <div className={classes.modLogin}>
-        <Paper className={classes.paper}>
-          <Typography className={classes.typography} variant="h4" gutterBottom>
-            Log into Mod
-          </Typography>
+        <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+          <Paper className={classes.paper}>
+            <Typography
+              className={classes.typography}
+              variant="h4"
+              gutterBottom
+            >
+              Log into Mod
+            </Typography>
 
-          <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
-            <Field
-              name="email"
-              type="email"
-              label="Email"
-              component={MuiTextFields}
-            />
-            <Field
-              name="password"
-              type="password"
-              label="Password"
-              component={MuiTextFields}
-            />
+            <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
+              <Field
+                name="email"
+                type="email"
+                label="Email"
+                component={MuiTextFields}
+              />
+              <Field
+                name="password"
+                type="password"
+                label="Password"
+                component={MuiTextFields}
+              />
+              <Button
+                type="submit"
+                size="large"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Sign in
+              </Button>
+            </form>
+
             <Button
-              type="submit"
+              href="/auth/google"
               size="large"
               variant="contained"
-              color="primary"
-              className={classes.button}
+              className={classes.googleButton}
             >
-              Sign in
+              Login With Google
             </Button>
-          </form>
 
-          <Button
-            href="/auth/google"
-            size="large"
-            variant="contained"
-            className={classes.googleButton}
-          >
-            Login With Google
-          </Button>
-        </Paper>
+            <div className={classes.divider}></div>
+
+            <div>
+              <Link to="/register">Create New Account</Link>
+            </div>
+          </Paper>
+        </Slide>
       </div>
     );
   };
 
   render() {
     const { classes, user } = this.props;
+    console.log(this.props);
     return (
       <div>
         {!user ? (
@@ -73,6 +88,7 @@ class Login extends Component {
           <div className={classes.logedin}>
             <Typography align="center" variant="h5">
               You Are Logged in!!
+              {this.props.history.push(`/`)}
             </Typography>
           </div>
         )}

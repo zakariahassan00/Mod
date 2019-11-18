@@ -1,11 +1,9 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import { Typography, Grid } from "@material-ui/core";
-
+import { Link } from "react-router-dom";
+import { withStyles, Typography, Grid } from "@material-ui/core";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
-
 import { footerStyles } from "./footerStyles";
 
 const Footer = ({ classes }) => {
@@ -23,7 +21,7 @@ const Footer = ({ classes }) => {
         {list.map(item => {
           return (
             <li key={item} className={classes.footerListItem}>
-              <a href="">{item}</a>
+              <Link to="/">{item}</Link>
             </li>
           );
         })}
@@ -38,7 +36,7 @@ const Footer = ({ classes }) => {
         {list.map(item => {
           return (
             <li key={item} className={classes.footerListItem}>
-              <a href="/">{item}</a>
+              <Link to="/">{item}</Link>
             </li>
           );
         })}

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, Slide, Grid } from "@material-ui/core";
 import { getTopMovies, fetchingData } from "./../../actions/index";
 import MoviesGrid from "../allMovies/MoviesGrid";
 import Pagination from "../common/pagination/pagination";
 import Loader from "react-loader-spinner";
-import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   topRated: {
@@ -47,22 +46,24 @@ class TopMovies extends Component {
     const { classes, topMovies } = this.props;
     const moviesLoaded = topMovies.loaded;
     return (
-      <Grid container justify="center" className={classes.topRated}>
-        <section className={classes.list}>
-          {moviesLoaded ? (
-            <MoviesGrid movies={topMovies.data.movies} />
-          ) : (
-            <Loader type="Oval" color="#3f51b5" height={60} width={60} />
-          )}
-        </section>
+      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+        <Grid container justify="center" className={classes.topRated}>
+          <section className={classes.list}>
+            {moviesLoaded ? (
+              <MoviesGrid movies={topMovies.data.movies} />
+            ) : (
+              <Loader type="Oval" color="#3f51b5" height={60} width={60} />
+            )}
+          </section>
 
-        <Pagination
-          itemsCount={topMovies.data.count}
-          itemsPerpage={20}
-          onPageChange={this.handlePageChange}
-          currentPage={this.state.page}
-        />
-      </Grid>
+          <Pagination
+            itemsCount={topMovies.data.count}
+            itemsPerpage={20}
+            onPageChange={this.handlePageChange}
+            currentPage={this.state.page}
+          />
+        </Grid>
+      </Slide>
     );
   }
 }

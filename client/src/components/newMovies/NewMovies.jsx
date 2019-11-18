@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import { withStyles, Grid } from "@material-ui/core";
+import { withStyles, Grid, Slide } from "@material-ui/core";
 import { getNewMovies } from "./../../actions/index";
 import MoviesGrid from "../allMovies/MoviesGrid";
 
@@ -28,13 +28,15 @@ class NewMovies extends Component {
     const { classes, movies } = this.props;
     const moviesLoaded = movies.loaded;
     return (
-      <Grid container justify="center" className={classes.newMovies}>
-        {moviesLoaded ? (
-          <MoviesGrid movies={movies.data} />
-        ) : (
-          <Loader type="Oval" color="#3f51b5" height={60} width={60} />
-        )}
-      </Grid>
+      <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+        <Grid container justify="center" className={classes.newMovies}>
+          {moviesLoaded ? (
+            <MoviesGrid movies={movies.data} />
+          ) : (
+            <Loader type="Oval" color="#3f51b5" height={60} width={60} />
+          )}
+        </Grid>
+      </Slide>
     );
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Login from "./login";
+import Register from "./register/Register";
 import Home from "./home";
 import Movie from "./movie";
 import AllMovies from "./allMovies";
@@ -14,6 +15,7 @@ const Router = () => {
     <div>
       <Route exact path="/" component={Home} />
       <Route path="/login" component={Login} />
+      <Route path="/register" component={Register} />
       <Route path="/profile" component={Profile} />
       <Route path="/all" component={AllMovies} />
       <Route path="/top" component={TopMovies} />

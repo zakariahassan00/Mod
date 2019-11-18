@@ -77,12 +77,22 @@ class SideMenu extends PureComponent {
           </IconButton>
           {user ? (
             <Fragment>
-              <Link to="/profile">
-                <Avatar
-                  alt={user ? user.name : ""}
-                  src={user ? user.picture : ""}
-                  className={classes.avatar}
-                />
+              <Link to="/profile" onClick={this.handleSideMenuClose}>
+                {user.picture ? (
+                  <Avatar
+                    alt={user.name}
+                    src={user.picture}
+                    className={classes.avatar}
+                  />
+                ) : (
+                  <Avatar
+                    onClick={this.handleSideMenuClose}
+                    alt={user.name}
+                    className={classes.avatar}
+                  >
+                    {user.name.charAt(0)}
+                  </Avatar>
+                )}
               </Link>
               <h4>{user ? user.name : ""}</h4>
             </Fragment>

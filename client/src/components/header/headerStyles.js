@@ -29,10 +29,11 @@ export const headerStyles = theme => ({
       height: 60
     }
   },
-  title: {
+  brand: {
     flexGrow: 1,
     position: "relative",
     bottom: 5,
+    letterSpacing: 8,
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem"
     }
