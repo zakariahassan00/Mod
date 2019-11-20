@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Slide, Button, Dialog, DialogContent } from "@material-ui/core";
-import DialogTitle from "../common/dialog/DialogTitle";
-import MovieCard from "../common/card/MovieCard";
+import {
+  Slide,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Typography,
+  IconButton
+} from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import MovieCard from "../common/MovieCard";
 import { movieStyles } from "./movieStyles";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -58,9 +66,18 @@ class Cast extends Component {
           aria-labelledby="customized-dialog-title"
           open={open}
         >
-          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            Full Cast
+          <DialogTitle disableTypography className={classes.dialogHeader}>
+            <Typography variant="h6">Full Cast</Typography>
+
+            <IconButton
+              aria-label="close"
+              className={classes.closeButton}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>
           </DialogTitle>
+
           <DialogContent>
             <div className={classes.actors}>
               {cast.map(person => (

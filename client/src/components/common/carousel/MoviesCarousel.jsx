@@ -4,11 +4,8 @@ import { compose } from "recompose";
 import Measure from "react-measure";
 import withWidth from "@material-ui/core/withWidth";
 import { withStyles } from "@material-ui/core/styles";
-// import MovieCard from "../card/MovieCard";
+import MovieCard from "../MovieCard";
 import { moviesCarouselStyles } from "./moviesCarouselStyles";
-import CardLoader from "../cardLoader/CardLoader";
-
-const MovieCard = lazy(() => import("../card/MovieCard"));
 
 class Carousel extends Component {
   state = {
@@ -78,11 +75,7 @@ class Carousel extends Component {
                 }}
               >
                 {movies.map(movie => {
-                  return (
-                    <Suspense key={movie.id} fallback={<CardLoader />}>
-                      <MovieCard content={movie} />
-                    </Suspense>
-                  );
+                  return <MovieCard content={movie} />;
                 })}
               </Swipeable>
             </div>

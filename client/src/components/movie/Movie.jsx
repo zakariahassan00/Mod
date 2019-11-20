@@ -1,22 +1,33 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
-import { getMovie } from "../../actions";
+import Loading from "../common/Loading";
+import { getMovie, fetchingData } from "../../actions";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import MovieInfo from "./MovieInfo";
 import MovieOverview from "./MovieOverview";
 import Cast from "./Cast";
-import Rate from "../common/rate";
+import Rate from "../common/Rate";
 import UserRate from "../common/userAction/UserRate";
 import SimilarMovies from "./SimilarMovies";
 import { movieStyles } from "./movieStyles";
 
-class Movie extends Component {
+class Movie extends PureComponent {
   state = {};
 
   componentDidMount() {
     const movieId = this.props.match.params.id;
+    this.props.fetchingData();
     this.props.getMovie(movieId);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const movieId = this.props.match.params.id;
+
+    if (prevProps.match.params.id !== movieId) {
+      this.props.fetchingData();
+      this.props.getMovie(movieId);
+    }
   }
 
   render() {
@@ -25,7 +36,7 @@ class Movie extends Component {
 
     return (
       <div className={classes.movie}>
-        {loaded && (
+        {loaded ? (
           <Grid container justify="center">
             <Grid item xs={12}>
               <MovieInfo movie={movie.data} />
@@ -61,6 +72,8 @@ class Movie extends Component {
               </div>
             </Grid>
           </Grid>
+        ) : (
+          <Loading />
         )}
       </div>
     );
@@ -75,6 +88,6 @@ export default compose(
   withStyles(movieStyles),
   connect(
     mapStateToProps,
-    { getMovie }
+    { getMovie, fetchingData }
   )
 )(Movie);

@@ -5,9 +5,9 @@ import { compose } from "recompose";
 import { getAllMovies, fetchingData } from "./../../actions";
 import { allMoviesStyles } from "./allMovesStyles";
 import Grid from "@material-ui/core/Grid";
-import SearchBar from "./../common/searchBar/SearchBar";
-import Pagination from "./../common/pagination/pagination";
-import Loader from "react-loader-spinner";
+import SearchBar from "./../common/SearchBar";
+import Pagination from "./../common/Pagination";
+import Loading from "../common/Loading";
 import MoviesGrid from "./MoviesGrid";
 
 class AllMovies extends Component {
@@ -48,7 +48,7 @@ class AllMovies extends Component {
           {moviesLoaded ? (
             <MoviesGrid movies={movies.data.movies} />
           ) : (
-            <Loader type="Oval" color="#3f51b5" height={60} width={60} />
+            <Loading />
           )}
         </section>
 

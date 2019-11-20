@@ -4,9 +4,9 @@ import { compose } from "recompose";
 import { Fragment } from "react";
 import Loader from "react-loader-spinner";
 import { getRateList, fetchingData } from "./../../../actions/index";
-import Pagination from "../../common/pagination/pagination";
+import Pagination from "../../common/Pagination";
 import { Grid, withStyles, Typography } from "@material-ui/core";
-import MovieCard from "../../common/card/MovieCard";
+import MovieCard from "../../common/MovieCard";
 import UserRate from "../../common/userAction/UserRate";
 
 const styles = theme => ({

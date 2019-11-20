@@ -15,7 +15,7 @@ export const movieStyles = theme => ({
   movieInfo: {
     position: "relative",
     width: "100%",
-    height: "85%",
+    height: "50vw",
     textAlign: "center",
     backgroundColor: "#000",
     overflow: "hidden",
@@ -36,12 +36,12 @@ export const movieStyles = theme => ({
     width: "100%"
   },
   movieDetails: {
-    position: "absolute",
     width: "80%",
     height: "auto",
-    zIndex: "123",
-    top: "35%",
+    position: "absolute",
     left: "10%",
+    top: "30%",
+    zIndex: "123",
     color: "#fff",
     textAlign: "left",
     [theme.breakpoints.down("xs")]: {
@@ -196,6 +196,16 @@ export const movieStyles = theme => ({
   },
   dialogContent: {
     width: 800
+  },
+  dialogHeader: {
+    margin: 0,
+    padding: theme.spacing(2)
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
   },
   // ====> Similar
   similarMovies: {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { Grid } from "@material-ui/core";
 import { getFavoritesList, fetchingData } from "./../../../actions/index";
-import Pagination from "../../common/pagination/pagination";
+import Pagination from "../../common/Pagination";
 import MoviesGrid from "../../allMovies/MoviesGrid";
 
 class FavoritesListTab extends PureComponent {

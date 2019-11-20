@@ -10,6 +10,8 @@ const styles = theme => ({
     margin: 5,
     overflow: "hidden",
     width: 200,
+    borderRadius: 0,
+    backgroundColor: "rgba(0 , 0, 0 , 0)",
     [theme.breakpoints.down("sm")]: {
       width: 140
     }
@@ -23,6 +25,8 @@ const styles = theme => ({
   smCard: {
     margin: "10px auto",
     overflow: "hidden",
+    borderRadius: 0,
+    backgroundColor: "rgba(0 , 0, 0 , 0)",
     width: 100,
     [theme.breakpoints.down("sm")]: {
       width: 80
@@ -37,16 +41,20 @@ const styles = theme => ({
 });
 
 const MovieCard = ({ classes, content, sm }) => {
+  const baseUrl = "https://image.tmdb.org/t/p/original";
+  const src = content.poster_path || baseUrl + content.profile_path;
   return (
-    <Card className={sm ? classes.smCard : classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={sm ? classes.smMedia : classes.media}
-          image={"/"}
-          title={"...Loading"}
-        />
-      </CardActionArea>
-    </Card>
+    <Link to={`/show/${content.id}`}>
+      <Card className={sm ? classes.smCard : classes.card} key={content.id}>
+        <CardActionArea>
+          <CardMedia
+            className={sm ? classes.smMedia : classes.media}
+            image={src || ""}
+            title={content.title || content.name}
+          />
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
 

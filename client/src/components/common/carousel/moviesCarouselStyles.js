@@ -17,7 +17,7 @@ const carouselArrow = {
 
 export const moviesCarouselStyles = theme => ({
   carousel: {
-    width: "100%",
+    minWidth: "100%",
     minHeight: 210,
     display: "grid",
     gridAutoFlow: "column",

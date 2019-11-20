@@ -31,7 +31,8 @@ const MovieInfo = ({ classes, movie }) => {
             ))}
           </span>
         </div>
-        <Video movie={movie} />
+
+        {movie.video[0] && <Video movie={movie} />}
       </div>
     </div>
   );

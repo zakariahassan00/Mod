@@ -1,34 +1,27 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import MoviesCarousel from "../common/carousel";
-import axios from "axios";
+import { getSimilarMovies } from "../../api";
 
-class SimilarMovies extends Component {
-  state = {};
+class SimilarMovies extends PureComponent {
+  state = {
+    similarMovies: []
+  };
 
   async componentDidMount() {
-    //   get similar movies or TV shows from tmdb api
     const { contentId } = this.props;
-    const similarContent = await axios.get(
-      `https://api.themoviedb.org/3/movie/${contentId}/similar?api_key=0c2fe905bc563d51fddca679b6766463&language=en-US`
-    );
+    const similarMovies = await getSimilarMovies(contentId);
 
-    // modifing images url in data
-    similarContent.data.results.map(content => {
-      content.poster_path = `https://image.tmdb.org/t/p/original${content.poster_path}`;
-      return content;
-    });
-
-    this.setState({ similarContent: similarContent.data.results });
+    this.setState({ similarMovies });
   }
 
   renderSimilarContent = () => {
-    const { similarContent } = this.state;
+    const { similarMovies } = this.state;
 
-    switch (similarContent) {
+    switch (similarMovies) {
       case undefined:
         return;
       default:
-        return <MoviesCarousel movies={similarContent} />;
+        return <MoviesCarousel movies={similarMovies} />;
     }
   };
   render() {

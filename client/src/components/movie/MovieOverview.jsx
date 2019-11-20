@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { movieStyles } from "./movieStyles";
-import MovieCard from "../common/card/MovieCard";
+import MovieCard from "../common/MovieCard";
 import WatchList from "../common/userAction/WatchList";
 import AddToFavorites from "../common/userAction/AddToFavorites";
 import { Typography } from "@material-ui/core";

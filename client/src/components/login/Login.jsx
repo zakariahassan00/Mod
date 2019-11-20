@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { signIn, getUser } from "../../actions";
 import { Paper, Button, Typography, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import MuiTextFields from "../common/input/MuiTextField";
+import MuiTextFields from "../common/MuiTextField";
 import { loginStyles } from "./loginStyles";
 
 class Login extends Component {

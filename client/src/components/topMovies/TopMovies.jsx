@@ -4,8 +4,8 @@ import { compose } from "recompose";
 import { withStyles, Slide, Grid } from "@material-ui/core";
 import { getTopMovies, fetchingData } from "./../../actions/index";
 import MoviesGrid from "../allMovies/MoviesGrid";
-import Pagination from "../common/pagination/pagination";
-import Loader from "react-loader-spinner";
+import Pagination from "../common/Pagination";
+import Loading from "../common/Loading";
 
 const styles = theme => ({
   topRated: {
@@ -52,7 +52,7 @@ class TopMovies extends Component {
             {moviesLoaded ? (
               <MoviesGrid movies={topMovies.data.movies} />
             ) : (
-              <Loader type="Oval" color="#3f51b5" height={60} width={60} />
+              <Loading />
             )}
           </section>
 

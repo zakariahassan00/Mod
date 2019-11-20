@@ -4,7 +4,7 @@ import { withStyles, Slide, Grid } from "@material-ui/core";
 import { compose } from "recompose";
 import { getAllMovies, fetchingData } from "./../../actions";
 import { allMoviesStyles } from "../allMovies/allMovesStyles";
-import Pagination from "./../common/pagination/pagination";
+import Pagination from "./../common/Pagination";
 import Loader from "react-loader-spinner";
 import MoviesGrid from "../allMovies/MoviesGrid";
 

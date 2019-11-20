@@ -1,7 +1,6 @@
 import React from "react";
-import { compose } from "recompose";
 import { withStyles, Grid, Slide, Typography } from "@material-ui/core";
-import MovieCard from "../common/card/MovieCard";
+import MovieCard from "../common/MovieCard";
 
 const styles = theme => ({
   moviesGrid: {
