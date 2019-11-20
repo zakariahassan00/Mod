@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const User = mongoose.model("users");
 const _ = require("lodash");
+const auth = require("../middlewares/auth");
 
 function validateUser(user) {
   const schema = {
@@ -28,6 +29,9 @@ module.exports = app => {
 
     const ValidPW = await bcrypt.compare(req.body.password, user.password);
     if (!ValidPW) return res.status(404).send("Invalid email or password");
+
+    const token = user.generateAuthToken();
+    console.log(token);
 
     res.send(_.pick(user, ["_id", "email", "name"]));
   });

@@ -8,14 +8,7 @@ import { footerStyles } from "./footerStyles";
 
 const Footer = ({ classes }) => {
   const renderNavList = () => {
-    const list = [
-      "Home",
-      "Top Rated",
-      "In Theatre",
-      "Box Office",
-      "Upcoming",
-      "Search"
-    ];
+    const list = ["Home", "Top Rated", "In Theatre", "Box Office", "Search"];
     return (
       <ul className={classes.footerList}>
         {list.map(item => {

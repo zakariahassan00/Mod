@@ -38,20 +38,20 @@ class Home extends Component {
               <MoviesCarousel movies={newMovies.data} />
             </div>
           </Grid>
-
+          {/* 
           <Grid item xs={11}>
             <div className={classes.moviesList}>
               <div className={classes.moviesListHeader}>Drama</div>
               <MoviesCarousel movies={newMovies.data} />
             </div>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={11}>
+          {/* <Grid item xs={11}>
             <div className={classes.moviesList}>
               <div className={classes.moviesListHeader}>Action</div>
               <MoviesCarousel movies={newMovies.data} />
             </div>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Slide>
     );
