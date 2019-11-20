@@ -6,7 +6,7 @@ import { getAllMovies, fetchingData } from "./../../actions";
 import { allMoviesStyles } from "../allMovies/allMovesStyles";
 import Pagination from "./../common/Pagination";
 import Loader from "react-loader-spinner";
-import MoviesGrid from "../allMovies/MoviesGrid";
+import MoviesGrid from "../common/MoviesGrid";
 
 class SearchMovies extends Component {
   state = {

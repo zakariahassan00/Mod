@@ -1,5 +1,4 @@
 import React from "react";
-import { Spring } from "react-spring/renderprops";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Grid, Avatar, Typography, Slide } from "@material-ui/core";

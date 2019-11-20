@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Loading from "../common/Loading";
 import { withStyles, Grid, Slide } from "@material-ui/core";
 import { getNewMovies } from "./../../actions/index";
-import MoviesGrid from "../allMovies/MoviesGrid";
+import MoviesGrid from "../common/MoviesGrid";
 
 const styles = theme => ({
   newMovies: {

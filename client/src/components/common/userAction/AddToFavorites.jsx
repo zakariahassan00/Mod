@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { toggleFavorites } from "../../../actions";
@@ -19,7 +19,7 @@ const styles = theme => ({
   }
 });
 
-class AddToFavorites extends Component {
+class AddToFavorites extends PureComponent {
   state = {};
 
   toggle = action => {
@@ -35,7 +35,7 @@ class AddToFavorites extends Component {
   renderFavoritesIcon = () => {
     const { classes, user, movieId } = this.props;
     const added =
-      (user && user.favorites.filter(item => item.id == movieId).length > 0) ||
+      (user && user.favorites.filter(item => item.id === movieId).length > 0) ||
       false;
 
     return added ? (

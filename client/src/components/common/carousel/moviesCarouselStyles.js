@@ -4,7 +4,7 @@ const carouselArrow = {
   top: "50%",
   marginTop: -20,
   position: "absolute",
-  zIndex: "3123",
+  zIndex: "1",
   borderRadius: "50%",
   color: "#fff",
   backgroundColor: "rgba(255, 255, 255, 1)",

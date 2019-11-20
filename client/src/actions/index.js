@@ -39,7 +39,6 @@ export const getMovie = id => async dispatch => {
 };
 
 export const fetchingData = () => {
-  console.log("Fetching...");
   return { type: FETCHING_MOVIES, payload: false };
 };
 

@@ -1,13 +1,13 @@
 import { combineReducers } from "redux";
 import { reducer as reduxForm } from "redux-form";
-import authReducer from "./authReducer";
-import moviesReducer from "./moviesReducer";
-import newMoviesReducer from "./newMoviesReducer";
-import topMoviesReducer from "./topMoviesReducer";
-import selectedMovieReducer from "./selectedMovieReducer";
-import watchListReducer from "./watchListReducer";
-import rateListReducer from "./rateListReducer";
-import favoritesListReducer from "./favoritesListReducer";
+import authReducer from "./user/authReducer";
+import watchListReducer from "./user/watchListReducer";
+import rateListReducer from "./user/rateListReducer";
+import favoritesListReducer from "./user/favoritesListReducer";
+import moviesReducer from "./movies/moviesReducer";
+import newMoviesReducer from "./movies/newMoviesReducer";
+import topMoviesReducer from "./movies/topMoviesReducer";
+import selectedMovieReducer from "./movies/selectedMovieReducer";
 
 export default combineReducers({
   form: reduxForm,

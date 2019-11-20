@@ -11,7 +11,6 @@ import {
   ListItemText
 } from "@material-ui/core";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MovieIcon from "@material-ui/icons/Movie";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import StarRateIcon from "@material-ui/icons/StarRate";
@@ -22,11 +21,6 @@ import { sideMenuStyles } from "./sideMenuStyles";
 import { Link } from "react-router-dom";
 
 const list = [
-  // {
-  //   text: "Notifcations",
-  //   link: "/notification",
-  //   icon: <NotificationsNoneIcon />
-  // },
   {
     text: "All Movies",
     link: "/all",

@@ -44,7 +44,7 @@ const Pagination = ({
 
   function renderPages() {
     return pages.map(page => {
-      if (currentPage == page) {
+      if (currentPage === page) {
         return (
           <div
             className={classes.page}

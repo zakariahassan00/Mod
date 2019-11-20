@@ -1,5 +1,4 @@
 const drawerWidth = 280;
-const darkGray = "#141414";
 
 export const sideMenuStyles = theme => ({
   title: {

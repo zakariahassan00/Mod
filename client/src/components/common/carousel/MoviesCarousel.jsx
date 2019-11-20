@@ -1,4 +1,4 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { PureComponent } from "react";
 import { Swipeable } from "react-swipeable";
 import { compose } from "recompose";
 import Measure from "react-measure";
@@ -7,7 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import MovieCard from "../MovieCard";
 import { moviesCarouselStyles } from "./moviesCarouselStyles";
 
-class Carousel extends Component {
+class Carousel extends PureComponent {
   state = {
     translate: 0
   };
@@ -75,7 +75,7 @@ class Carousel extends Component {
                 }}
               >
                 {movies.map(movie => {
-                  return <MovieCard content={movie} />;
+                  return <MovieCard key={movie.id} content={movie} />;
                 })}
               </Swipeable>
             </div>

@@ -21,8 +21,6 @@ class Home extends Component {
   render() {
     const { newMovies, classes } = this.props;
     const { randomIndex } = this.state;
-    const moviesLoaded = newMovies.loaded;
-
     const randomMovie = newMovies.data[randomIndex || 0] || {};
 
     return (
@@ -36,21 +34,21 @@ class Home extends Component {
 
           <Grid item xs={11}>
             <div className={classes.moviesList}>
-              <div className={classes.moviesListHeader}>In Theatre Now </div>
+              <div className={classes.moviesListHeader}>In Theatre Now</div>
               <MoviesCarousel movies={newMovies.data} />
             </div>
           </Grid>
 
           <Grid item xs={11}>
             <div className={classes.moviesList}>
-              <div className={classes.moviesListHeader}>Drama </div>
+              <div className={classes.moviesListHeader}>Drama</div>
               <MoviesCarousel movies={newMovies.data} />
             </div>
           </Grid>
 
           <Grid item xs={11}>
             <div className={classes.moviesList}>
-              <div className={classes.moviesListHeader}>Action </div>
+              <div className={classes.moviesListHeader}>Action</div>
               <MoviesCarousel movies={newMovies.data} />
             </div>
           </Grid>

@@ -117,7 +117,7 @@ module.exports = app => {
   // ======> Get Requests <======
   // User Favorites List
   app.get("/api/user/watchlist", async (req, res) => {
-    const page = req.param("page");
+    const page = req.query.page;
     const perPage = 20;
     const user = await User.findOne({ _id: req.user._id });
     const count = user.watchList.length;
@@ -137,7 +137,7 @@ module.exports = app => {
 
   // User Favorites List
   app.get("/api/user/favorites", async (req, res) => {
-    const page = req.param("page");
+    const page = req.query.page;
     const perPage = 20;
     const user = await User.findOne({ _id: req.user._id });
     const count = user.favorites.length;
@@ -158,7 +158,7 @@ module.exports = app => {
 
   // User rate List
   app.get("/api/user/ratelist", async (req, res) => {
-    const page = req.param("page");
+    const page = req.query.page;
     const perPage = 20;
     const user = await User.findOne({ _id: req.user._id });
     const count = user.rateList.length;

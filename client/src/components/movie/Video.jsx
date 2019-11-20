@@ -123,6 +123,7 @@ class Video extends Component {
           <div className={classes.video}>
             <iframe
               className={classes.iframe}
+              title={movie.title}
               src={`https://www.youtube.com/embed/${movie.video[0].key}?autoplay=1`}
               frameBorder="0"
               allowFullScreen

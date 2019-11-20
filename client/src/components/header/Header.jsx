@@ -16,7 +16,7 @@ import {
   InputBase
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
+// import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import SideMenu from "../sideMenu";
@@ -152,8 +152,7 @@ class Header extends Component {
             </div>
 
             <Hidden smDown>
-              <NotificationsNoneIcon className={classes.notification} />
-              {this.renderLoginButton()}
+              <React.Fragment>{this.renderLoginButton()}</React.Fragment>
             </Hidden>
             <Hidden mdUp>
               <IconButton

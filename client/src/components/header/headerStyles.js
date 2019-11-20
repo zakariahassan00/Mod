@@ -69,7 +69,7 @@ export const headerStyles = theme => ({
       width: "auto",
       position: "relative",
       bottom: 0,
-      marginRight: "10%"
+      marginRight: "5%"
     }
   },
   searchIcon: {

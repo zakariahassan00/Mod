@@ -1,4 +1,4 @@
-import { FETCH_FAVORITES_LIST, FETCHING_MOVIES } from "../actions/types";
+import { FETCH_FAVORITES_LIST, FETCHING_MOVIES } from "../../actions/types";
 
 const STATE = {
   data: [],
@@ -6,7 +6,6 @@ const STATE = {
 };
 
 export default (state = STATE, action) => {
-  const userlist = state.lists;
   switch (action.type) {
     case FETCH_FAVORITES_LIST:
       return { data: action.payload, loaded: true };

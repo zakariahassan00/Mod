@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withStyles, Slide, Grid } from "@material-ui/core";
 import { getTopMovies, fetchingData } from "./../../actions/index";
-import MoviesGrid from "../allMovies/MoviesGrid";
+import MoviesGrid from "../common/MoviesGrid";
 import Pagination from "../common/Pagination";
 import Loading from "../common/Loading";
 

@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import SearchBar from "./../common/SearchBar";
 import Pagination from "./../common/Pagination";
 import Loading from "../common/Loading";
-import MoviesGrid from "./MoviesGrid";
+import MoviesGrid from "../common/MoviesGrid";
 
 class AllMovies extends Component {
   state = {

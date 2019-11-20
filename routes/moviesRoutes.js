@@ -7,7 +7,7 @@ const User = mongoose.model("users");
 module.exports = app => {
   // return all Movies in the DB
   app.get("/api/movies/all", async (req, res) => {
-    const page = req.param("page");
+    const page = req.query.page;
     const perPage = 20;
     const query = req.query.searchQuery;
 
@@ -43,7 +43,7 @@ module.exports = app => {
   });
 
   app.get("/api/movies/top", async (req, res) => {
-    const page = req.param("page");
+    const page = req.query.page;
     const perPage = 20;
     const count = await Movie.find()
       .$where(function() {

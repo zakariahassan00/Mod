@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { compose } from "recompose";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Chip, Grid, withWidth } from "@material-ui/core";
@@ -15,7 +14,7 @@ const HeroDisplay = ({ classes, movie, width }) => {
       <div className={classes.heroContent}>
         <Grid container>
           <Grid item xs={4} lg={3} xl={2}>
-            {width == "xs" ? (
+            {width === "xs" ? (
               <MovieCard sm content={movie} />
             ) : (
               <MovieCard content={movie} />
