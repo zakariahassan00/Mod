@@ -3,7 +3,6 @@ const requireLogin = require("../middlewares/requireLogin");
 const bcrypt = require("bcrypt");
 const { validateUser } = require("../models/User");
 const _ = require("lodash");
-const auth = require("../middlewares/auth");
 
 const User = mongoose.model("users");
 const Movie = mongoose.model("movies");
@@ -22,10 +21,7 @@ module.exports = app => {
 
     await user.save();
 
-    const token = user.generateAuthToken();
-    console.log(token);
-
-    res.header("x-auth-token", token).send(_.pick(user, ["email", "name"]));
+    res.send(_.pick(user, ["email", "name"]));
   });
 
   // Adding / Removing Movies or Tv shows from user`s WatchList

@@ -1,4 +1,5 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, Fragment } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import Loading from "../common/Loading";
@@ -10,6 +11,7 @@ import Cast from "./Cast";
 import Rate from "../common/Rate";
 import UserRate from "../common/userAction/UserRate";
 import SimilarMovies from "./SimilarMovies";
+import NotAvailable from "./NotAvailable";
 import { movieStyles } from "./movieStyles";
 
 class Movie extends PureComponent {
@@ -30,13 +32,14 @@ class Movie extends PureComponent {
     }
   }
 
-  render() {
+  renderMovie = () => {
     const { classes, movie } = this.props;
-    const loaded = movie.loaded;
 
-    return (
-      <div className={classes.movie}>
-        {loaded ? (
+    switch (movie.data) {
+      case false:
+        return <NotAvailable />;
+      default:
+        return (
           <Grid container justify="center">
             <Grid item xs={12}>
               <MovieInfo movie={movie.data} />
@@ -72,13 +75,28 @@ class Movie extends PureComponent {
               </div>
             </Grid>
           </Grid>
-        ) : (
-          <Loading />
-        )}
+        );
+    }
+  };
+
+  render() {
+    const { classes, movie } = this.props;
+    const loaded = movie.loaded;
+
+    return (
+      <div className={classes.movie}>
+        {loaded ? <Fragment>{this.renderMovie()}</Fragment> : <Loading />}
       </div>
     );
   }
 }
+
+Movie.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
+  getMovie: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ selectedMovie }) {
   return { movie: selectedMovie };

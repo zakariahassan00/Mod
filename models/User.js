@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const joi = require("joi");
-const jwt = require("jsonwebtoken");
-const config = require("config");
-const keys = require("../config/keys");
 
 const userSchema = new Schema({
   email: {
@@ -18,13 +15,6 @@ const userSchema = new Schema({
   favorites: [Object],
   rateList: [Object]
 });
-
-userSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign({ _id: this._id }, keys.tokenSecretKey, {
-    expiresIn: 86400 // expires in 24 hours
-  });
-  return token;
-};
 
 mongoose.model("users", userSchema);
 

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { movieStyles } from "./movieStyles";
 import MovieCard from "../common/MovieCard";
@@ -63,6 +64,11 @@ const MovieOverview = ({ classes, movie }) => {
       </div>
     </Fragment>
   );
+};
+
+MovieOverview.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired
 };
 
 export default withStyles(movieStyles)(MovieOverview);

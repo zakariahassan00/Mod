@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { compose } from "recompose";
@@ -7,19 +8,18 @@ import { signUp, getUser } from "../../actions";
 import { Paper, Button, Typography, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import MuiTextFields from "../common/MuiTextField";
+import Logged from "../common/Logged";
 import { loginStyles } from "../login/loginStyles";
 
 class Register extends Component {
-  componentDidMount() {
-    this.props.getUser();
-  }
-
   onSubmit = values => {
-    this.props.signUp(values);
+    this.props.signUp(values, () => {
+      this.props.history.push("/");
+    });
   };
 
   renderRegisterPage = () => {
-    const { classes, handleSubmit } = this.props;
+    const { classes, handleSubmit, auth } = this.props;
 
     return (
       <div className={classes.modLogin}>
@@ -31,6 +31,10 @@ class Register extends Component {
               gutterBottom
             >
               Register In Mod
+            </Typography>
+
+            <Typography className={classes.error} variant="subtitle2">
+              {auth.error}
             </Typography>
 
             <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
@@ -85,27 +89,22 @@ class Register extends Component {
   };
 
   render() {
-    const { classes, user } = this.props;
-    return (
-      <div>
-        {!user ? (
-          this.renderRegisterPage()
-        ) : (
-          <div className={classes.logedin}>
-            <Typography align="center" variant="h5">
-              You Are Logged in!!
-              {this.props.history.push(`/`)}
-            </Typography>
-          </div>
-        )}
-      </div>
-    );
+    const { auth } = this.props;
+    return <div>{auth.user ? <Logged /> : this.renderRegisterPage()}</div>;
   }
 }
 
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
+
+Register.prototypes = {
+  classes: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
 export default compose(
   withStyles(loginStyles),

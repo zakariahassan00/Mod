@@ -54,7 +54,7 @@ class Header extends Component {
   renderLoginButton() {
     const { auth, location, classes } = this.props;
 
-    switch (auth) {
+    switch (auth.user) {
       case null:
         return;
       case false:
@@ -71,20 +71,20 @@ class Header extends Component {
       default:
         return (
           <div className={this.props.classes.profile}>
-            {auth.picture ? (
+            {auth.user.picture ? (
               <Avatar
-                alt={auth.name}
-                src={auth.picture}
+                alt={auth.user.name}
+                src={auth.user.picture}
                 className={classes.avatar}
                 onClick={() => this.toggleSideMenu(true)}
               />
             ) : (
               <Avatar
-                alt={auth.name}
+                alt={auth.user.name}
                 className={classes.avatar}
                 onClick={() => this.toggleSideMenu(true)}
               >
-                {auth.name.charAt(0)}
+                {auth.user.name.charAt(0)}
               </Avatar>
             )}
           </div>
@@ -167,7 +167,7 @@ class Header extends Component {
           </Toolbar>
         </AppBar>
         <SideMenu
-          user={auth}
+          user={auth.user}
           toggleSideMenu={this.toggleSideMenu}
           showSideMenu={this.state.showSideMenu}
         />

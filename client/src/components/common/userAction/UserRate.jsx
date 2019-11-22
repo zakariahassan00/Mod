@@ -35,8 +35,8 @@ class UserRate extends Component {
   };
 
   renderUserRate = () => {
-    const { classes, user, contentId } = this.props;
-    switch (user) {
+    const { classes, auth, contentId } = this.props;
+    switch (auth.user) {
       case null:
         return;
 
@@ -51,7 +51,7 @@ class UserRate extends Component {
           </div>
         );
       default:
-        const rated = user.rateList.filter(content => {
+        const rated = auth.user.rateList.filter(content => {
           return content.item.id === contentId;
         });
 
@@ -107,7 +107,7 @@ class UserRate extends Component {
 }
 
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
 
 export default compose(

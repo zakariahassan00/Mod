@@ -1,5 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const keys = require("../config/keys");
 
@@ -41,4 +43,26 @@ passport.use(
       return done(null, newUser);
     }
   )
+);
+
+passport.use(
+  new LocalStrategy({ usernameField: "email" }, function(
+    username,
+    password,
+    done
+  ) {
+    User.findOne({ email: username }, async function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  })
 );

@@ -6,6 +6,7 @@ import { withStyles, Grid, Slide } from "@material-ui/core";
 import HeroDisplay from "../heroDisplay";
 import MoviesCarousel from "../common/carousel";
 import { homeStyles } from "./homeStyles";
+import UpcomingMovies from "./Upcoming";
 
 class Home extends Component {
   state = {
@@ -38,13 +39,13 @@ class Home extends Component {
               <MoviesCarousel movies={newMovies.data} />
             </div>
           </Grid>
-          {/* 
+
           <Grid item xs={11}>
             <div className={classes.moviesList}>
-              <div className={classes.moviesListHeader}>Drama</div>
-              <MoviesCarousel movies={newMovies.data} />
+              <div className={classes.moviesListHeader}>Upcoming</div>
+              <UpcomingMovies />
             </div>
-          </Grid> */}
+          </Grid>
 
           {/* <Grid item xs={11}>
             <div className={classes.moviesList}>

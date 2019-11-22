@@ -62,6 +62,7 @@ module.exports = app => {
         return movieRate >= minRate;
       })
       .select("-cast -crew -video")
+      .sort("-vote_average")
       .limit(perPage)
       .skip(perPage * (page - 1));
 

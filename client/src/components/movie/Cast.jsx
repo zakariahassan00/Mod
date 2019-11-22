@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {
   Slide,
@@ -94,5 +95,10 @@ class Cast extends Component {
     );
   }
 }
+
+Cast.prototypes = {
+  classes: PropTypes.object.isRequired,
+  cast: PropTypes.arrayOf(PropTypes.object.isRequired)
+};
 
 export default withStyles(movieStyles)(Cast);

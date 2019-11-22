@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import { compose } from "recompose";
@@ -7,19 +8,18 @@ import { signIn, getUser } from "../../actions";
 import { Paper, Button, Typography, Slide } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import MuiTextFields from "../common/MuiTextField";
+import Logged from "../common/Logged";
 import { loginStyles } from "./loginStyles";
 
-class Login extends Component {
-  componentDidMount() {
-    this.props.getUser();
-  }
-
+class Login extends PureComponent {
   onSubmit = values => {
-    this.props.signIn(values);
+    this.props.signIn(values, () => {
+      this.props.history.push("/");
+    });
   };
 
   renderLogin = () => {
-    const { classes, handleSubmit } = this.props;
+    const { classes, handleSubmit, auth } = this.props;
 
     return (
       <div className={classes.modLogin}>
@@ -33,6 +33,9 @@ class Login extends Component {
               Log into Mod
             </Typography>
 
+            <Typography className={classes.error} variant="subtitle2">
+              {auth.error}
+            </Typography>
             <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
               <Field
                 name="email"
@@ -78,26 +81,21 @@ class Login extends Component {
   };
 
   render() {
-    const { classes, user } = this.props;
-    return (
-      <div>
-        {!user ? (
-          this.renderLogin()
-        ) : (
-          <div className={classes.logedin}>
-            <Typography align="center" variant="h5">
-              You Are Logged in!!
-              {this.props.history.push(`/`)}
-            </Typography>
-          </div>
-        )}
-      </div>
-    );
+    const { auth } = this.props;
+    return <div>{auth.user ? <Logged /> : this.renderLogin()}</div>;
   }
 }
 
+Login.prototypes = {
+  classes: PropTypes.object.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired,
+  getUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
 
 export default compose(

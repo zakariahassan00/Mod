@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import MoviesCarousel from "../common/carousel";
 import { getSimilarMovies } from "../../api";
 
 class SimilarMovies extends PureComponent {
   state = {
-    similarMovies: []
+    similarMovies: undefined
   };
 
   async componentDidMount() {
@@ -28,5 +29,10 @@ class SimilarMovies extends PureComponent {
     return <div>{this.renderSimilarContent()}</div>;
   }
 }
+
+SimilarMovies.propTypes = {
+  contentId: PropTypes.number.isRequired,
+  getSimilarMovies: PropTypes.func
+};
 
 export default SimilarMovies;

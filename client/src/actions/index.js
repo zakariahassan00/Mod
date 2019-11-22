@@ -1,7 +1,9 @@
 import axios from "axios";
 import {
   FETCH_USER,
+  FETCH_USER_ERROR,
   FETCH_MOVIES,
+  FETCH_MOVIE_ERROR,
   FETCH_NEW_MOVIES,
   FETCH_TOP_MOVIES,
   FETCHING_MOVIES,
@@ -33,9 +35,16 @@ export const getTopMovies = (page = 1) => async dispatch => {
 };
 
 export const getMovie = id => async dispatch => {
-  const movie = await axios.get(`/api/movies/${id}`);
+  try {
+    const movie = await axios.get(`/api/movies/${id}`);
 
-  dispatch({ type: FETCH_MOVIE, payload: movie.data });
+    dispatch({ type: FETCH_MOVIE, payload: movie.data });
+  } catch (e) {
+    dispatch({
+      type: FETCH_MOVIE_ERROR,
+      payload: false
+    });
+  }
 };
 
 export const fetchingData = () => {
@@ -43,16 +52,32 @@ export const fetchingData = () => {
 };
 
 // User Actions
-export const signIn = values => async dispatch => {
-  const user = await axios.post("/api/user/login", values);
+export const signIn = (values, callback) => async dispatch => {
+  try {
+    const user = await axios.post("/api/user/login", values);
 
-  dispatch({ type: FETCH_USER, payload: user.data });
+    dispatch({ type: FETCH_USER, payload: user.data });
+    callback();
+  } catch (e) {
+    dispatch({
+      type: FETCH_USER_ERROR,
+      payload: "Invalid Email or Password"
+    });
+  }
 };
 
-export const signUp = values => async dispatch => {
-  const user = await axios.post("/api/user/register", values);
+export const signUp = (values, callback) => async dispatch => {
+  try {
+    const user = await axios.post("/api/user/register", values);
 
-  dispatch({ type: FETCH_USER, payload: user.data });
+    dispatch({ type: FETCH_USER, payload: user.data });
+    callback();
+  } catch (e) {
+    dispatch({
+      type: FETCH_USER_ERROR,
+      payload: "Email already registered"
+    });
+  }
 };
 
 export const getUser = () => async dispatch => {

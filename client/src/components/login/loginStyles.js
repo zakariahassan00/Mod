@@ -1,3 +1,5 @@
+const danger = "#ff0011";
+
 export const loginStyles = {
   paper: {
     backgroundColor: "#1e242c",
@@ -50,5 +52,8 @@ export const loginStyles = {
     width: 100,
     margin: "20px auto",
     border: "1px solid #141414"
+  },
+  error: {
+    color: danger
   }
 };

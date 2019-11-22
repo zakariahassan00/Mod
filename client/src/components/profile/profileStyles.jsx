@@ -21,9 +21,11 @@ export const profileStyles = theme => ({
     margin: "20px auto",
     width: 160,
     height: 160,
+    fontSize: "3rem",
     [theme.breakpoints.down("xs")]: {
       width: 120,
-      height: 120
+      height: 120,
+      fontSize: "2rem"
     }
   },
   tabs: {

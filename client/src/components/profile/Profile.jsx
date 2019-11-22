@@ -6,27 +6,38 @@ import { withStyles } from "@material-ui/core/styles";
 import UserTabs from "./UserTabs";
 import { profileStyles } from "./profileStyles";
 
-const Profile = ({ classes, user }) => {
+const Profile = ({ classes, auth }) => {
   return (
     <Slide direction="left" in={true} mountOnEnter unmountOnExit>
       <div className={classes.profile}>
         <Grid container justify="center">
           <Grid item xs={12}>
-            <div className={classes.profileInfo}>
-              <Avatar
-                alt={user && user.name}
-                src={user && user.picture}
-                className={classes.avatar}
-              />
-              <Typography variant="h5">{user && user.name}</Typography>
-              <Typography variant="caption" style={{ color: "#808080" }}>
-                {user && user.email}
-              </Typography>
-            </div>
+            {auth.user && (
+              <div className={classes.profileInfo}>
+                {auth.user.picture ? (
+                  <Avatar
+                    alt={auth.user.name}
+                    src={auth.user.picture}
+                    className={classes.avatar}
+                  />
+                ) : (
+                  <Avatar alt={auth.user.name} className={classes.avatar}>
+                    {auth.user.name.charAt(0)}
+                  </Avatar>
+                )}
+
+                <Typography variant="h5">
+                  {auth.user && auth.user.name}
+                </Typography>
+                <Typography variant="caption" style={{ color: "#808080" }}>
+                  {auth.user && auth.user.email}
+                </Typography>
+              </div>
+            )}
           </Grid>
 
           <Grid item xs={12} className={classes.tabs}>
-            <UserTabs user={user} />
+            <UserTabs user={auth.user} />
           </Grid>
         </Grid>
       </div>
@@ -35,7 +46,7 @@ const Profile = ({ classes, user }) => {
 };
 
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
 
 export default compose(

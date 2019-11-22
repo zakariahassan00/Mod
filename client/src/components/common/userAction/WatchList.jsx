@@ -32,11 +32,12 @@ class WatchList extends Component {
   };
 
   render() {
-    const { user, movieId, classes } = this.props;
+    const { auth, movieId, classes } = this.props;
 
     // first check if the user added this content to his/her Watchlist or not!
     const added =
-      (user && user.watchList.filter(item => item.id === movieId).length > 0) ||
+      (auth.user &&
+        auth.user.watchList.filter(item => item.id === movieId).length > 0) ||
       false;
 
     return (
@@ -70,7 +71,7 @@ class WatchList extends Component {
 }
 
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
 
 export default compose(

@@ -33,9 +33,10 @@ class AddToFavorites extends PureComponent {
   };
 
   renderFavoritesIcon = () => {
-    const { classes, user, movieId } = this.props;
+    const { classes, auth, movieId } = this.props;
     const added =
-      (user && user.favorites.filter(item => item.id === movieId).length > 0) ||
+      (auth.user &&
+        auth.user.favorites.filter(item => item.id === movieId).length > 0) ||
       false;
 
     return added ? (
@@ -60,7 +61,7 @@ class AddToFavorites extends PureComponent {
 }
 
 function mapStateToProps({ auth }) {
-  return { user: auth };
+  return { auth };
 }
 
 export default compose(

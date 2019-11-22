@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -81,7 +82,7 @@ class Video extends Component {
   };
 
   render() {
-    const { classes, movie } = this.props;
+    const { classes, video, title } = this.props;
     const { open } = this.state;
 
     return (
@@ -123,8 +124,8 @@ class Video extends Component {
           <div className={classes.video}>
             <iframe
               className={classes.iframe}
-              title={movie.title}
-              src={`https://www.youtube.com/embed/${movie.video[0].key}?autoplay=1`}
+              title={title}
+              src={`https://www.youtube.com/embed/${video.key}?autoplay=1`}
               frameBorder="0"
               allowFullScreen
             ></iframe>
@@ -134,5 +135,11 @@ class Video extends Component {
     );
   }
 }
+
+Video.propTypes = {
+  classes: PropTypes.object.isRequired,
+  video: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired
+};
 
 export default withStyles(styles)(Video);

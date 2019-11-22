@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { movieStyles } from "./movieStyles";
 import Video from "./Video";
@@ -32,10 +33,15 @@ const MovieInfo = ({ classes, movie }) => {
           </span>
         </div>
 
-        {movie.video[0] && <Video movie={movie} />}
+        {movie.video[0] && <Video video={movie.video[0]} title={movie.title} />}
       </div>
     </div>
   );
+};
+
+MovieInfo.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired
 };
 
 export default withStyles(movieStyles)(MovieInfo);
