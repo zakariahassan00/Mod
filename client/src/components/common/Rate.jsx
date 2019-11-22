@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -24,7 +25,7 @@ const styles = theme => ({
   }
 });
 
-const Rate = ({ classes, value, red }) => {
+const Rate = React.memo(function Rate({ classes, value, red }) {
   return (
     <div className={classes.rate}>
       <Typography variant="h3" display="inline" className={classes.rateValue}>
@@ -42,6 +43,12 @@ const Rate = ({ classes, value, red }) => {
       </div>
     </div>
   );
+});
+
+Rate.propTypes = {
+  classes: PropTypes.object.isRequired,
+  value: PropTypes.number,
+  red: PropTypes.bool
 };
 
 export default withStyles(styles)(Rate);

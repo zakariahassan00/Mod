@@ -7,7 +7,7 @@ import WatchList from "../common/userAction/WatchList";
 import AddToFavorites from "../common/userAction/AddToFavorites";
 import { Typography } from "@material-ui/core";
 
-const MovieOverview = ({ classes, movie }) => {
+const MovieOverview = React.memo(function MovieOverview({ classes, movie }) {
   return (
     <Fragment>
       <div className={classes.section1}>
@@ -64,7 +64,7 @@ const MovieOverview = ({ classes, movie }) => {
       </div>
     </Fragment>
   );
-};
+});
 
 MovieOverview.propTypes = {
   classes: PropTypes.object.isRequired,

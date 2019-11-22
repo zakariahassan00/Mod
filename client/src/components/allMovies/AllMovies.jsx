@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withStyles, Slide } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import { compose } from "recompose";
 import { getAllMovies, fetchingData } from "./../../actions";
 import { allMoviesStyles } from "./allMovesStyles";
@@ -39,9 +40,7 @@ class AllMovies extends Component {
     return (
       <Grid container justify="center" className={classes.allMovies}>
         <Grid item xs={12}>
-          <Slide direction="right" in={true} mountOnEnter unmountOnExit>
-            <SearchBar onQueryChange={this.handleQueryChange} />
-          </Slide>
+          <SearchBar onQueryChange={this.handleQueryChange} />
         </Grid>
 
         <section className={classes.list}>
@@ -54,7 +53,6 @@ class AllMovies extends Component {
 
         <Pagination
           itemsCount={movies.data.count}
-          itemsPerpage={20}
           onPageChange={this.handlePageChange}
           currentPage={this.state.page}
         />
@@ -62,6 +60,13 @@ class AllMovies extends Component {
     );
   }
 }
+
+AllMovies.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movies: PropTypes.PropTypes.object.isRequired,
+  getAllMovies: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ movies }) {
   return { movies };

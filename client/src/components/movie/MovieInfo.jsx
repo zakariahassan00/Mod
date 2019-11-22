@@ -5,7 +5,7 @@ import { movieStyles } from "./movieStyles";
 import Video from "./Video";
 import { Typography, Chip } from "@material-ui/core";
 
-const MovieInfo = ({ classes, movie }) => {
+const MovieInfo = React.memo(function MovieInfo({ classes, movie }) {
   return (
     <div className={classes.movieInfo}>
       <div className={classes.overlay}></div>
@@ -37,7 +37,7 @@ const MovieInfo = ({ classes, movie }) => {
       </div>
     </div>
   );
-};
+});
 
 MovieInfo.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { toggleFavorites } from "../../../actions";
@@ -59,6 +60,13 @@ class AddToFavorites extends PureComponent {
     );
   }
 }
+
+AddToFavorites.propTypes = {
+  classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  movieId: PropTypes.number.isRequired,
+  toggleFavorites: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ auth }) {
   return { auth };

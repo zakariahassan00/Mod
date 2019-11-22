@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { Grid } from "@material-ui/core";
@@ -48,6 +49,12 @@ class WatchListTab extends PureComponent {
     );
   }
 }
+
+WatchListTab.propTypes = {
+  userWatchList: PropTypes.object.isRequired,
+  getWatchList: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ userWatchList }) {
   return { userWatchList };

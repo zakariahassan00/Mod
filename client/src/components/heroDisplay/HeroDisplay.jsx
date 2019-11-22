@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { compose } from "recompose";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Chip, Grid, withWidth } from "@material-ui/core";
@@ -53,6 +54,12 @@ const HeroDisplay = ({ classes, movie, width }) => {
       </div>
     </div>
   );
+};
+
+HeroDisplay.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movie: PropTypes.object.isRequired,
+  width: PropTypes.string.isRequired
 };
 
 export default compose(

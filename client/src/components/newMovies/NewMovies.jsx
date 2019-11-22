@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { compose } from "recompose";
 import { connect } from "react-redux";
 import Loading from "../common/Loading";
@@ -36,6 +37,12 @@ class NewMovies extends Component {
     );
   }
 }
+
+NewMovies.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movies: PropTypes.object.isRequired,
+  getNewMovies: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ newMovies }) {
   return { movies: newMovies };

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -40,9 +41,10 @@ const styles = theme => ({
   }
 });
 
-const MovieCard = ({ classes, content, sm }) => {
+const MovieCard = React.memo(function MovieCard({ classes, content, sm }) {
   const baseUrl = "https://image.tmdb.org/t/p/original";
   const src = content.poster_path || baseUrl + content.profile_path;
+
   return (
     <Link to={`/show/${content.id}`}>
       <Card className={sm ? classes.smCard : classes.card} key={content.id}>
@@ -56,6 +58,12 @@ const MovieCard = ({ classes, content, sm }) => {
       </Card>
     </Link>
   );
+});
+
+MovieCard.propTypes = {
+  classes: PropTypes.object,
+  content: PropTypes.object.isRequired,
+  sm: PropTypes.bool
 };
 
 export default withStyles(styles)(MovieCard);

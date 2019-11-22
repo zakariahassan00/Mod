@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { withStyles, Typography, Grid } from "@material-ui/core";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
@@ -49,6 +50,10 @@ const Footer = ({ classes }) => {
       </Grid>
     </div>
   );
+};
+
+Footer.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(footerStyles)(Footer);

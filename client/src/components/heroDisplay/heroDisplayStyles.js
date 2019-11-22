@@ -5,7 +5,10 @@ export const heroDisplayStyles = theme => ({
     overflow: "hidden",
     width: "100%",
     height: "50vw",
-    backgroundColor: "#000"
+    backgroundColor: "#000",
+    [theme.breakpoints.up("md")]: {
+      height: "100vh"
+    }
   },
   heroImage: {
     height: "100%",

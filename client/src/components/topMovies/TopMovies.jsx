@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { withStyles, Slide, Grid } from "@material-ui/core";
@@ -58,7 +59,6 @@ class TopMovies extends Component {
 
           <Pagination
             itemsCount={topMovies.data.count}
-            itemsPerpage={20}
             onPageChange={this.handlePageChange}
             currentPage={this.state.page}
           />
@@ -67,6 +67,13 @@ class TopMovies extends Component {
     );
   }
 }
+
+TopMovies.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.object.isRequired),
+  getTopMovies: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ topMovies }) {
   return { topMovies };

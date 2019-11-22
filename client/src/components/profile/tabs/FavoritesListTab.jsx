@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { Grid } from "@material-ui/core";
@@ -39,7 +40,6 @@ class FavoritesListTab extends PureComponent {
         <Grid item xs={11}>
           <Pagination
             itemsCount={userFavoritesList.data.count}
-            itemsPerpage={20}
             onPageChange={this.handlePageChange}
             currentPage={this.state.page}
           />
@@ -48,6 +48,12 @@ class FavoritesListTab extends PureComponent {
     );
   }
 }
+
+FavoritesListTab.propTypes = {
+  userFavoritesList: PropTypes.object.isRequired,
+  getFavoritesList: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ userFavoritesList }) {
   return { userFavoritesList };

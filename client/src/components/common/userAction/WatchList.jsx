@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { addToWatchList } from "../../../actions";
@@ -32,7 +33,7 @@ class WatchList extends Component {
   };
 
   render() {
-    const { auth, movieId, classes } = this.props;
+    const { classes, auth, movieId } = this.props;
 
     // first check if the user added this content to his/her Watchlist or not!
     const added =
@@ -69,6 +70,13 @@ class WatchList extends Component {
     );
   }
 }
+
+WatchList.propTypes = {
+  classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  movieId: PropTypes.number.isRequired,
+  addToWatchList: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ auth }) {
   return { auth };

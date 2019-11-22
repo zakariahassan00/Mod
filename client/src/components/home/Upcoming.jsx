@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import MoviesCarousel from "../common/carousel";
+import Carousel from "../common/carousel";
 import { getUpcomingMovies } from "../../actions";
 
 class UpcomingMovies extends PureComponent {
@@ -15,7 +15,7 @@ class UpcomingMovies extends PureComponent {
       case undefined:
         return;
       default:
-        return <MoviesCarousel movies={upcomingMovies} />;
+        return <Carousel data={upcomingMovies} />;
     }
   };
   render() {

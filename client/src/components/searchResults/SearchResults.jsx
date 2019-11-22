@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles, Slide, Grid } from "@material-ui/core";
 import { compose } from "recompose";
@@ -51,6 +52,13 @@ class SearchMovies extends Component {
     );
   }
 }
+
+SearchMovies.propTypes = {
+  classes: PropTypes.object.isRequired,
+  movies: PropTypes.object.isRequired,
+  getAllMovies: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ movies }) {
   return { movies };

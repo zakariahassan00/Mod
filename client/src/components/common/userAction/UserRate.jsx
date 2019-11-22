@@ -1,12 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { rateContent } from "../../../actions";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
-import { withStyles } from "@material-ui/core/styles";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import { withStyles, Menu, MenuItem } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { userRateStyles } from "./userRateStyles";
@@ -36,10 +35,8 @@ class UserRate extends Component {
 
   renderUserRate = () => {
     const { classes, auth, contentId } = this.props;
-    switch (auth.user) {
-      case null:
-        return;
 
+    switch (auth.user) {
       case false:
         return (
           <div>
@@ -105,6 +102,13 @@ class UserRate extends Component {
     );
   }
 }
+
+UserRate.propTypes = {
+  classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  movieId: PropTypes.number,
+  rateContent: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ auth }) {
   return { auth };

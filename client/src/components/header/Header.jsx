@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "recompose";
@@ -16,7 +16,6 @@ import {
   InputBase
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-// import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import SideMenu from "../sideMenu";
@@ -27,7 +26,7 @@ const NavList = [
   { text: "Top Rated", link: "top" }
 ];
 
-class Header extends Component {
+class Header extends PureComponent {
   state = {
     showSideMenu: false,
     scrolled: false

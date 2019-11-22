@@ -8,10 +8,11 @@ export const footerStyles = theme => ({
     textAlign: "center"
   },
   socialIcon: {
-    color: "#808080",
     width: 40,
     height: 40,
     margin: "0px 25px",
+    color: "#808080",
+    cursor: "pointer",
     [theme.breakpoints.down("sm")]: {
       width: 30,
       height: 30,

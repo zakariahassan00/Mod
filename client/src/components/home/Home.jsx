@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { getNewMovies } from "../../actions";
 import { withStyles, Grid, Slide } from "@material-ui/core";
 import HeroDisplay from "../heroDisplay";
-import MoviesCarousel from "../common/carousel";
+import Carousel from "../common/carousel";
 import { homeStyles } from "./homeStyles";
 import UpcomingMovies from "./Upcoming";
 
@@ -36,7 +37,7 @@ class Home extends Component {
           <Grid item xs={11}>
             <div className={classes.moviesList}>
               <div className={classes.moviesListHeader}>In Theatre Now</div>
-              <MoviesCarousel movies={newMovies.data} />
+              <Carousel data={newMovies.data} />
             </div>
           </Grid>
 
@@ -46,18 +47,16 @@ class Home extends Component {
               <UpcomingMovies />
             </div>
           </Grid>
-
-          {/* <Grid item xs={11}>
-            <div className={classes.moviesList}>
-              <div className={classes.moviesListHeader}>Action</div>
-              <MoviesCarousel movies={newMovies.data} />
-            </div>
-          </Grid> */}
         </Grid>
       </Slide>
     );
   }
 }
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
+  newMovies: PropTypes.object.isRequired
+};
 
 function mapStateToProps({ newMovies }) {
   return { newMovies };

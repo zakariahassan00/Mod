@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import _ from "lodash";
 
@@ -32,13 +33,13 @@ const styles = {
   }
 };
 
-const Pagination = ({
+const Pagination = React.memo(function MoviesGrid({
   classes,
-  itemsCount,
-  itemsPerpage,
+  itemsCount = 1,
+  itemsPerpage = 20,
   onPageChange,
-  currentPage
-}) => {
+  currentPage = 1
+}) {
   const pagesCount = Math.ceil(itemsCount / itemsPerpage);
   const pages = _.range(1, pagesCount + 1);
 
@@ -69,6 +70,14 @@ const Pagination = ({
   }
 
   return <div className={classes.pagination}>{renderPages()}</div>;
+});
+
+Pagination.propTypes = {
+  classes: PropTypes.object.isRequired,
+  itemsCount: PropTypes.number,
+  itemsPerpage: PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(Pagination);

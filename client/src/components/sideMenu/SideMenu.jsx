@@ -1,4 +1,5 @@
 import React, { Fragment, PureComponent } from "react";
+import PropTypes from "prop-types";
 import {
   Drawer,
   List,
@@ -126,5 +127,11 @@ class SideMenu extends PureComponent {
     );
   }
 }
+
+SideMenu.propTypes = {
+  classes: PropTypes.object.isRequired,
+  showSideMenu: PropTypes.bool.isRequired,
+  toggleSideMenu: PropTypes.func.isRequired
+};
 
 export default withStyles(sideMenuStyles)(SideMenu);

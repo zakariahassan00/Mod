@@ -98,12 +98,12 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-Register.prototypes = {
+Register.propTypes = {
   classes: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
   getUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object
 };
 
 export default compose(

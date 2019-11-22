@@ -86,7 +86,7 @@ class Login extends PureComponent {
   }
 }
 
-Login.prototypes = {
+Login.propTypes = {
   classes: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   signIn: PropTypes.func.isRequired,

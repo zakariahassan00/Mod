@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Grid, Avatar, Typography, Slide } from "@material-ui/core";
@@ -43,6 +44,11 @@ const Profile = ({ classes, auth }) => {
       </div>
     </Slide>
   );
+};
+
+Profile.propTypes = {
+  classes: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 function mapStateToProps({ auth }) {

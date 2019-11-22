@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "recompose";
 import { Fragment } from "react";
@@ -9,7 +10,7 @@ import { Grid, withStyles, Typography } from "@material-ui/core";
 import MovieCard from "../../common/MovieCard";
 import UserRate from "../../common/userAction/UserRate";
 
-const styles = theme => ({
+const styles = {
   moviesListItem: {
     width: "100%",
     padding: "10px 30px",
@@ -21,7 +22,7 @@ const styles = theme => ({
   title: {
     width: "100%"
   }
-});
+};
 
 class RateListTab extends PureComponent {
   state = {
@@ -81,6 +82,13 @@ class RateListTab extends PureComponent {
     );
   }
 }
+
+RateListTab.propTypes = {
+  classes: PropTypes.object.isRequired,
+  userRateList: PropTypes.object.isRequired,
+  getRateList: PropTypes.func.isRequired,
+  fetchingData: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ userRateList }) {
   return { userRateList };

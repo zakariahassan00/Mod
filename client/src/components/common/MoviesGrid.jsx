@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles, Grid, Slide, Typography } from "@material-ui/core";
 import MovieCard from "./MovieCard";
 
@@ -20,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-const MoviesGrid = ({ classes, movies }) => {
+const MoviesGrid = React.memo(function MoviesGrid({ classes, movies }) {
   return (
     <section className={classes.moviesGrid}>
       {movies.length > 0 ? (
@@ -42,6 +43,11 @@ const MoviesGrid = ({ classes, movies }) => {
       )}
     </section>
   );
+});
+
+MovieCard.propTypes = {
+  classes: PropTypes.object,
+  movies: PropTypes.arrayOf(PropTypes.object.isRequired)
 };
 
 export default withStyles(styles)(MoviesGrid);

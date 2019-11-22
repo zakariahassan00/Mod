@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -41,6 +42,14 @@ const MuiTextField = ({
       {...input}
     />
   );
+};
+
+MuiTextField.propTypes = {
+  classes: PropTypes.object.isRequired,
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  meta: PropTypes.arrayOf(PropTypes.object.isRequired)
 };
 
 export default withStyles(styles)(MuiTextField);

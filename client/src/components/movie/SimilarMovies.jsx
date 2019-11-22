@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import MoviesCarousel from "../common/carousel";
+import Carousel from "../common/carousel";
 import { getSimilarMovies } from "../../actions";
 
 class SimilarMovies extends PureComponent {
@@ -17,7 +17,7 @@ class SimilarMovies extends PureComponent {
       case undefined:
         return;
       default:
-        return <MoviesCarousel movies={similarMovies} />;
+        return <Carousel data={similarMovies} />;
     }
   };
   render() {

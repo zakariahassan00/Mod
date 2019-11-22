@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import SearchIcon from "@material-ui/icons/Search";
 import InputBase from "@material-ui/core/InputBase";
 import { fade } from "@material-ui/core/styles";
@@ -51,29 +52,30 @@ const styles = theme => ({
   }
 });
 
-class SearchBar extends Component {
-  state = {};
-  render() {
-    const { classes, onQueryChange } = this.props;
-    return (
-      <div className={classes.searchbar}>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput
-            }}
-            inputProps={{ "aria-label": "search" }}
-            onChange={event => onQueryChange(event.target.value)}
-          />
+const SearchBar = React.memo(function SearchBar({ classes, onQueryChange }) {
+  return (
+    <div className={classes.searchbar}>
+      <div className={classes.search}>
+        <div className={classes.searchIcon}>
+          <SearchIcon />
         </div>
+        <InputBase
+          placeholder="Search…"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput
+          }}
+          inputProps={{ "aria-label": "search" }}
+          onChange={event => onQueryChange(event.target.value)}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+});
+
+SearchBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onQueryChange: PropTypes.func.isRequired
+};
 
 export default withStyles(styles)(SearchBar);

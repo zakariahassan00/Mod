@@ -1,3 +1,3 @@
-import MoviesCarousel from "./MoviesCarousel";
+import Carousel from "./Carousel";
 
-export default MoviesCarousel;
+export default Carousel;
