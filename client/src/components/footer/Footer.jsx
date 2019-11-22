@@ -6,30 +6,21 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import { footerStyles } from "./footerStyles";
 
+const list = [
+  { text: "Home", link: "/" },
+  { text: "Top Rated", link: "/top" },
+  { text: "In Theatre", link: "/new" },
+  { text: "Movies", link: "/all" }
+];
+
 const Footer = ({ classes }) => {
   const renderNavList = () => {
-    const list = ["Home", "Top Rated", "In Theatre", "Box Office", "Search"];
     return (
       <ul className={classes.footerList}>
         {list.map(item => {
           return (
-            <li key={item} className={classes.footerListItem}>
-              <Link to="/">{item}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  };
-
-  const renderContactList = () => {
-    const list = ["Register", "News", "Privacy Policy", "Condition of Use"];
-    return (
-      <ul className={classes.footerList}>
-        {list.map(item => {
-          return (
-            <li key={item} className={classes.footerListItem}>
-              <Link to="/">{item}</Link>
+            <li key={item.text} className={classes.footerListItem}>
+              <Link to={item.link}>{item.text}</Link>
             </li>
           );
         })}
@@ -54,9 +45,6 @@ const Footer = ({ classes }) => {
         </Grid>
         <Grid item xs={12} sm={3}>
           {renderNavList()}
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          {renderContactList()}
         </Grid>
       </Grid>
     </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as api from "../api";
 import {
   FETCH_USER,
   FETCH_USER_ERROR,
@@ -6,7 +7,9 @@ import {
   FETCH_MOVIE_ERROR,
   FETCH_NEW_MOVIES,
   FETCH_TOP_MOVIES,
+  FETCH_UPCOMING_MOVIES,
   FETCHING_MOVIES,
+  FETCH_SIMILAR_MOVIES,
   FETCH_MOVIE,
   FETCH_WATCH_LIST,
   FETCH_FAVORITES_LIST,
@@ -14,6 +17,7 @@ import {
 } from "./types";
 
 // Movies Actions
+
 export const getAllMovies = (page = 1, query = "") => async dispatch => {
   const movies = await axios.get(
     `/api/movies/all?page=${page}&searchQuery=${query}`
@@ -32,6 +36,18 @@ export const getTopMovies = (page = 1) => async dispatch => {
   const movies = await axios.get(`/api/movies/top?page=${page}`);
 
   dispatch({ type: FETCH_TOP_MOVIES, payload: movies.data });
+};
+
+export const getUpcomingMovies = () => async dispatch => {
+  const upcoming = await api.getUpcomingMovies();
+
+  dispatch({ type: FETCH_UPCOMING_MOVIES, payload: upcoming });
+};
+
+export const getSimilarMovies = id => async dispatch => {
+  const similar = await api.getSimilarMovies(id);
+
+  dispatch({ type: FETCH_SIMILAR_MOVIES, payload: similar });
 };
 
 export const getMovie = id => async dispatch => {

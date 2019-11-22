@@ -1,22 +1,17 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import MoviesCarousel from "../common/carousel";
-import { getSimilarMovies } from "../../api";
+import { getSimilarMovies } from "../../actions";
 
 class SimilarMovies extends PureComponent {
-  state = {
-    similarMovies: undefined
-  };
-
-  async componentDidMount() {
+  componentDidMount() {
     const { contentId } = this.props;
-    const similarMovies = await getSimilarMovies(contentId);
 
-    this.setState({ similarMovies });
+    this.props.getSimilarMovies(contentId);
   }
 
-  renderSimilarContent = () => {
-    const { similarMovies } = this.state;
+  renderContent = () => {
+    const { similarMovies } = this.props;
 
     switch (similarMovies) {
       case undefined:
@@ -26,13 +21,14 @@ class SimilarMovies extends PureComponent {
     }
   };
   render() {
-    return <div>{this.renderSimilarContent()}</div>;
+    return <div>{this.renderContent()}</div>;
   }
 }
 
-SimilarMovies.propTypes = {
-  contentId: PropTypes.number.isRequired,
-  getSimilarMovies: PropTypes.func
-};
-
-export default SimilarMovies;
+function mapStateToProps({ similarMovies }) {
+  return { similarMovies };
+}
+export default connect(
+  mapStateToProps,
+  { getSimilarMovies }
+)(SimilarMovies);

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// this should not be here but its a side project
+// this should not be stored here but just for simplicity purposes
 const API_KEY = "0c2fe905bc563d51fddca679b6766463";
 
 // get similar movies or TV shows from tmdb api

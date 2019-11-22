@@ -1,26 +1,21 @@
 import React, { PureComponent } from "react";
+import { connect } from "react-redux";
 import MoviesCarousel from "../common/carousel";
-import { getUpcomingMovies } from "../../api";
+import { getUpcomingMovies } from "../../actions";
 
 class UpcomingMovies extends PureComponent {
-  state = {
-    upcoming: []
-  };
-
-  async componentDidMount() {
-    const upcoming = await getUpcomingMovies();
-
-    this.setState({ upcoming });
+  componentDidMount() {
+    this.props.getUpcomingMovies();
   }
 
   renderContent = () => {
-    const { upcoming } = this.state;
+    const { upcomingMovies } = this.props;
 
-    switch (upcoming) {
+    switch (upcomingMovies) {
       case undefined:
         return;
       default:
-        return <MoviesCarousel movies={upcoming} />;
+        return <MoviesCarousel movies={upcomingMovies} />;
     }
   };
   render() {
@@ -28,4 +23,10 @@ class UpcomingMovies extends PureComponent {
   }
 }
 
-export default UpcomingMovies;
+function mapStateToProps({ upcomingMovies }) {
+  return { upcomingMovies };
+}
+export default connect(
+  mapStateToProps,
+  { getUpcomingMovies }
+)(UpcomingMovies);

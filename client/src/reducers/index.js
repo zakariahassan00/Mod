@@ -8,6 +8,8 @@ import moviesReducer from "./movies/moviesReducer";
 import newMoviesReducer from "./movies/newMoviesReducer";
 import topMoviesReducer from "./movies/topMoviesReducer";
 import selectedMovieReducer from "./movies/selectedMovieReducer";
+import upcomingMoviesReducer from "./movies/upcomingMoviesReducer";
+import similarMoviesReducer from "./movies/similarMoviesReducer";
 
 export default combineReducers({
   form: reduxForm,
@@ -18,5 +20,7 @@ export default combineReducers({
   movies: moviesReducer,
   newMovies: newMoviesReducer,
   topMovies: topMoviesReducer,
+  upcomingMovies: upcomingMoviesReducer,
+  similarMovies: similarMoviesReducer,
   selectedMovie: selectedMovieReducer
 });

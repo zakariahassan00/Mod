@@ -36,7 +36,7 @@ export const footerStyles = theme => ({
   },
   footerListItem: {
     color: "#808080",
-    textAlign: "left",
+    textAlign: "center",
     margin: 10,
     cursor: "pointer"
   }
