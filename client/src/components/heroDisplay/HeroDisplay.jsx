@@ -13,44 +13,42 @@ const HeroDisplay = ({ classes, movie, width }) => {
       <img className={classes.image} src={movie.backdrop_path} alt="" />
       <div className={classes.heroOverlay}></div>
       <div className={classes.heroContent}>
-        <Grid container>
-          <Grid item xs={4} lg={3} xl={2}>
-            {width === "xs" ? (
-              <MovieCard sm content={movie} />
-            ) : (
-              <MovieCard content={movie} />
-            )}
-          </Grid>
-          <Grid item xs={8} md={7} xl={5}>
-            <Typography
-              className={classes.heroTitle}
-              variant="h2"
-              component="h2"
-              gutterBottom
-            >
-              {movie.title}
-            </Typography>
+        <div className={classes.card}>
+          {width === "xs" ? (
+            <MovieCard sm content={movie} />
+          ) : (
+            <MovieCard content={movie} />
+          )}
+        </div>
+        <div>
+          <Typography
+            className={classes.heroTitle}
+            variant="h2"
+            component="h2"
+            gutterBottom
+          >
+            {movie.title}
+          </Typography>
+          <div>
             <div>
-              <div>
-                <Rating
-                  name="half-rating"
-                  readOnly
-                  value={movie.vote_average * 0.5}
-                  precision={0.25}
-                  className={classes.rating}
-                />
-                <Chip label={movie.vote_average} className={classes.chip} />
-              </div>
+              <Rating
+                name="half-rating"
+                readOnly
+                value={movie.vote_average * 0.5}
+                precision={0.25}
+                className={classes.rating}
+              />
+              <Chip label={movie.vote_average} className={classes.chip} />
             </div>
-            <Typography
-              className={classes.heroOverview}
-              variant="body1"
-              gutterBottom
-            >
-              {movie.overview}
-            </Typography>
-          </Grid>
-        </Grid>
+          </div>
+          <Typography
+            className={classes.heroOverview}
+            variant="body1"
+            gutterBottom
+          >
+            {movie.overview}
+          </Typography>
+        </div>
       </div>
     </div>
   );

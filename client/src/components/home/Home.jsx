@@ -23,7 +23,7 @@ class Home extends Component {
   render() {
     const { newMovies, classes } = this.props;
     const { randomIndex } = this.state;
-    const randomMovie = newMovies.data[randomIndex || 0] || {};
+    const randomMovie = newMovies.data[randomIndex] || {};
 
     return (
       <Slide direction="right" in={true} mountOnEnter unmountOnExit>

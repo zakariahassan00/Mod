@@ -6,18 +6,19 @@ export const heroDisplayStyles = theme => ({
     width: "100%",
     height: "50vw",
     backgroundColor: "#000",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       height: "100vh"
     }
   },
   heroImage: {
     height: "100%",
     overflow: "hidden"
-    // backgroundImage: "linear-gradient(to left ,#000, #000)"
   },
   heroContent: {
-    width: "70%",
+    width: "85%",
     height: "auto",
+    maxWidth: "1200px",
+    display: "flex",
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -25,26 +26,38 @@ export const heroDisplayStyles = theme => ({
     zIndex: "222",
     textAlign: "left",
     color: "#fff",
-    fontFamily: "HelveticaNeue"
+    fontFamily: "HelveticaNeue",
+    [theme.breakpoints.only("xs")]: {
+      width: "95%"
+    },
+    [theme.breakpoints.only("sm")]: {
+      top: "60%"
+    }
+  },
+  card: {
+    margin: "0 20px",
+    [theme.breakpoints.only("xs")]: {
+      margin: "0 10px"
+    }
   },
   image: {
     width: "100%"
   },
   heroOverlay: {
-    position: "absolute",
     width: "100%",
     height: "100%",
+    position: "absolute",
+    top: 0,
     zIndex: "22",
     backgroundImage:
       "linear-gradient(to top, rgba(255, 255, 255, 0), rgba(88, 88, 88, 0.6) 56%, rgba(9, 9, 9, .7) 83%, #000000)",
-    backgroundColor: "rgb(0,0,0, .6)",
-    top: 0
+    backgroundColor: "rgb(0,0,0, .6)"
   },
   heroTitle: {
     selfAlign: "center",
     [theme.breakpoints.only("xs")]: {
       fontSize: "1rem",
-      margin: "10px auto"
+      margin: "5px auto 10px"
     },
     [theme.breakpoints.up("md")]: {
       fontSize: "3rem",
@@ -65,27 +78,8 @@ export const heroDisplayStyles = theme => ({
       marginBottom: 10
     },
     [theme.breakpoints.down("xs")]: {
-      fontSize: ".5rem",
+      fontSize: ".4rem",
       margin: 0
-    }
-  },
-  button: {
-    width: 150,
-    backgroundColor: "rgba(0, 0, 0, 0.32)",
-    color: "#fff",
-    margin: 20,
-    textTransform: "capitalize",
-    [theme.breakpoints.only("xs")]: {
-      height: 20,
-      width: 80,
-      margin: 5,
-      fontSize: ".6rem"
-    },
-    [theme.breakpoints.up("md")]: {
-      height: 35,
-      width: 120,
-      margin: 10,
-      fontSize: "1rem"
     }
   },
   rating: {
@@ -103,20 +97,6 @@ export const heroDisplayStyles = theme => ({
       fontSize: 20,
       bottom: 7,
       height: "18px"
-    }
-  },
-  card: {
-    margin: "auto",
-    overflow: "hidden",
-    width: 200,
-    [theme.breakpoints.down("sm")]: {
-      width: 140
-    }
-  },
-  media: {
-    height: 300,
-    [theme.breakpoints.down("sm")]: {
-      height: 210
     }
   }
 });
