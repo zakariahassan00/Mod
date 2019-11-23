@@ -57,7 +57,7 @@ export const heroDisplayStyles = theme => ({
     selfAlign: "center",
     [theme.breakpoints.only("xs")]: {
       fontSize: "1rem",
-      margin: "5px auto 10px"
+      margin: "10px auto 5px"
     },
     [theme.breakpoints.up("md")]: {
       fontSize: "3rem",

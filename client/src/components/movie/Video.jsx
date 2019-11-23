@@ -60,6 +60,9 @@ const styles = theme => ({
       height: 25,
       fontSize: 10,
       padding: "0px 20px"
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: 15
     }
   }
 });

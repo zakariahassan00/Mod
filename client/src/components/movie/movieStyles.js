@@ -39,14 +39,16 @@ export const movieStyles = theme => ({
     width: "80%",
     height: "auto",
     position: "absolute",
-    left: "10%",
-    top: "30%",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     zIndex: "123",
     color: "#fff",
     textAlign: "left",
-    [theme.breakpoints.down("xs")]: {
-      top: "20%"
-    },
+    // [theme.breakpoints.down("xs")]: {
+    //   top: "20%",
+    //   width: "100%"
+    // },
     [theme.breakpoints.up("xl")]: {
       fontSize: "2rem"
     }
@@ -74,6 +76,9 @@ export const movieStyles = theme => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.7rem",
       margin: "10px 0 5px"
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.3rem"
     },
     [theme.breakpoints.up("xl")]: {
       fontSize: "4rem",
