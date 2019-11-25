@@ -1,8 +1,5 @@
 const mongoose = require("mongoose");
-const requireLogin = require("../middlewares/requireLogin");
-
 const Movie = mongoose.model("movies");
-const User = mongoose.model("users");
 
 module.exports = app => {
   // return all Movies in the DB

@@ -11,7 +11,7 @@ export const getSimilarMovies = async id => {
 
   // modifing images url in data
   let similarContent = res.data.results.map(content => {
-    content.poster_path = `https://image.tmdb.org/t/p/original${content.poster_path}`;
+    content.poster_path = `https://image.tmdb.org/t/p/w300${content.poster_path}`;
     return content;
   });
 
